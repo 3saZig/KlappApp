@@ -6,6 +6,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using KlappAppen.Models.Entities;
+using KlappAppen.Models;
+using Microsoft.AspNetCore.Http;
+using React.AspNet;
 
 namespace KlappAppen
 {
@@ -13,21 +18,41 @@ namespace KlappAppen
     {
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            var connstring = @"Data Source=.;Initial Catalog=KlappApp;Integrated Security=True;Pooling=False";
+            services.AddDbContext<KlappAppContext>(o => o.UseSqlServer(connstring));
             services.AddMvc();
-        }
+            services.AddTransient<DBPersonsRepository>();
+            //services.AddTransient<Person[]>();
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddReact();
+            return services.BuildServiceProvider();
+            
+        }
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
             }
 
-                app.UseMvcWithDefaultRoute();
-            app.UseStaticFiles();
+            app.UseMvcWithDefaultRoute();
+            app.UseReact(config =>
+               { });
+
+                app.UseStaticFiles();
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action=Index}/{id?}");
+            });
             
         }
     }
