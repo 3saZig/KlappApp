@@ -20,7 +20,8 @@ namespace KlappAppen
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            var connstring = @"Data Source=.;Initial Catalog=KlappApp;Integrated Security=True;Pooling=False";
+            //var connstring = @"Data Source=.;Initial Catalog=KlappApp;Integrated Security=True;Pooling=False";
+            var connstring = @"Data Source=klappappenserver.database.windows.net;Initial Catalog=KlappAppen;Persist Security Info=True;User ID=klappappen;Password=polkagris3!";
             services.AddDbContext<KlappAppContext>(o => o.UseSqlServer(connstring));
             services.AddMvc();
             services.AddTransient<DBPersonsRepository>();
