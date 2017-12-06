@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace KlappAppen.Models.Entities
+namespace KlappAppen.Models.ViewModels
 {
-    public partial class Gifts
+    public class HomeGiftVM
     {
-        public int Id { get; set; }
         public int Price { get; set; }
         public string Receiver { get; set; }
         public string Name { get; set; }
-        public int BudgetId { get; set; }
-
-        public Budgets Budget { get; set; }
     }
 }

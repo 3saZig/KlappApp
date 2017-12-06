@@ -13,28 +13,28 @@ namespace KlappAppen.Controllers
     public class HomeController : Controller
     {
 
-        DBPersonsRepository repository;
-        public HomeController(DBPersonsRepository repository)
+        DBBudgetRepository repository;
+
+        public HomeController(DBBudgetRepository repository)
         {
             this.repository = repository;
         }
 
         // GET: /<controller>/
-        public IActionResult Index()
-        {
-            return View(repository.GetAllPersons());
-        }
+        //public IActionResult Index()
+        //{
+        //    return View(repository.GetAllPersons());
+        //}
 
-
-
-        public IActionResult MainContent()
-        {            
-            return View(repository.GetAllPersons());
-        }
+        //public IActionResult MainContent()
+        //{            
+        //    return View(repository.GetAllPersons());
+        //}
 
         public IActionResult SetBudget()
-        {            
-            return View();
+        {
+
+            return View(repository.GetAllBudgets());
         }
 
         public IActionResult GiftIdeas()
@@ -46,5 +46,7 @@ namespace KlappAppen.Controllers
         {
             return View();
         }
+
+       
     }
 }
