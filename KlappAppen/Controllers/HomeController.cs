@@ -22,8 +22,7 @@ namespace KlappAppen.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            repository.GetAllPersons();
-            return Content("");
+            return View(repository.GetAllPersons());
         }
 
         public IActionResult MainContent()

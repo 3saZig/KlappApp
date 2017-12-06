@@ -9,8 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using KlappAppen.Models.Entities;
 using KlappAppen.Models;
-using Microsoft.AspNetCore.Http;
-using React.AspNet;
+//using React.AspNet;
 
 namespace KlappAppen
 {
@@ -18,7 +17,7 @@ namespace KlappAppen
     {
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             //var connstring = @"Data Source=.;Initial Catalog=KlappApp;Integrated Security=True;Pooling=False";
             var connstring = @"Data Source=klappappenserver.database.windows.net;Initial Catalog=KlappAppen;Persist Security Info=True;User ID=klappappen;Password=polkagris3!";
@@ -27,9 +26,9 @@ namespace KlappAppen
             services.AddTransient<DBPersonsRepository>();
             //services.AddTransient<Person[]>();
 
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddReact();
-            return services.BuildServiceProvider();
+            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //services.AddReact();
+            //return services.BuildServiceProvider();
             
         }
         
@@ -43,10 +42,10 @@ namespace KlappAppen
             }
 
             app.UseMvcWithDefaultRoute();
-            app.UseReact(config =>
-               { });
+            //app.UseReact(config =>
+            //   { });
 
-                app.UseStaticFiles();
+            app.UseStaticFiles();
 
             app.UseMvc(routes =>
             {

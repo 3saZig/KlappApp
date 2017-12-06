@@ -1,9 +1,16 @@
-﻿@model 
+﻿@model HomeMainContentVM[]
+
 <h1>Hej</h1>
 
 @foreach (var item in Model)
 {
-    <div>@item.Name</div>
+    <div>@item.PersonName</div>
+
+    foreach (var gift in item.GiftItems)
+    {
+        <div>@gift.GiftName</div>
+        <div>@gift.GiftPrice</div>
+    }
 }
 
 <div id="content"></div>
