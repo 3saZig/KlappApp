@@ -1,8 +1,7 @@
-﻿@model HomeMainContentVM[]
+﻿@*@model HomeMainContentVM[]*@
 
-<h1>Hej</h1>
 
-@foreach (var item in Model)
+@*@foreach (var item in Model)
 {
     <div>@item.PersonName</div>
 
@@ -11,6 +10,20 @@
         <div>@gift.GiftName</div>
         <div>@gift.GiftPrice</div>
     }
-}
+}*@
 
-<div id="content"></div>
+<link href="~/css/indexstyle.css" rel="stylesheet" />
+
+<div id="div_index">
+    <div id="div_hoho">
+        <p id="p_welcome_text">Ho Ho Ho!</p>
+    </div>
+    <div id="div_budget_index">
+        <input type="button" id="button_setBudget_index" value="Skapa Budget" onclick="javascript: window.location.href='/home/SetBudget'" />
+
+    </div>
+    <div id="div_mainContent_index">
+        <input type="button" id="button_mainContent_index" value="Skapa Lista" onclick="javascript: window.location.href='/home/MainContent'" />
+
+    </div>
+</div>

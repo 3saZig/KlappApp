@@ -1,1 +1,19 @@
-﻿
+﻿#div_index {
+    background-color: #ca1515;
+}
+
+#button_setBudget_index {
+    background-color: white;
+    color: black;
+    border: 2px solid #1b5119; /* Green */
+}
+
+#button_mainContent_index {
+    background-color: white;
+    color: black;
+    border: 2px solid #bd1414; /* Red*/
+}
+
+#p_welcome_text {
+    color: white;
+}
