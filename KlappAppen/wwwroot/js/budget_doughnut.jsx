@@ -1,5 +1,7 @@
 ﻿
 
+
+
 class CommentBox extends React.Component {
 
 	componentDidMount() {
@@ -38,7 +40,9 @@ class CommentBox extends React.Component {
     }
 };
 
+if ($("#content").length > 0) {
 ReactDOM.render(
     <CommentBox />,
     document.getElementById('content')
 );
+}

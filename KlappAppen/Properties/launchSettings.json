@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:57136/home",
+      "applicationUrl": "http://localhost:57136/home/setbudget",
       "sslPort": 0
     }
   },

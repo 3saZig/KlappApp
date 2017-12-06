@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using KlappAppen.Models.Entities;
 using KlappAppen.Models;
+using KlappAppen.Models.Entities;
 //using React.AspNet;
 
 namespace KlappAppen
@@ -20,10 +20,11 @@ namespace KlappAppen
         public void ConfigureServices(IServiceCollection services)
         {
             //var connstring = @"Data Source=.;Initial Catalog=KlappApp;Integrated Security=True;Pooling=False";
-            var connstring = @"Data Source=klappappenserver.database.windows.net;Initial Catalog=KlappAppen;Persist Security Info=True;User ID=klappappen;Password=polkagris3!";
+            //var connstring = @"Data Source=klappappenserver.database.windows.net;Initial Catalog=KlappAppen;Persist Security Info=True;User ID=klappappen;Password=polkagris3!";
+            var connstring = @"Data Source=klappappenserver.database.windows.net;Initial Catalog=KlappAppen;Integrated Security=False;User ID=klappappen;Password=polkagris3!;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             services.AddDbContext<KlappAppContext>(o => o.UseSqlServer(connstring));
             services.AddMvc();
-            services.AddTransient<DBPersonsRepository>();
+            services.AddTransient<DBBudgetRepository>();
             //services.AddTransient<Person[]>();
 
             //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
