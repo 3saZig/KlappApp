@@ -27,12 +27,22 @@ namespace KlappAppen.Controllers
 
         public IActionResult MainContent()
         {            
-            return Content("MainContent");
+            return View();
         }
 
         public IActionResult SetBudget()
         {            
-            return Content("SetBudget");
+            return View();
+        }
+
+        public IActionResult GiftIdeas()
+        {
+            return View();
+        }
+
+        public IActionResult Settings()
+        {
+            return View();
         }
     }
 }
