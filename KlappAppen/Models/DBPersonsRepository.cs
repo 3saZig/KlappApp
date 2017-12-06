@@ -1,6 +1,8 @@
 ﻿using KlappAppen.Models.Entities;
+using KlappAppen.Models.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,9 +17,21 @@ namespace KlappAppen.Models
             this.context = context;
         }
 
-        public Persons[] GetAllPersons()
+        public HomeMainContentVM[] GetAllPersons()
         {
-            return context.Persons.ToArray();
+            var ret = context.Persons
+                .Select(o => new HomeMainContentVM
+                {
+                    PersonName = o.Name,
+                    GiftItems = o.P2g.Select(g => new HomePersonGiftItemVM
+                    {
+                        GiftName = g.G.Gift,
+                        GiftPrice = g.G.Price
+                    }).ToArray()
+                })
+                .ToArray();
+
+            return ret;
         }
     }
 }
