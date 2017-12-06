@@ -27,7 +27,7 @@ namespace KlappAppen.Controllers
 
         public IActionResult MainContent()
         {            
-            return View();
+            return View(repository.GetAllPersons());
         }
 
         public IActionResult SetBudget()

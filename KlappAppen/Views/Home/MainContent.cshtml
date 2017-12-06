@@ -1,4 +1,27 @@
-﻿@model HomeMainContentVM
+﻿@model HomeMainContentVM[]
+
+
+
+<div id="div_main">
+    <div id="table">
+        <div id="tablehead">
+            <div class="th_header">Namn</div>
+            <div class="th_header">Present</div>
+            <div class="th_header">Pris</div>
+        </div>
+       @foreach (var item in Model)
+       {
+        <div class="td">@item.PersonName</div>
+
+           foreach (var gift in item.GiftItems)
+           {
+            <div class="td">@gift.GiftName</div>
+            <div class="td">@gift.GiftPrice</div>
+           }
+       }
+
+    </div>
+</div>
 
 
 
