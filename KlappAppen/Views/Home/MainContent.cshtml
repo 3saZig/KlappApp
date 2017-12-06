@@ -2,23 +2,23 @@
 
 
 
-<div id="div_main">
-    <div id="table">
-        <div id="tablehead">
-            <div class="th_header">Namn</div>
-            <div class="th_header">Present</div>
-            <div class="th_header">Pris</div>
+<div id="div_mainContent">
+    <div id="table_list">
+        @*<div id="tablehead_mainContent">
+            <div class="th_header_mainContent">Namn</div>
+            <div class="th_header_mainContent">Present</div>
+            <div class="th_header_mainContent">Pris</div>
         </div>
        @foreach (var item in Model)
        {
-        <div class="td">@item.PersonName</div>
+        <div class="td_mainContent">@item.PersonName</div>
 
            foreach (var gift in item.GiftItems)
            {
-            <div class="td">@gift.GiftName</div>
-            <div class="td">@gift.GiftPrice</div>
+            <div class="td_mainContent">@gift.GiftName</div>
+            <div class="td_mainContent">@gift.GiftPrice</div>
            }
-       }
+       }*@
 
     </div>
 </div>
