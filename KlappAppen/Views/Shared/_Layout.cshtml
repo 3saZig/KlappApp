@@ -6,7 +6,7 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div id="div_logga">KLAPPAPP</div>
+    <div id="div_logga"><h1>KLAPPAPP</h1></div>
     <div id="div_content">
         @RenderBody()
 
@@ -16,10 +16,10 @@
         <span id="span_meny">
             <strong>
                 <a asp-controller="home" asp-action="Index" class="a_meny">Hem</a>
-                <a asp-controller="account" asp-action="MainContent" class="a_meny">Tablå</a>
-                <a asp-controller="account" asp-action="SetBudget" class="a_meny">Sätt Budget</a>
-                <a asp-controller="account" asp-action="GiftIdeas" class="a_meny">Presentförslag</a>
-                <a asp-controller="account" asp-action="Settings" class="a_meny">Inställningar</a>
+                <a asp-controller="home" asp-action="MainContent" class="a_meny">Lista</a>
+                <a asp-controller="home" asp-action="SetBudget" class="a_meny">Sätt Budget</a>
+                <a asp-controller="home" asp-action="GiftIdeas" class="a_meny">Presentförslag</a>
+                <a asp-controller="home" asp-action="Settings" class="a_meny">Inställningar</a>
 
             </strong>
         </span>
@@ -28,7 +28,8 @@
     <script src="https://fb.me/react-15.0.0.js"></script>
     <script src="https://fb.me/react-dom-15.0.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-    <script type="text/babel" src="~/js/budget_doughnut.jsx"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script type="text/babel" src="~/js/budget_doughnut.jsx">
+    </script>
 </body>
 </html>
