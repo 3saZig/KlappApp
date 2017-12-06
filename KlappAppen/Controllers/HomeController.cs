@@ -25,6 +25,8 @@ namespace KlappAppen.Controllers
             return View(repository.GetAllPersons());
         }
 
+
+
         public IActionResult MainContent()
         {            
             return View();
