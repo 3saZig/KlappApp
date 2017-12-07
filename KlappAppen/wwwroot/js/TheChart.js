@@ -18,17 +18,20 @@ $(document).ready(function () {
                         {
                             label: "Chart",
                             data: [1, 4, 6, 2, 7],
-                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                            backgroundColor: ["#4d0000", "#004d00", "#003300", "#008000", "#006600"],
+                            borderColor: "#000000"
                         }
                     ]
                 },
 
-                //options: {
-                //        cutoutPercentage: 80,
-                //        animation: {
-                //            animateScale: true
-                //        }
-                //    }
+                options: {
+                    cutoutPercentage: 80,
+                    responsive: true,
+                    maintainAspectRatio: true,
+                        animation: {
+                            animateScale: true
+                        }
+                    }
 
                 });
 

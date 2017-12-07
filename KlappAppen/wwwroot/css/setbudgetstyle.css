@@ -1,1 +1,17 @@
-﻿
+﻿#chart_div{
+    width: auto; 
+    height: auto; 
+    text-align: center; 
+    position: relative; 
+    /*margin: auto;*/ 
+}
+
+#doughnut{
+    /*height: 400px; 
+    width: 400px;*/ 
+}
+
+#text_setBudget{
+    font-size: 30px; 
+    height: 500px; 
+}
