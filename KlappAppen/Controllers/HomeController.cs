@@ -50,7 +50,6 @@ namespace KlappAppen.Controllers
             return View();
         }
 
-
         public IActionResult Settings()
         {
             return View();

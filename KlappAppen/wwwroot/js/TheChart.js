@@ -24,14 +24,17 @@ $(document).ready(function () {
                     ]
                 },
 
-                options: {
-                    cutoutPercentage: 20,
-                    responsive: true,
-                    maintainAspectRatio: true,
-                        animation: {
-                            animateScale: true
-                        }
-                    }
+				options: {
+					legend: {
+						display: false,
+						cutoutPercentage: 20,
+						responsive: true,
+						maintainAspectRatio: true,
+						animation: {
+							animateScale: true
+						}
+					}
+				}
 
                 });
 
