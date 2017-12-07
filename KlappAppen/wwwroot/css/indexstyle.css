@@ -1,15 +1,18 @@
 ﻿#div_index {
     background-color: #ca1515;
-    text-align: center; 
+    text-align: center;
+    height: 100%;
 }
 
 
 .button_index {
     background-color: #1b5119;
     color: black;
+    font-family:'Futura Std';
     font-size: 35px;
     border: 2px solid #ca1515; /* Green */
 }
+
     .button_index:hover {
         background-color: #ca1515;
     }
@@ -18,7 +21,5 @@
 #welcome_text {
     color: white;
     font-family: geektastic;
-    font-size: 80px; 
+    font-size: 80px;
 }
-
-

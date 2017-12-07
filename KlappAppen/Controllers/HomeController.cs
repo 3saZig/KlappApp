@@ -34,8 +34,9 @@ namespace KlappAppen.Controllers
 
         public IActionResult SetBudget()
         {
+            var list = repository.GetAllGifts();
 
-            return View(repository.GetAllBudgets());
+            return View(list);
         }
 
         //public string GetBudget()
