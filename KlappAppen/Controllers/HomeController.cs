@@ -37,6 +37,12 @@ namespace KlappAppen.Controllers
             return View(repository.GetAllBudgets());
         }
 
+        public string GetBudget()
+        {
+            
+            return repository.GetAllBudgetsJSON();
+        }
+
         public IActionResult GiftIdeas()
         {
             return View();

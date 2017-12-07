@@ -38,12 +38,31 @@ namespace KlappAppen.Models
 
             var budgetGiftList = JsonConvert.SerializeObject(ret);
 
-            File.WriteAllText(@"C:\Users\Administrator\Desktop\Json.rtf", budgetGiftList);
+            //File.WriteAllText(@"C:\Users\Administrator\Desktop\Json.rtf", budgetGiftList);
 
             return ret;
         }
 
-        //public HomeMainContentVM[] GetAllPersons()
+        public string GetAllBudgetsJSON()
+        {
+            var ret = klapp.Budgets
+                .Select(b => new HomeSetBudgetVM
+                {
+                    Total = b.Total,
+                    GiftItems = b.Gifts.Select(g => new HomeGiftVM
+                    {
+                        Receiver = g.Receiver,
+                        Name = g.Name,
+                        Price = g.Price
+
+                    }).ToArray()
+                })
+                .ToArray();
+
+            return JsonConvert.SerializeObject(ret);
+        }
+
+           //public HomeMainContentVM[] GetAllPersons()
         //{
         //    //var ret = context.Persons
         //        .Select(o => new HomeMainContentVM
