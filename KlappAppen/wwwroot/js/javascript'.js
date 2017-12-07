@@ -38,9 +38,9 @@ function confirmAddPerson() {
             success: function (result) {
                 confirmAddPerson(); //är detta rätt???
                 let html = '<div class="div_tr"><div class="div_td">' + result[i].Name + '</div><div class="div_td">' + result[i].Gift + '</div><div class="div_td">' + result[i].Price
-                    + '<div class="div_td"><button class="edit" value="' + result[i].id + '">Edit</button><button class="delete" value="' + result[i].Id + '"></div><div class="div_td">Delete</button></div></div>';
-                $("#table_list").append(html);
-            }
+                    + '<div class="div_td"><button class="edit" value="' + result[i].id + '">Edit</button><button class="delete" value="' + result[i].Id + '"></div><div class="div_td">Delete</button></div></div>',
+                $("#table_list").append(html),
+            };
 
         });
     });
