@@ -1,42 +1,67 @@
-﻿
+﻿$(document).ready(function () {
+	$.ajax({
+		url: "/home/CreateChart",
+		type: "GET",
+		success: function (jsonzzz) {
+			createChart(jsonzzz);
+		}
+	});
+});
 
+function createChart(jsonzzz) {
+	let result = JSON.parse(jsonzzz);
+	console.log(result);
 
+	var colorList = ["#4d0000", "#004d00", "#003300", "#008000"];
+
+	var colorArray = [];
+	var labelArray = [];
+	var dataArray = [];
+	for (var i = 0; i < result.length; i++) {
+		colorArray.push(colorList[i]);
+		labelArray.push(result[i].Name);
+		dataArray.push(result[i].Price);
+	}
+	
+
+	var ctx = document.getElementById("doughnut").getContext('2d');
+
+	var doughnutChart = new Chart(ctx, {
+
+		type: 'doughnut',
+		data: {
+			labels: labelArray,
+			datasets: [
+				{
+					label: "Chart",
+					data: dataArray,
+					backgroundColor: colorArray,
+					borderColor: "#000000"
+				}
+			]
+		},
+
+		options: {
+			legend: {
+				display: false,
+				cutoutPercentage: 20,
+				responsive: true,
+				maintainAspectRatio: true,
+				animation: {
+					animateScale: true
+				}
+			}
+		}
+
+	});
+};
 
 $(document).ready(function () {
 	//$.getJSON("/Home/SetBudget")
 	//	.done(function (data) {
  //           console.log(data);
 
-	var ctx = document.getElementById("doughnut").getContext('2d');
-
-            var doughnutChart = new Chart(ctx, {
-
-                type: 'doughnut',
-                data: {
-                    labels: ["name3", "jgasdlk", "dalgkj", "glkd", "aghsdlk"],
-                    datasets: [
-                        {
-                            label: "Chart",
-                            data: [1, 4, 6, 2, 7],
-                            backgroundColor: ["#4d0000", "#004d00", "#003300", "#008000", "#006600"],
-                            borderColor: "#000000"
-                        }
-                    ]
-                },
-
-				options: {
-					legend: {
-						display: false,
-						cutoutPercentage: 20,
-						responsive: true,
-						maintainAspectRatio: true,
-						animation: {
-							animateScale: true
-						}
-					}
-				}
-
-                });
+	
 
 
 

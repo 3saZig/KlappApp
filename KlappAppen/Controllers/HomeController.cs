@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using KlappAppen.Models;
 using KlappAppen.Models.Entities;
+using Newtonsoft.Json;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -32,11 +33,16 @@ namespace KlappAppen.Controllers
             return View();
         }
 
+        public string CreateChart()
+        {
+            return repository.GetAllGifts();
+            
+        }
+
         public IActionResult SetBudget()
         {
-            var list = repository.GetAllGifts();
+            return View();
 
-            return View(list);
         }
 
         //public string GetBudget()
