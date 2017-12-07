@@ -28,6 +28,7 @@ namespace KlappAppen.Controllers
         //repository.GetAllPersons()
         public IActionResult MainContent()
         {
+
             return View();
         }
 
@@ -37,16 +38,26 @@ namespace KlappAppen.Controllers
             return View(repository.GetAllBudgets());
         }
 
+        //public string GetBudget()
+        //{
+
+        //    //return repository.GetAllBudgetsJSON();
+        //}
+
         public IActionResult GiftIdeas()
         {
             return View();
         }
+
 
         public IActionResult Settings()
         {
             return View();
         }
 
-
+        public string GetListJavaScript()
+        {
+            return repository.GetList();
+        }
     }
 }

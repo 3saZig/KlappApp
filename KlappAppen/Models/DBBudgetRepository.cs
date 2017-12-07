@@ -31,6 +31,7 @@ namespace KlappAppen.Models
                          Receiver = g.Receiver,
                          Name = g.Name,
                          Price = g.Price
+                                                  
 
                      }).ToArray()
                  })
@@ -43,6 +44,38 @@ namespace KlappAppen.Models
             return ret;
         }
 
+        public string GetList()
+        {
+            var list = klapp.Gifts
+                .Select(g => new HomeMainContentVM
+                {
+                    Receiver = g.Receiver,
+                    Name = g.Name,
+                    Price = g.Price,
+                    Id = g.Id
 
+                }).ToArray();
+
+            var giftList = JsonConvert.SerializeObject(list);
+
+            return giftList;
+        }
+
+        //public HomeMainContentVM[] GetAllPersons()
+        //{
+        //    //var ret = context.Persons
+        //        .Select(o => new HomeMainContentVM
+        //        {
+        //            PersonName = o.Name,
+        //            GiftItems = o.P2g.Select(g => new HomePersonGiftItemVM
+        //            {
+        //                GiftName = g.G.Gift,
+        //                GiftPrice = g.G.Price
+        //            }).ToArray()
+        //        })
+        //        .ToArray();
+
+        //    return ret;
+        //}
     }
 }
