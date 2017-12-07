@@ -7,41 +7,58 @@
     <link href="~/css/layoutstyle.css" rel="stylesheet" />
 </head>
 <body>
-    <div id="div_logga"><h1>KLAPPAPP</h1></div>
+    <div id="div_logga">
+        <img id="logga_red" src="~/pictures/logo_red.png" />
+    </div>
     <div id="div_content">
         @RenderBody()
 
 
     </div>
-    <span id="span_meny">
-        <span id="span_meny">
-            <strong>
-                <a asp-controller="home" asp-action="Index" class="a_meny">Hem</a>
-                <a asp-controller="home" asp-action="MainContent" class="a_meny">Lista</a>
-                <a asp-controller="home" asp-action="SetBudget" class="a_meny">Sätt Budget</a>
-                <a asp-controller="home" asp-action="GiftIdeas" class="a_meny">Presentförslag</a>
-                <a asp-controller="home" asp-action="Settings" class="a_meny">Inställningar</a>
 
-            </strong>
-        </span>
-    </span>
 
     <div id="div_menu">
-        <div id="div_menu_1"></div>
-        <div id="div_menu_2"></div>
-        <div id="div_menu_3"></div>
-        <div id="div_menu_4"></div>
-        <div id="div_menu_5"></div>
+        <a href="index">
+            <div id="div_menu_1">
+                <img src="~/pictures/home.png" />
+                <p>Hem</p>
+            </div>
+        </a>
+        <a href="setBudget">
+            <div id="div_menu_2">
+                <img src="~/pictures/budget.png" />
+                <p>Budget</p>
+            </div>
+        </a>
+        <a href="mainContent">
+            <div id="div_menu_3">
+                <img src="~/pictures/list.png" />
+                <p>Lista</p>
+            </div>
+        </a>
+        <a href="giftIdeas">
+            <div id="div_menu_4">
+                <img src="~/pictures/ideas.png" />
+                <p>KlappTips</p>
+            </div>
+        </a>
+        <a href="Settings">
+            <div id="div_menu_5">
+                <a href="~/Views/Home/Settings.cshtml">~/Views/Home/Settings.cshtml</a>
+                <p>Inställningar</p>
+            </div>
+        </a>
+
     </div>
 
 
     <script src="https://fb.me/react-15.0.0.js"></script>
     <script src="https://fb.me/react-dom-15.0.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
-	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script type="text/babel" src="~/js/budget_doughnut.jsx">
-    <script src="~/js/javascript'.js"></script>
+        <script src="~/js/javascript'.js"></script>
     </script>
 </body>
 </html>

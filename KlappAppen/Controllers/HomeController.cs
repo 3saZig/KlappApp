@@ -20,16 +20,16 @@ namespace KlappAppen.Controllers
             this.repository = repository;
         }
 
-        // GET: /<controller>/
-        //public IActionResult Index()
-        //{
-        //    return View(repository.GetAllPersons());
-        //}
-
-        //public IActionResult MainContent()
-        //{            
-        //    return View(repository.GetAllPersons());
-        //}
+        //GET: /<controller>/
+        public IActionResult Index()
+        {
+            return View();
+        }
+        //repository.GetAllPersons()
+        public IActionResult MainContent()
+        {
+            return View();
+        }
 
         public IActionResult SetBudget()
         {
@@ -47,6 +47,6 @@ namespace KlappAppen.Controllers
             return View();
         }
 
-       
+
     }
 }
