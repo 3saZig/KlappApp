@@ -1,5 +1,6 @@
 ﻿
 
+var budgetGiftList = JsonConvert.DeserializeObject<BudgetGiftJson>(ret);
 
 
 class CommentBox extends React.Component {
@@ -10,12 +11,12 @@ class CommentBox extends React.Component {
 
 			type: 'doughnut',
 			data: {
-				labels: ['Resa', 'Bio', 'Mat', 'Nöje', 'Whatever'],
+				labels: [budgetGiftList.Receiver],
 				datasets: [
 					{
 						label: 'Example',
 						backgroundColor: ['#f1c40f', '#e67e22', '#16a085', '#2980b9', '#333'],
-						data: [2, 5, 1, 7, 8]
+						data: [budgetGiftList.Price]
 					}
 				]
 			},
@@ -46,3 +47,6 @@ ReactDOM.render(
     document.getElementById('content')
 );
 }
+
+
+

@@ -1,7 +1,9 @@
 ﻿using KlappAppen.Models.Entities;
 using KlappAppen.Models.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -33,6 +35,10 @@ namespace KlappAppen.Models
                      }).ToArray()
                  })
                 .ToArray();
+
+            var budgetGiftList = JsonConvert.SerializeObject(ret);
+
+            File.WriteAllText(@"C:\Users\Administrator\Desktop\Json.rtf", budgetGiftList);
 
             return ret;
         }
