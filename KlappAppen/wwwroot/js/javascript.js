@@ -4,8 +4,7 @@
         type: "GET",
         success: function (jsonArr) {
             createTable(jsonArr);
-            deletePerson();
-            addPerson();
+ 
         }
     });
 });
