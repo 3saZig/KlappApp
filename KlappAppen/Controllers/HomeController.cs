@@ -59,5 +59,10 @@ namespace KlappAppen.Controllers
         {
             return repository.GetList();
         }
+
+        public string DeletePersonJavascript(int id)
+        {
+            return repository.DeletePerson(id);
+        }
     }
 }

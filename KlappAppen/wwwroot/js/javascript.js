@@ -2,9 +2,8 @@
     $.ajax({
         url: "/home/GetListJavaScript", 
         type: "GET",
-        success: function (jsonArr) {
+        success: function (jsonArr) {            
             createTable(jsonArr);
-            deletePerson();
             addPerson();
         }
     });
@@ -13,21 +12,25 @@
 //listan med edit/delete
 function createTable(jsonArr) {
     let result = JSON.parse(jsonArr);
+    
+    $("#table_list").html(""); //tömmer listan
     $("#table_list").append('<div class="div_tr_th"><div class="div_th">Namn</div><div class="div_th">Present</div><div class="div_th">Pris</div></div>');
     for (let i = 0; i < result.length; i++) {
-        let html = '<div class="div_tr"><div class="div_td">' + result[i].Receiver + '</div><div class="div_td">' + result[i].Name + '</div><div class="div_td">' + result[i].Price
-            + '<div class="div_td"><button class="edit" value="' + result[i].id + '">Ändra</button></div><div class="div_td"><button class="delete" value="' + result[i].Id + '">Radera</button></div></div>';
+        let html = '<div class="div_tr"><div class="div_td">' + result[i].Receiver + '</div><div class="div_td">' + result[i].Name + '</div><div class="div_td">' + result[i].Price + '</div>' 
+            + '<div class="div_td"><button class="edit" value="' + result[i].Id + '">Ändra</button></div><div class="div_td"><button class="delete" value="' + result[i].Id + '">Radera</button></div></div>';
         $("#table_list").append(html);
     }
+    deletePerson();
     //Addknappen 
     $("#table_list").append('<div class="div_tr"><div id="td_button_add"><button class="button_add">Lägg till</button></div></div>');
 };
 
-//function addPerson() {
-//    $("#button_add").click(function () {
-//        $("#table_list").append('<div class="div_tr"><div class="div_td"><input id="textboxName" type="text" /></div> <div class="div_td"><input id="textboxGift" type="text" /></div> <div class="div_td"><input id="textboxPrice" type="text" /></div><button class="button_confirm_add">Lägg till</button></div></div>');
-//    }     
-//)};
+function addPerson() {
+    $(".button_add").click(function () {
+        alert("Hej");
+        //$("#table_list").append('<div class="div_tr"><div class="div_td"><input id="textboxName" type="text" /></div> <div class="div_td"><input id="textboxGift" type="text" /></div> <div class="div_td"><input id="textboxPrice" type="text" /></div><button class="button_confirm_add">Lägg till</button></div></div>');
+    }     
+)};
 
 //function confirmAddPerson() {
 //    $("#button_confirm_add").click(function () {
@@ -49,13 +52,15 @@ function createTable(jsonArr) {
 function deletePerson() {
     $(".delete").click(function () {
         var id = $(this).val();
+        //alert(id);
         $.ajax({
-            url: "home/deletePerson" + id, //why id??
+            url: "/home/DeletePersonJavascript/", 
+            data: {"id": id},
             type: "GET",
             success: function (jsonArr) {
                 $("#table_list").empty();
+                alert(jsonArr);
                 createTable(jsonArr);
-                deletePerson();
             }
         });
     });

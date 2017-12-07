@@ -61,6 +61,21 @@ namespace KlappAppen.Models
             return giftList;
         }
 
+        public string DeletePerson(int id)
+        {
+            var deletePerson = klapp.Gifts
+                .SingleOrDefault(d => d.Id == id);
+            if (deletePerson != null)
+            {
+                klapp.Gifts.Remove(deletePerson);
+                klapp.SaveChanges();
+            }
+
+            var deleteId = JsonConvert.SerializeObject(klapp.Gifts);
+
+            return deleteId;
+        }
+
         //public HomeMainContentVM[] GetAllPersons()
         //{
         //    //var ret = context.Persons

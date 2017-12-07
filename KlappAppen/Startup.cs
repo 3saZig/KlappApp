@@ -23,8 +23,8 @@ namespace KlappAppen
             //var connstring = @"Data Source=klappappenserver.database.windows.net;Initial Catalog=KlappAppen;Persist Security Info=True;User ID=klappappen;Password=polkagris3!";
             var connstring = @"Data Source=klappappenserver.database.windows.net;Initial Catalog=KlappAppen;Integrated Security=False;User ID=klappappen;Password=polkagris3!;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             services.AddDbContext<KlappAppContext>(o => o.UseSqlServer(connstring));
-            services.AddMvc();
             services.AddTransient<DBBudgetRepository>();
+            services.AddMvc();
             //services.AddTransient<Person[]>();
 
             //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

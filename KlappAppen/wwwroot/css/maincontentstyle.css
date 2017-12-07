@@ -4,4 +4,21 @@
     background-color:aquamarine;
 }
 
-div_tr_th
+.div_tr_th{
+    width:100%;
+}
+
+.div_th{
+    width: 33%;
+    float:left;
+}
+
+.div_tr {
+    width: 100%;
+}
+
+.div_td {
+    width: 20%;
+    float: left;
+}
+
