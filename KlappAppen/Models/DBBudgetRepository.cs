@@ -43,6 +43,21 @@ namespace KlappAppen.Models
             return ret;
         }
 
+        //public HomeMainContentVM[] GetAllPersons()
+        //{
+        //    //var ret = context.Persons
+        //        .Select(o => new HomeMainContentVM
+        //        {
+        //            PersonName = o.Name,
+        //            GiftItems = o.P2g.Select(g => new HomePersonGiftItemVM
+        //            {
+        //                GiftName = g.G.Gift,
+        //                GiftPrice = g.G.Price
+        //            }).ToArray()
+        //        })
+        //        .ToArray();
 
+        //    return ret;
+        //}
     }
 }
