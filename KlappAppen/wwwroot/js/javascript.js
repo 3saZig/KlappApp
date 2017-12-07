@@ -4,7 +4,7 @@
         type: "GET",
         success: function (jsonArr) {
             createTable(jsonArr);
- 
+  
         }
     });
 });
