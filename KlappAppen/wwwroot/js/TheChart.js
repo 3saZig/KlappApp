@@ -25,7 +25,7 @@ $(document).ready(function () {
                 },
 
                 options: {
-                    cutoutPercentage: 80,
+                    cutoutPercentage: 20,
                     responsive: true,
                     maintainAspectRatio: true,
                         animation: {
