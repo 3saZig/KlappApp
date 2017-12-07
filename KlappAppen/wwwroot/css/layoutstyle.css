@@ -1,3 +1,24 @@
 ﻿body {
     background-color: #ca1515;
 }
+
+#div_menu_1{
+    width: 20%; 
+    border: 2px solid black; 
+}
+#div_menu_2 {
+    width: 20%;
+    border: 2px solid black;
+}
+#div_menu_3 {
+    width: 20%;
+    border: 2px solid black;
+}
+#div_menu_4 {
+    width: 20%;
+    border: 2px solid black;
+}
+#div_menu_5 {
+    width: 20%;
+    border: 2px solid black;
+}
