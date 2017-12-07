@@ -1,24 +1,49 @@
-﻿body {
+﻿#div_content {
     background-color: #ca1515;
 }
+body{
+    background-color: white;
+}
 
-#div_menu_1{
-    width: 20%; 
-    border: 2px solid black; 
+#div_menu {
+    background-color: #ca1515;
+    width: 100%;
 }
+
+#div_menu_1 {
+    background-color: #ca1515;
+    width: 20%;
+    float: left;
+}
+
 #div_menu_2 {
+    background-color: #ca1515;
     width: 20%;
-    border: 2px solid black;
+    float: left;
 }
+
 #div_menu_3 {
+    background-color: transparent;
     width: 20%;
-    border: 2px solid black;
+    float: left;
 }
+
 #div_menu_4 {
     width: 20%;
-    border: 2px solid black;
+    float: left;
 }
+
 #div_menu_5 {
     width: 20%;
-    border: 2px solid black;
+    float: left;
+}
+
+img {
+    height: 50px;
+    width: auto;
+}
+
+#logga_red {
+    height: 70px;
+    width: auto;
 }
