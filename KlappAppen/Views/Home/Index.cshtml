@@ -2,28 +2,30 @@
 
 
 @*@foreach (var item in Model)
-{
-    <div>@item.PersonName</div>
-
-    foreach (var gift in item.GiftItems)
     {
-        <div>@gift.GiftName</div>
-        <div>@gift.GiftPrice</div>
-    }
-}*@
+        <div>@item.PersonName</div>
+
+        foreach (var gift in item.GiftItems)
+        {
+            <div>@gift.GiftName</div>
+            <div>@gift.GiftPrice</div>
+        }
+    }*@
 
 <link href="~/css/indexstyle.css" rel="stylesheet" />
 
 <div id="div_index">
     <div id="div_hoho">
-        <p id="p_welcome_text">Ho Ho Ho!</p>
+        <div id="welcome_text">Ho Ho Ho!</div>
     </div>
+    <br />
     <div id="div_budget_index">
-        <input type="button" id="button_setBudget_index" value="Skapa Budget" onclick="javascript: window.location.href='/home/SetBudget'" />
+        <input type="button" class="button_index" value="Skapa Budget" onclick="javascript: window.location.href='/home/SetBudget'" />
 
     </div>
+    <br />
     <div id="div_mainContent_index">
-        <input type="button" id="button_mainContent_index" value="Skapa Lista" onclick="javascript: window.location.href='/home/MainContent'" />
-
+        <input type="button" class="button_index" value="Skapa Lista" onclick="javascript: window.location.href='/home/MainContent'" />
     </div>
+    <br />
 </div>
