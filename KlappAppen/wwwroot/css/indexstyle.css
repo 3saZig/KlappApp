@@ -1,21 +1,24 @@
 ﻿#div_index {
     background-color: #ca1515;
+    text-align: center; 
 }
 
-#button_setBudget_index {
-    background-color: white;
+
+.button_index {
+    background-color: #1b5119;
     color: black;
-    border: 2px solid #1b5119; /* Green */
+    font-size: 35px;
+    border: 2px solid #ca1515; /* Green */
 }
+    .button_index:hover {
+        background-color: #ca1515;
+    }
 
-#button_mainContent_index {
-    background-color: white;
-    color: black;
-    border: 2px solid #bd1414; /* Red*/
-}
 
-#p_welcome_text {
+#welcome_text {
     color: white;
+    font-family: geektastic;
+    font-size: 80px; 
 }
 
 
