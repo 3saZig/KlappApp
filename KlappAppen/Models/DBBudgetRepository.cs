@@ -31,6 +31,7 @@ namespace KlappAppen.Models
                          Receiver = g.Receiver,
                          Name = g.Name,
                          Price = g.Price
+                                                  
 
                      }).ToArray()
                  })
@@ -41,6 +42,23 @@ namespace KlappAppen.Models
             File.WriteAllText(@"C:\Users\Administrator\Desktop\Json.rtf", budgetGiftList);
 
             return ret;
+        }
+
+        public string GetList()
+        {
+            var list = klapp.Gifts
+                .Select(g => new HomeMainContentVM
+                {
+                    Receiver = g.Receiver,
+                    Name = g.Name,
+                    Price = g.Price,
+                    Id = g.Id
+
+                }).ToArray();
+
+            var giftList = JsonConvert.SerializeObject(list);
+
+            return giftList;
         }
 
         //public HomeMainContentVM[] GetAllPersons()

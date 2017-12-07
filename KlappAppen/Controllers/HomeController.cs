@@ -28,6 +28,7 @@ namespace KlappAppen.Controllers
         //repository.GetAllPersons()
         public IActionResult MainContent()
         {
+
             return View();
         }
 
@@ -47,6 +48,9 @@ namespace KlappAppen.Controllers
             return View();
         }
 
-
+        public string GetListJavaScript()
+        {
+            return repository.GetList();
+        }
     }
 }
