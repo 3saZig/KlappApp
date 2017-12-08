@@ -36,8 +36,12 @@ namespace KlappAppen.Controllers
         public string CreateChart()
         {
             return repository.GetAllGifts();
-            
         }
+
+        //public string Budget()
+        //{
+        //    return repository.CreateBudget();
+        //}
 
         public IActionResult SetBudget()
         {
