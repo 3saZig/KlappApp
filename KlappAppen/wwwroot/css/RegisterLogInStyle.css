@@ -1,23 +1,6 @@
-﻿#chart_div{
-    position: relative; 
-    margin: auto; 
-    width: 80vh; 
-    height: 80vh; 
-}
-
-/*#doughnut{
-    /*height: 400px; 
-    width: 400px; 
-}*/
-
-#text_setBudget {
-	font-size: 30px;
-	height: 500px;
-}
-
-input[type=text], select {
+﻿.UserNameTextInput {
 	text-align: center;
-	width: 85%;
+	width: 30%;
 	padding: 12px 20px;
 	margin: 8px 0;
 	display: inline-block;
@@ -25,7 +8,7 @@ input[type=text], select {
 	border-radius: 4px;
 	box-sizing: border-box;
 	font-family: geektastic;
-	font-size: 80%;
+	font-size: 120%;
 }
 
 input[type=submit] {
@@ -33,7 +16,7 @@ input[type=submit] {
 	width: 20%;
 	background-color: transparent;
 	font-family: geektastic;
-	font-size: 80%;
+	font-size: 120%;
 	color: white;
 	padding: 14px 20px;
 	margin: 8px 0;

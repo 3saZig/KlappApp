@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using KlappAppen.Models.ViewModels;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -43,10 +44,26 @@ namespace KlappAppen.Controllers
             return repository.GetAllGifts();
         }
 
-        public string Budget()
+        
+        public string AddPersonJavaScript(HomeMainContentVM homeMainVM)
         {
-            return repository.CreateBudget();
+            
+            return JsonConvert.SerializeObject(repository.AddPerson(homeMainVM));
         }
+
+        
+        public string AddBudgetJavaScript(HomeSetBudgetVM budgetVM)
+        {
+
+            return JsonConvert.SerializeObject(repository.AddNewBudget(budgetVM));
+
+            
+        }
+
+        //public string Budget()
+        //{
+        //    return repository.CreateBudget();
+        //}
 
         [Authorize]
         public IActionResult SetBudget()
@@ -97,9 +114,6 @@ namespace KlappAppen.Controllers
             return model;
         }
 
-        public string GetIdJavascript(int id)
-        {
-            return repository.GetId(id);
-        }
+        
     }
 }

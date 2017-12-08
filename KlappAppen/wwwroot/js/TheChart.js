@@ -1,4 +1,18 @@
-﻿$(document).ready(function () {
+﻿
+
+
+
+	
+//	document.getElementById("submitknapp").onclick = function () {
+//		var budgetInput = document.getElementById("budgetInputTextbox").value;
+
+
+//		};
+
+
+//});
+
+$(document).ready(function () {
 	$.ajax({
 		url: "/home/CreateChart",
 		type: "GET",
@@ -6,14 +20,15 @@
 			createChart(jsonzzz);
 		}
 	});
-});
 
-function createChart(jsonzzz) {
+	function createChart(jsonparse, jsonzzz) {
+
 	let result = JSON.parse(jsonzzz);
+	let budgetResult = JSON.parse(jsonparse);
 	
-
 	var colorList = ["#4d0000", "#004d00", "#003300", "#008000", "#6B8E23", "#556B2F", "#808000", "#9ACD32", "#006400", "#32CD32"];
 
+	var budgetArray = [];
 	var colorArray = [];
 	var labelArray = [];
 	var dataArray = [];
@@ -21,8 +36,12 @@ function createChart(jsonzzz) {
 		colorArray.push(colorList[i]);
 		labelArray.push(result[i].Name);
 		dataArray.push(result[i].Price);
+		budgetArray.push(result[i].Total);
 	}
-	
+
+	var firstBudgetPost = budgetArray[0];
+
+	var moneyLeft = firstBudgetPost - dataArray;
 
 	var ctxa = document.getElementById("doughnut").getContext('2d');
 
@@ -34,7 +53,7 @@ function createChart(jsonzzz) {
 			datasets: [
 				{
 					label: "Chart",
-					data: dataArray,
+					data: [dataArray, moneyLeft],
 					backgroundColor: colorArray,
 					borderColor: "#000000"
 				}
@@ -56,7 +75,7 @@ function createChart(jsonzzz) {
 	});
 };
 
-var budgetInput = document.getElementById("budgetInputTextbox").value 
+
 
 //$(document).ready(function () {
 //	//$.getJSON("/Home/SetBudget")
