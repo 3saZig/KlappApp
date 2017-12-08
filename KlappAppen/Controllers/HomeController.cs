@@ -6,14 +6,17 @@ using Microsoft.AspNetCore.Mvc;
 using KlappAppen.Models;
 using KlappAppen.Models.Entities;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace KlappAppen.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
-
         DBBudgetRepository repository;
 
         public HomeController(DBBudgetRepository repository)
@@ -22,14 +25,16 @@ namespace KlappAppen.Controllers
         }
 
         //GET: /<controller>/
+        [AllowAnonymous]
         public IActionResult Index()
         {
-            return View();
+            string result = repository.GetAllGifts();
+            return Content($"Här ska det vara tomt: {result}");//  View(MyPages());
         }
+
         //repository.GetAllPersons()
         public IActionResult MainContent()
         {
-
             return View();
         }
 
@@ -38,29 +43,32 @@ namespace KlappAppen.Controllers
             return repository.GetAllGifts();
         }
 
-        //public string Budget()
-        //{
-        //    return repository.CreateBudget();
-        //}
+        public string Budget()
+        {
+            return repository.CreateBudget();
+        }
 
+        [Authorize]
         public IActionResult SetBudget()
         {
             return View();
 
         }
 
-        //public string GetBudget()
-        //{
+        public string GetBudget()
+        {
 
-        //    //return repository.GetAllBudgetsJSON();
-        //}
+            throw new NotImplementedException();
+            // repository.GetAllBudgetsJSON();
+        }
 
+        [Authorize]
         public IActionResult GiftIdeas()
         {
             return View();
         }
-
-        public IActionResult Settings()
+        [AllowAnonymous]
+        public IActionResult MyPages()
         {
             return View();
         }
@@ -89,9 +97,9 @@ namespace KlappAppen.Controllers
             return model;
         }
 
-        //public string GetIdJavascript(int id)
-        //{
-        //    return repository.GetId(id);
-        //}
+        public string GetIdJavascript(int id)
+        {
+            return repository.GetId(id);
+        }
     }
 }

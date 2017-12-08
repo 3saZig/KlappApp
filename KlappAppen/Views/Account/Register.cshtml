@@ -1,0 +1,17 @@
+﻿@using KlappAppen.Models.ViewModels
+
+@model RegisterVM
+
+
+<form asp-action="Register" asp-controller="Account">
+    <label asp-for="UserName"></label>
+    <input asp-for="UserName" />
+    <span asp-validation-for="UserName"></span>
+    <br />
+
+    <label asp-for="Password"></label>
+    <input asp-for="Password" />
+    <span asp-validation-for="Password"></span>
+
+
+</form>

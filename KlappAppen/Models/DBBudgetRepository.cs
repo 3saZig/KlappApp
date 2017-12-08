@@ -106,7 +106,7 @@ namespace KlappAppen.Models
 
         public string GetId(int id)
         {
-            var getIdEdit = klapp.Gifts.SingleOrDefault(g => g.Id == id);            
+            var getIdEdit = klapp.Gifts.SingleOrDefault(g => g.Id == id);
             var getId = JsonConvert.SerializeObject(klapp.Gifts);
             return getId;
         }
