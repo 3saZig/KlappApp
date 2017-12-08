@@ -17,10 +17,10 @@ namespace KlappAppen.Controllers
     {
         DBBudgetRepository repository;
 
-        public AccountController(DBBudgetRepository repository)
-        {
-            this.repository = repository;
-        }
+        //public AccountController(DBBudgetRepository repository)
+        //{
+        //    
+        //}
 
 
         UserManager<IdentityUser> userManager;
@@ -31,12 +31,14 @@ namespace KlappAppen.Controllers
         public AccountController(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
-            RoleManager<IdentityRole> roleManager//,
+            RoleManager<IdentityRole> roleManager,
+            DBBudgetRepository repository
                                                  /*IdentityDbContext identityContext*/)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
+            this.repository = repository;
             //this.identityContext = identityContext;
         }
 
@@ -54,22 +56,44 @@ namespace KlappAppen.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterVM viewModel)
+        public async Task<IActionResult> Register(RegisterVM viewModel, string action)
         {
 
-            var result = ""; 
 
-            if (userManager.FindByNameAsync(viewModel.UserName) == null)
+            if (!ModelState.IsValid)
             {
-                await userManager.CreateAsync(new IdentityUser(viewModel.UserName), viewModel.Password);
-                result = "Användare skapad";
-            }
-            else
-            {
-                result = "Användarnamn upptaget";
+                return View(viewModel);
             }
 
-            return Content(result);
+
+            if (action == "Skapa konto")
+            {
+                var result = await userManager.CreateAsync(new IdentityUser(viewModel.UserName), viewModel.Password);
+                if (!result.Succeeded)
+                {
+                    //modelstate add error
+                    /*result.Errors.First.message()*/;
+                    return View(viewModel);
+
+                }
+                
+            }
+            else if (action == "Logga in")
+            {
+
+            }
+
+            
+            
+                //result = "Användare skapad";
+           
+                //result = "Användarnamn upptaget";
+
+            return Content(null);
         }
+      
+
+
+
     }
 }
