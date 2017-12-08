@@ -33,11 +33,20 @@ namespace KlappAppen.Controllers
             return View();
         }
 
+        public string CreateChart()
+        {
+            return repository.GetAllGifts();
+        }
+
+        //public string Budget()
+        //{
+        //    return repository.CreateBudget();
+        //}
+
         public IActionResult SetBudget()
         {
-            var list = repository.GetAllGifts();
+            return View();
 
-            return View(list);
         }
 
         //public string GetBudget()
@@ -50,7 +59,6 @@ namespace KlappAppen.Controllers
         {
             return View();
         }
-
 
         public IActionResult Settings()
         {

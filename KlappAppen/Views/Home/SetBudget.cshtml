@@ -1,11 +1,26 @@
-﻿
-<div id="chartDiv">
+﻿<link href="~/css/setbudgetstyle.css" rel="stylesheet" />
+<h1>Lista</h1>
 
-    <canvas id="doughnut"></canvas>
+@*<div id="chartDiv" style="position: relative; height:100vh; width:100vw">
 
+	<canvas id="pie"></canvas>
+
+</div>*@
+
+<div id="text_setBudget">
+	<form action="/action_page.php" class="w3-container w3-card-4 w3-light-grey" style="text-align: center;">
+		Hej hej, sätt din budget här:
+		<input type="text" id="budgetInputTextbox" name="Sätt budget" class="w3-input w3-border w3-round" placeholder="I år tänkte jag köpa julklappar för...">
+		<br/>
+		<input type="submit" value="Klar!">
+	</form>
+		
 </div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="~/js/TheChart.js"></script>
+@*<script src="~/js/ChartForSetBudget.js"></script>*@
+<script src="~/js/javascript.js"></script>
+
 
 
 

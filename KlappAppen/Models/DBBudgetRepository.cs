@@ -20,7 +20,7 @@ namespace KlappAppen.Models
         }
 
 
-        public HomeGiftVM[] GetAllGifts()
+        public string GetAllGifts()
         {
             var ret = klapp.Gifts
                 .Select(g => new HomeGiftVM
@@ -35,7 +35,24 @@ namespace KlappAppen.Models
 
             File.WriteAllText(@"C:\Users\Administrator\Desktop\Json2.rtf", JSONgiftList);
 
-            return ret;
+            return JSONgiftList;
+        }
+
+        public string CreateBudget()
+        {
+            var ret = klapp.Budgets
+                .Select(g => new HomeSetBudgetVM
+                {
+                    Total = g.Total
+
+                }).ToArray();
+
+
+            var JSONtotalBudget = JsonConvert.SerializeObject(ret);
+
+            File.WriteAllText(@"C:\Users\Administrator\Desktop\Json2.rtf", JSONtotalBudget);
+
+            return JSONtotalBudget;
         }
 
         public string GetList()
