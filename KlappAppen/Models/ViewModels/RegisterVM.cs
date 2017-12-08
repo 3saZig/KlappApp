@@ -8,7 +8,7 @@ namespace KlappAppen.Models.ViewModels
 {
     public class RegisterVM
     {
-        [Display(Name = "Användarnamn")]
+        [Display()]
         [Required(ErrorMessage = "Användarnamn felaktigt/saknas")]
         public string UserName { get; set; }
 

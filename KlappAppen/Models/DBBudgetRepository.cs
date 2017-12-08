@@ -19,6 +19,12 @@ namespace KlappAppen.Models
             this.klapp = klapp;
         }
 
+        public string UserExist(string username)
+        {
+      
+            return null; 
+        }
+
 
         public string GetAllGifts()
         {

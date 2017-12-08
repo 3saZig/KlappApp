@@ -6,13 +6,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using KlappAppen.Models.ViewModels;
+using KlappAppen.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace KlappAppen.Controllers
 {
+
     public class AccountController : Controller
     {
+        DBBudgetRepository repository;
+
+        public AccountController(DBBudgetRepository repository)
+        {
+            this.repository = repository;
+        }
+
+
         UserManager<IdentityUser> userManager;
         SignInManager<IdentityUser> signInManager;
         RoleManager<IdentityRole> roleManager;
@@ -22,7 +32,7 @@ namespace KlappAppen.Controllers
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             RoleManager<IdentityRole> roleManager//,
-            /*IdentityDbContext identityContext*/)
+                                                 /*IdentityDbContext identityContext*/)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
@@ -40,13 +50,26 @@ namespace KlappAppen.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            return View(); 
+            return View();
         }
 
         [HttpPost]
-        public IActionResult Register(RegisterVM viewModel)
+        public async Task<IActionResult> Register(RegisterVM viewModel)
         {
-            return Content("Reister post");
+
+            var result = ""; 
+
+            if (userManager.FindByNameAsync(viewModel.UserName) == null)
+            {
+                await userManager.CreateAsync(new IdentityUser(viewModel.UserName), viewModel.Password);
+                result = "Användare skapad";
+            }
+            else
+            {
+                result = "Användarnamn upptaget";
+            }
+
+            return Content(result);
         }
     }
 }
