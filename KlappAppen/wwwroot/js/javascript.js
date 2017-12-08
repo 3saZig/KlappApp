@@ -30,31 +30,14 @@ function createTable(jsonArr) {
 
 function addPerson() {
     $(".button_add").click(function () {
-        alert("Hej");
+      
         $(this).hide();
-        var html = '<div><input id="input_receiver" type="text"/><input id="input_gift" type="text"/><input id="input_price" type="number"/><button class="button_save">Spara</button></div>';
-        $("#table_list").append(html);
-        createTable(jsonArr);
+        var html = '<div><input id="input_receiver" type="text"/><input id="input_gift" type="text"/><input id="input_price" type="number"/><button class="button_savePerson">Spara</button></div>';
+		$("#table_list").append(html);
+		savePerson();
     }
     )
 };
-
-//function confirmAddPerson() {
-//    $("#button_confirm_add").click(function () {
-//        $.ajax({
-//            url: "/home/ConfirmAddPerson",
-//            data: { "": $("#textboxName").val(), "": $("#textboxGift").val(), "": $("#textboxPrice").val },
-//            type: "GET",
-//            success: function (result) {
-//                confirmAddPerson(); //är detta rätt???
-//                let html = '<div class="div_tr"><div class="div_td">' + result[i].Receiver + '</div><div class="div_td">' + result[i].Name + '</div><div class="div_td">' + result[i].Price
-//                    + '<div class="div_td"><button class="edit" value="' + result[i].id + '">Edit</button><button class="delete" value="' + result[i].Id + '"></div><div class="div_td">Delete</button></div></div>';
-//                $("#table_list").append(html);
-//            }
-
-//        });
-//    });
-//};
 
 function deletePerson() {
     $(".delete").click(function () {
@@ -79,11 +62,11 @@ function editPerson() {
         var id = $(this).val();
         var html = '<div><input id="input_receiver" type="text" value="' + $("#div_td_receiver" + id).text() + '"/><input id="input_gift" type="text" value="' + $("#div_td_gift" + id).text() + '"/><input id="input_price" type="number" value="' + $("#div_td_price" + id).text() +'"/><button class="button_save">Spara</button></div>';
         $("#table_list").append(html);
-        savaChanges(id);        
+        saveChanges(id);        
     });
 };
 
-function savaChanges(id) {
+function saveChanges(id) {
     $(".button_save").click(function () {
         $.ajax({
             url: "/home/SaveChangesJavascript/",
@@ -97,4 +80,36 @@ function savaChanges(id) {
         })
 
     })
+};
+
+function savePerson() {
+	$(".button_savePerson").click(function () {
+		$.ajax({
+			url: "/home/AddPersonJavaScript/",
+			data: { "receiver": $("#input_receiver").val(), "gift": $("#input_gift").val(), "price": $("#input_price").val() },
+
+			type: "POST",
+			success: function (jsonArr) {
+				var jsonparse = JSON.parse(jsonArr);
+				createTable(jsonparse);
+			}
+		})
+
+	})
+};
+
+function addBudget() {
+	$("#submitknapp").click(function () {
+		$(this).hide();
+		$.ajax({
+			url: "/home/AddBudgetJavaScript/",
+			data: { "total": $("#budgetInputTextbox").val() },
+			type: "POST",
+			success: function (jsonArr) {
+				var jsonparse = JSON.parse(jsonArr);
+				createChart(jsonparse);
+			}
+		})
+	}
+	)
 };

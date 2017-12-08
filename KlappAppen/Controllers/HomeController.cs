@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using KlappAppen.Models;
 using KlappAppen.Models.Entities;
 using Newtonsoft.Json;
+using KlappAppen.Models.ViewModels;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -36,6 +37,22 @@ namespace KlappAppen.Controllers
         public string CreateChart()
         {
             return repository.GetAllGifts();
+        }
+
+        
+        public string AddPersonJavaScript(HomeMainContentVM homeMainVM)
+        {
+            
+            return JsonConvert.SerializeObject(repository.AddPerson(homeMainVM));
+        }
+
+        
+        public string AddBudgetJavaScript(HomeSetBudgetVM budgetVM)
+        {
+
+            return JsonConvert.SerializeObject(repository.AddNewBudget(budgetVM));
+
+            
         }
 
         //public string Budget()

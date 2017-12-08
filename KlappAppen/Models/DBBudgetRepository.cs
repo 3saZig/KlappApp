@@ -99,16 +99,34 @@ namespace KlappAppen.Models
                 editPerson.Price = price;
                 klapp.SaveChanges();
             }
-
+             
             var editId = JsonConvert.SerializeObject(klapp.Gifts);
             return editId;
         }
 
-        public string GetId(int id)
+        ////varför skickar vi med vymodellen?
+        internal Budgets[] AddNewBudget(HomeSetBudgetVM budgetVM)
         {
-            var getIdEdit = klapp.Gifts.SingleOrDefault(g => g.Id == id);            
-            var getId = JsonConvert.SerializeObject(klapp.Gifts);
-            return getId;
+            klapp.Budgets.Add(new Budgets
+            {
+                Total = budgetVM.Total
+            });
+            klapp.SaveChanges();
+
+            return klapp.Budgets.ToArray();
+        }
+
+        internal Gifts[] AddPerson(HomeMainContentVM homeMainVM)
+        {
+            klapp.Gifts.Add(new Gifts
+            {
+                Receiver = homeMainVM.Receiver,
+                Name = homeMainVM.Name,
+                Price = homeMainVM.Price
+            });
+            klapp.SaveChanges();
+
+            return klapp.Gifts.ToArray();
         }
 
         //public HomeMainContentVM[] GetAllPersons()
