@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using KlappAppen.Models;
 using KlappAppen.Models.Entities;
+using Newtonsoft.Json;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -32,11 +33,20 @@ namespace KlappAppen.Controllers
             return View();
         }
 
+        public string CreateChart()
+        {
+            return repository.GetAllGifts();
+        }
+
+        //public string Budget()
+        //{
+        //    return repository.CreateBudget();
+        //}
+
         public IActionResult SetBudget()
         {
-            var list = repository.GetAllGifts();
+            return View();
 
-            return View(list);
         }
 
         //public string GetBudget()
@@ -49,7 +59,6 @@ namespace KlappAppen.Controllers
         {
             return View();
         }
-
 
         public IActionResult Settings()
         {
@@ -72,5 +81,17 @@ namespace KlappAppen.Controllers
         {
             return repository.DeletePerson(id);
         }
+
+        [HttpPost]
+        public string SaveChangesJavascript(int id, string receiver, string gift, int price)
+        {
+            var model = JsonConvert.SerializeObject(repository.EditPerson(id, receiver, gift, price));
+            return model;
+        }
+
+        //public string GetIdJavascript(int id)
+        //{
+        //    return repository.GetId(id);
+        //}
     }
 }

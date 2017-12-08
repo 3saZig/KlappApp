@@ -14,12 +14,22 @@
     float:left;
 }
 
-.div_tr {
+.div_tr, .div_tr_person {
     width: 100%;
 }
 
-.div_td {
+.div_td, .div_td_person {
     width: 20%;
     float: left;
+}
+
+#edit2 {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
 

@@ -20,7 +20,7 @@ namespace KlappAppen.Models
         }
 
 
-        public HomeGiftVM[] GetAllGifts()
+        public string GetAllGifts()
         {
             var ret = klapp.Gifts
                 .Select(g => new HomeGiftVM
@@ -35,7 +35,24 @@ namespace KlappAppen.Models
 
             File.WriteAllText(@"C:\Users\Administrator\Desktop\Json2.rtf", JSONgiftList);
 
-            return ret;
+            return JSONgiftList;
+        }
+
+        public string CreateBudget()
+        {
+            var ret = klapp.Budgets
+                .Select(g => new HomeSetBudgetVM
+                {
+                    Total = g.Total
+
+                }).ToArray();
+
+
+            var JSONtotalBudget = JsonConvert.SerializeObject(ret);
+
+            File.WriteAllText(@"C:\Users\Administrator\Desktop\Json2.rtf", JSONtotalBudget);
+
+            return JSONtotalBudget;
         }
 
         public string GetList()
@@ -68,6 +85,30 @@ namespace KlappAppen.Models
             var deleteId = JsonConvert.SerializeObject(klapp.Gifts);
 
             return deleteId;
+        }
+
+        public string EditPerson(int id, string receiver, string gift, int price)
+        {
+            var editPerson = klapp.Gifts
+                .SingleOrDefault(e => e.Id == id);
+            if (editPerson != null)
+            {
+                //editPerson.Id = id;
+                editPerson.Receiver = receiver;
+                editPerson.Name = gift;
+                editPerson.Price = price;
+                klapp.SaveChanges();
+            }
+
+            var editId = JsonConvert.SerializeObject(klapp.Gifts);
+            return editId;
+        }
+
+        public string GetId(int id)
+        {
+            var getIdEdit = klapp.Gifts.SingleOrDefault(g => g.Id == id);            
+            var getId = JsonConvert.SerializeObject(klapp.Gifts);
+            return getId;
         }
 
         //public HomeMainContentVM[] GetAllPersons()
