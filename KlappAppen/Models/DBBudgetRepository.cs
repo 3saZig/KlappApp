@@ -70,6 +70,30 @@ namespace KlappAppen.Models
             return deleteId;
         }
 
+        public string EditPerson(int id, string receiver, string gift, int price)
+        {
+            var editPerson = klapp.Gifts
+                .SingleOrDefault(e => e.Id == id);
+            if (editPerson != null)
+            {
+                //editPerson.Id = id;
+                editPerson.Receiver = receiver;
+                editPerson.Name = gift;
+                editPerson.Price = price;
+                klapp.SaveChanges();
+            }
+
+            var editId = JsonConvert.SerializeObject(klapp.Gifts);
+            return editId;
+        }
+
+        public string GetId(int id)
+        {
+            var getIdEdit = klapp.Gifts.SingleOrDefault(g => g.Id == id);            
+            var getId = JsonConvert.SerializeObject(klapp.Gifts);
+            return getId;
+        }
+
         //public HomeMainContentVM[] GetAllPersons()
         //{
         //    //var ret = context.Persons
