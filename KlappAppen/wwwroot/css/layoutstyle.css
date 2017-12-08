@@ -1,10 +1,17 @@
-﻿#div_content {
+﻿
+
+.backgroundColor {
     background-color: #ca1515;
 }
-
+.backgroundColor .green{
+    background-color: green; 
+}
+/*.backgroundColorBlack{
+    background-color:dimgrey;
+}*/
 
 .div_menu {
-    background-color: #ca1515; 
+    /*background-color: #ca1515;*/ 
     margin: 0 0 0 0; 
     padding: 0, 0, 0, 0; 
     float: left; 
@@ -26,8 +33,9 @@
     text-decoration: none; 
 }
 #div_menu_all {
-    position: fixed; 
-    bottom: 0; 
+    /*background-color: #ca1515;*/
+    position: fixed;
+    bottom: 0;
     /*position: relative;*/
     width: 100%;
     margin: 0 0 0 0;

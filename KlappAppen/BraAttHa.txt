@@ -1,0 +1,3 @@
+﻿Data Source=klappappenserver.database.windows.net;Initial Catalog=KlappAppen;Integrated Security=False;User ID=klappappen;Password=polkagris3!;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
+
+Scaffold-DbContext "Data Source=klappappenserver.database.windows.net;Initial Catalog=KlappAppen;Integrated Security=False;User ID=klappappen;Password=polkagris3!;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" Microsoft.EntityFrameworkCore.SqlServer -OutputDir "Models/Entities" -Context "KlappAppContext" -Schema "trh" -Force
