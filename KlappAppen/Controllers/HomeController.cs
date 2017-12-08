@@ -56,6 +56,13 @@ namespace KlappAppen.Controllers
             return View();
         }
 
+        //[HttpPost]
+        //public IActionResult Settings() //Här vill jag ha en inparameter från html
+        //{
+        //    return View(); //här vill jag kalla på javascript och returnera ny vy. 
+        //}
+
+
         public string GetListJavaScript()
         {
             return repository.GetList();

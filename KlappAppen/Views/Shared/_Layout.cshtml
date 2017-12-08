@@ -6,18 +6,19 @@
     <title>@ViewBag.Title</title>
     <link href="~/css/layoutstyle.css" rel="stylesheet" />
 </head>
+
 <body>
-    <div id="div_logga">
+    <div id="div_logga" class="backgroundColorBlack">
         <img id="logga_red" src="~/pictures/logo_red.png" />
     </div>
-    <div id="div_content">
+    <div id="div_content" class="backgroundColor">
         @RenderBody()
 
 
     </div>
 
 
-    <div id="div_menu_all">
+    <div id="div_menu_all" class="backgroundColor">
         <a href="index">
             <div class="div_menu">
                 <img class="menu_pic" src="~/pictures/home.png" />

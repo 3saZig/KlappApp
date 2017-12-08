@@ -66,6 +66,24 @@ function deletePerson() {
     });
 };
 
+$("#btn_changeColor").click(function(){
+    let RadeoButtonStatusCheck = $('form input[type=radio]:checked').val();
+    changeColor(RadeoButtonStatusCheck); 
+});
+
+
+
+function changeColor(backgroundcolor) {
+    console.log("backgroundColor");
+    switch (backgroundcolor) {
+        case 'g':
+            $('.backgroundColor').classList.add("green");
+            break; 
+    }
+
+}
+
+
 
 
 

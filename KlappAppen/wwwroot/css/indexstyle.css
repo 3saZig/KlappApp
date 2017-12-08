@@ -6,7 +6,7 @@
 
 
 .button_index {
-    background-color: #1b5119;
+    background-color: transparent;
     color: black;
     font-family:'Futura Std';
     font-size: 35px;
@@ -14,7 +14,7 @@
 }
 
     .button_index:hover {
-        background-color: #ca1515;
+        color: white;
     }
 
 
