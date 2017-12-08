@@ -1,0 +1,26 @@
+﻿.UserNameTextInput {
+	text-align: center;
+	width: 30%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	font-family: geektastic;
+	font-size: 120%;
+}
+
+input[type=submit] {
+	text-align: center;
+	width: 20%;
+	background-color: transparent;
+	font-family: geektastic;
+	font-size: 120%;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: 2px solid #282828;
+	border-radius: 4px;
+	cursor: pointer;
+}

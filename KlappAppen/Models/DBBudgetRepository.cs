@@ -105,9 +105,9 @@ namespace KlappAppen.Models
         }
 
         ////varför skickar vi med vymodellen?
-        internal Budgets[] AddNewBudget(HomeSetBudgetVM budgetVM)
+        internal Budget[] AddNewBudget(HomeSetBudgetVM budgetVM)
         {
-            klapp.Budgets.Add(new Budgets
+            klapp.Budgets.Add(new Budget
             {
                 Total = budgetVM.Total
             });
@@ -116,9 +116,9 @@ namespace KlappAppen.Models
             return klapp.Budgets.ToArray();
         }
 
-        internal Gifts[] AddPerson(HomeMainContentVM homeMainVM)
+        internal Gift[] AddPerson(HomeMainContentVM homeMainVM)
         {
-            klapp.Gifts.Add(new Gifts
+            klapp.Gifts.Add(new Gift
             {
                 Receiver = homeMainVM.Receiver,
                 Name = homeMainVM.Name,

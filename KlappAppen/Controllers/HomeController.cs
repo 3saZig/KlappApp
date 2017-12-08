@@ -114,9 +114,6 @@ namespace KlappAppen.Controllers
             return model;
         }
 
-        public string GetIdJavascript(int id)
-        {
-            return repository.GetId(id);
-        }
+        
     }
 }
