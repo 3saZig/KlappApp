@@ -1,54 +1,109 @@
 ﻿#table_list {
     width: 100%;
     height: auto;
-    background-color: aquamarine;
-    font-family: 'Futura Std';
-    margin-bottom: 550px;
+    background-color: white;
+    font-family: 'futura std';
+    padding: 2% 0 2% 0;
 }
 
-.div_tr_th{
-    width:100%;
-}
-
-.div_th{
-    width: 33%;
-    float:left;
-}
-
-.div_tr, .div_tr_person  {
+.div_tr_th {
     width: 100%;
+    background-color: white;
 }
 
-.div_td {
+input{
     width: 20%;
-    float: left;
-    background-color: antiquewhite;
-}
-#div_td_receiver {
-    width: 20%;
-    float: left;
-    background-color: tan;
-}
-#div_td_gift {
-    width: 20%;
-    float: left;
-    background-color: Highlight;
-}
-#div_td_price {
-    width: 20%;
-    float: left;
-    background-color: rebeccapurple;
+    height: 20px;
+    font-family: 'futura std';
+    padding: 0.5%;
+    margin: 0 0 0 0.5%;
 }
 
-#edit2 {
-    background-color: #4CAF50; /* Green */
+.div_th {
+    width: 20%;
+    float: left;
+    font-size: 20px;
+    font-weight:bold;
+    padding-left: 1%;
+    background-color: white;
+}
+
+.div_tr {
+    width: 100%;
+    float: left;
+    position: relative;
+    background-color: white;     
+}
+    
+ .div_td {
+    width: 19%;
+    float: left;
+    padding: 1% 0 1% 1%;
+    border-bottom: 1px solid black;
+}
+
+.div_td_button {
+    width: 20%;
+    float: left;
+    padding: 1% 0 1% 0;
+    border-bottom: 1px solid black;
+}
+
+
+.edit {
+    background-color: #4caf50;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    
+    width: 80%;
+}
+
+.delete {
+    background-color: red;
     border: none;
     color: white;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    
+    width: 80%;
 }
 
+.button_add {
+    background-color: blue;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width:7%;
+    padding: 1%;
+}
 
+.button_save, .button_savePerson {
+    background-color: blue;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 7%;
+    padding: 1%;
+}
 
+.div_summa{
+    width: 100%;
+    font-family: 'Futura Std';
+    font-size: 20px;
+    font-weight: bold;
+}
+/*doughnut*/
+#chartDiv {
+    padding-bottom: 7%;
+}

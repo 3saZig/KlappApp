@@ -6,9 +6,6 @@
 .backgroundColor .green{
     background-color: green; 
 }
-/*.backgroundColorBlack{
-    background-color:dimgrey;
-}*/
 
 .div_menu {
     /*background-color: #ca1515;*/ 
@@ -34,17 +31,16 @@
 }
 #div_menu_all {
     background-color: #ca1515;
-    position: fixed;
     bottom: 0;
-    /*position: relative;*/
     width: 100%;
     margin: 0 0 0 0;
     padding: 10px, 0, 0, 0;
     background-color: #ca1515;
     height: auto;
     border-top: 10px solid #ca1515;
-
+    
 }
+
 #div_logga{
     margin: 0 0 0 0; 
     padding: 0 0 0 0; 
@@ -64,7 +60,22 @@ body {
 }
 
 #div_content {
-    flex: 1;   
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    /*overflow-x: hidden;*/
+    flex: 1;
 }
 
+body {
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    box-sizing: border-box;
+}
+
+html{
+    height: 100%;
+}
 

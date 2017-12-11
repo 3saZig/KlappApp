@@ -70,8 +70,9 @@ namespace KlappAppen.Controllers
                 if (!result.Succeeded)
                 {
                     ModelState.AddModelError(
-                         nameof(RegisterVM.UserName), "invalid");
-
+                         nameof(RegisterVM.UserName), "Ogiltligt användarnamn");
+                    ModelState.AddModelError(
+                        nameof(RegisterVM.Password), "Ogiltligt lösenord");
                 }
                 var model = new RegisterVM
                 {
@@ -90,7 +91,8 @@ namespace KlappAppen.Controllers
                 if (!result2.Succeeded)
                 {
                     ModelState.AddModelError(
-                        nameof(AccountLoginVM.Username), "invalid");
+                        nameof(AccountLoginVM.Username), "Felaktigt användarnamn eller lösenord");
+                    
                     return View(viewModel);
                 }
                 return RedirectToAction("Index", "Home");

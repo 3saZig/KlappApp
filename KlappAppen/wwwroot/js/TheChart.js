@@ -9,59 +9,7 @@ $(document).ready(function () {
         }
     });
 
-    function createChart(jsonzzz) {
-
-        let result = JSON.parse(jsonzzz);
-       let budgetResult = JSON.parse(jsonzzz);
-
-        var colorList = ["#4d0000", "#004d00", "#003300", "#008000", "#6B8E23", "#556B2F", "#808000", "#9ACD32", "#006400", "#32CD32"];
-
-        var budgetArray = [];
-        var colorArray = [];
-        var labelArray = [];
-        var dataArray = [];
-        for (var i = 0; i < result.length; i++) {
-            colorArray.push(colorList[i]);
-            labelArray.push(result[i].Name);
-            dataArray.push(result[i].Price);
-            budgetArray.push(result[i].Total);
-        }
-
-        var firstBudgetPost = budgetArray[0];
-
-        var moneyLeft = firstBudgetPost - dataArray;
-
-        var ctxa = document.getElementById("doughnut").getContext('2d');
-
-        var doughnutChart = new Chart(ctxa, {
-
-            type: 'doughnut',
-            data: {
-                labels: labelArray,
-                datasets: [
-                    {
-                        label: "Chart",
-                        data: dataArray,
-                        backgroundColor: colorArray,
-                        borderColor: "#000000"
-                    }
-                ]
-            },
-
-            options: {
-                legend: {
-                    display: false,
-                    cutoutPercentage: 20,
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    animation: {
-                        animateScale: true
-                    }
-                }
-            }
-
-        });
-    };
+    
 
 
 

@@ -33,6 +33,7 @@ namespace KlappAppen.Controllers
         }
 
         //repository.GetAllPersons()
+        [Authorize]
         public IActionResult MainContent()
         {
             return View();
@@ -51,19 +52,11 @@ namespace KlappAppen.Controllers
 
         
         public string AddBudgetJavaScript(HomeSetBudgetVM budgetVM)
-        {
-
-            // return JsonConvert.SerializeObject(repository.AddNewBudget(budgetVM));
-            return repository.AddNewBudget(budgetVM);
-            
+        {            
+            return repository.AddNewBudget(budgetVM);            
         }
-
-        //public string Budget()
-        //{
-        //    return repository.CreateBudget();
-        //}
-
-     //  [Authorize]
+        
+       [Authorize]        
         public IActionResult SetBudget()
         {
             return View();
@@ -76,24 +69,18 @@ namespace KlappAppen.Controllers
             // repository.GetAllBudgetsJSON();
         }
 
-      // [Authorize]
+        [AllowAnonymous]     
         public IActionResult GiftIdeas()
         {
             return View();
         }
-        [AllowAnonymous]
+
+        [Authorize]
         public IActionResult MyPages()
         {
             return View();
         }
-
-        //[HttpPost]
-        //public IActionResult Settings() //Här vill jag ha en inparameter från html
-        //{
-        //    return View(); //här vill jag kalla på javascript och returnera ny vy. 
-        //}
-
-
+                
         public string GetListJavaScript()
         {
             return repository.GetList();

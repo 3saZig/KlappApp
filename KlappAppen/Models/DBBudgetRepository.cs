@@ -148,21 +148,18 @@ namespace KlappAppen.Models
             return updatedList;
         }
 
-        //public HomeMainContentVM[] GetAllPersons()
+        //public string SumGifts()
         //{
-        //    //var ret = context.Persons
-        //        .Select(o => new HomeMainContentVM
-        //        {
-        //            PersonName = o.Name,
-        //            GiftItems = o.P2g.Select(g => new HomePersonGiftItemVM
-        //            {
-        //                GiftName = g.G.Gift,
-        //                GiftPrice = g.G.Price
-        //            }).ToArray()
-        //        })
-        //        .ToArray();
+        //    var list = klapp.Gifts
+        //       .Select(g => new HomeMainContentVM
+        //       {
+                   
+        //           Price = g.Price,
+                   
 
-        //    return ret;
+        //       }).ToArray();
         //}
+
+        
     }
 }

@@ -4,8 +4,9 @@
         type: "GET",
         success: function (jsonArr) {
             createTable(jsonArr);
-            addPerson();
+            //addPerson();
             addBudget();
+            createChart(jsonArr);
         }
     });
 });
@@ -18,23 +19,36 @@ function createTable(jsonArr) {
     $("#table_list").append('<div class="div_tr_th"><div class="div_th">Namn</div><div class="div_th">Present</div><div class="div_th">Pris</div></div>');
     for (let i = 0; i < result.length; i++) {
         var itemId = result[i].Id;
-        let html = '<div class="div_tr_person"><div style="width:20%;" id="div_td_receiver' + itemId + '">' + result[i].Receiver + '</div><div style="width:20%;" id="div_td_gift' + itemId + '">' + result[i].Name + '</div><div style="width:20%;" id="div_td_price' + itemId +'">' + result[i].Price + '</div>'
-            + '<div class="div_td"><button class="edit" value="' + result[i].Id + '">Ändra</button></div><div class="div_td"><button class="delete" value="' + result[i].Id + '">Radera</button></div></div>';
+        let html = '<div class="div_tr"><div class=div_td id="div_td_receiver' + itemId + '">' + result[i].Receiver + '</div><div class=div_td id="div_td_gift' + itemId + '">' + result[i].Name + '</div><div class=div_td id="div_td_price' + itemId +'">' + result[i].Price + '</div>'
+            + '<div class="div_td_button"><button class="edit" value="' + result[i].Id + '">Ändra</button></div><div class="div_td"><button class="delete" value="' + result[i].Id + '">Radera</button></div></div>';
         $("#table_list").append(html);
     }
     deletePerson();
     editPerson();
-    addPerson();
+    SumAllGifts(jsonArr)
+    
     //Addknappen 
     $("#table_list").append('<div class="div_tr"><div id="td_button_add"><button class="button_add">Lägg till</button></div></div>');
+    addPerson();
+};
+
+function SumAllGifts(jsonArr) {
+    let giftPrice = JSON.parse(jsonArr);
+    let total = 0;
+    for (var i = 0; i < giftPrice.length; i++) {
+        total = total + giftPrice[i].Price;
+    }    
+    let html = '<div class="div_summa">Summa: ' + total + ' kr</div>';
+    $("#table_list").append(html);
 };
 
 function addPerson() {
     $(".button_add").click(function () {        
         $(this).hide();
-        var html = '<div><input id="input_receiver" type="text"/><input id="input_gift" type="text"/><input id="input_price" type="number"/><button class="button_savePerson">Spara</button></div>';
+        var html = '<div class="div_input"><input id="input_receiver" type="text"/><input id="input_gift" type="text"/><input id="input_price" type="number"/><button class="button_savePerson">Spara</button></div>';
         $("#table_list").append(html);
         savePerson();
+
     })
 };
 
@@ -49,6 +63,7 @@ function deletePerson() {
             success: function (jsonArr) {
                 $("#table_list").empty();
                 createTable(jsonArr);
+                createChart(jsonArr);
             }
         });
     });
@@ -59,7 +74,7 @@ function editPerson() {
         $(this).hide();
         $(".delete").hide();
         var id = $(this).val();
-        var html = '<div><input id="input_receiver" type="text" value="' + $("#div_td_receiver" + id).text() + '"/><input id="input_gift" type="text" value="' + $("#div_td_gift" + id).text() + '"/><input id="input_price" type="number" value="' + $("#div_td_price" + id).text() +'"/><button class="button_save">Spara</button></div>';
+        var html = '<div class="div_input"><input id="input_receiver" type="text" value="' + $("#div_td_receiver" + id).text() + '"/><input id="input_gift" type="text" value="' + $("#div_td_gift" + id).text() + '"/><input id="input_price" type="number" value="' + $("#div_td_price" + id).text() +'"/><button class="button_save">Spara</button></div>';
         $("#table_list").append(html);
         saveChanges(id);        
     });
@@ -70,28 +85,25 @@ function saveChanges(id) {
         $.ajax({
             url: "/home/SaveChangesJavascript/",
             data: { "id": id, "receiver": $("#input_receiver").val(), "gift": $("#input_gift").val(), "price": $("#input_price").val() },
-
             type: "POST",
             success: function (jsonArr) {
                 var jsonparse = JSON.parse(jsonArr);
                 createTable(jsonparse);
+                createChart(jsonparse);
             }
         })
-
     })
 };
 
 function savePerson() {
     $(".button_savePerson").click(function () {
-        
         $.ajax({
             url: "/home/AddPersonJavaScript/",
             data: { "receiver": $("#input_receiver").val(), "name": $("#input_gift").val(), "price": $("#input_price").val() },
             type: "POST",
-            success: function (jsonArr) {
-                //var jsonparse = JSON.parse(jsonArr);
-                $("#table_list").empty();
+            success: function (jsonArr) {                
                 createTable(jsonArr);
+                createChart(jsonArr);
             }
         })
 
@@ -105,13 +117,66 @@ function addBudget() {
             data: { "total": $("#budgetInputTextbox").val() },
             type: "POST",
             success: function (jsonArr) {
-                alert(jsonArr);
                 var jsonparse = JSON.parse(jsonArr);
                 createChart(jsonparse);
             }
         })
     }
     )
+};
+
+function createChart(jsonArr) {
+
+    let result = JSON.parse(jsonArr);
+    let budgetResult = JSON.parse(jsonArr)
+
+    var colorList = ["#4d0000", "#004d00", "#003300", "#008000", "#6B8E23", "#556B2F", "#808000", "#9ACD32", "#006400", "#32CD32"];
+
+    var budgetArray = [];
+    var colorArray = [];
+    var labelArray = [];
+    var dataArray = [];
+    for (var i = 0; i < result.length; i++) {
+        colorArray.push(colorList[i]);
+        labelArray.push(result[i].Name);
+        dataArray.push(result[i].Price);
+        budgetArray.push(result[i].Total);
+    }
+
+    var firstBudgetPost = budgetArray[0];
+
+    var moneyLeft = firstBudgetPost - dataArray;
+
+    var ctxa = document.getElementById("doughnut").getContext('2d');
+
+    var doughnutChart = new Chart(ctxa, {
+
+        type: 'doughnut',
+        data: {
+            labels: labelArray,
+            datasets: [
+                {
+                    label: "Chart",
+                    data: dataArray,
+                    backgroundColor: colorArray,
+                    borderColor: "#000000"
+                }
+            ]
+        },
+
+        options: {
+            legend: {
+                display: false,
+                cutoutPercentage: 20,
+                responsive: true,
+                maintainAspectRatio: true,
+                animation: {
+                    animateScale: true
+                }
+            }
+        }
+
+    });
 };
 
 $("#btn_changeColor").click(function(){
@@ -128,3 +193,4 @@ function changeColor(backgroundcolor) {
     }
 
 };
+
