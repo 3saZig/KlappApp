@@ -80,7 +80,10 @@ namespace KlappAppen.Controllers
             }
             else if (action == "Logga in")
             {
-
+                var result = await signInManager.PasswordSignInAsync(
+                    viewModel.UserName,
+                    viewModel.Password, false, false);
+                return View(viewModel); //Här ska det nog vara redirect men har ingen sida dit.
             }
 
             
