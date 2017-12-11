@@ -15,7 +15,7 @@ using KlappAppen.Models.ViewModels;
 
 namespace KlappAppen.Controllers
 {
-    [Authorize]
+//[Authorize]
     public class HomeController : Controller
     {
         DBBudgetRepository repository;
@@ -28,9 +28,8 @@ namespace KlappAppen.Controllers
         //GET: /<controller>/
         [AllowAnonymous]
         public IActionResult Index()
-        {
-            string result = repository.GetAllGifts();
-            return Content($"Här ska det vara tomt: {result}");//  View(MyPages());
+        {            
+            return View();
         }
 
         //repository.GetAllPersons()
@@ -44,19 +43,18 @@ namespace KlappAppen.Controllers
             return repository.GetAllGifts();
         }
 
-        
+       
         public string AddPersonJavaScript(HomeMainContentVM homeMainVM)
         {
-            
-            return JsonConvert.SerializeObject(repository.AddPerson(homeMainVM));
+            return repository.AddPerson(homeMainVM);
         }
 
         
         public string AddBudgetJavaScript(HomeSetBudgetVM budgetVM)
         {
 
-            return JsonConvert.SerializeObject(repository.AddNewBudget(budgetVM));
-
+            // return JsonConvert.SerializeObject(repository.AddNewBudget(budgetVM));
+            return repository.AddNewBudget(budgetVM);
             
         }
 
@@ -65,7 +63,7 @@ namespace KlappAppen.Controllers
         //    return repository.CreateBudget();
         //}
 
-        [Authorize]
+     //  [Authorize]
         public IActionResult SetBudget()
         {
             return View();
@@ -74,12 +72,11 @@ namespace KlappAppen.Controllers
 
         public string GetBudget()
         {
-
             throw new NotImplementedException();
             // repository.GetAllBudgetsJSON();
         }
 
-        [Authorize]
+      // [Authorize]
         public IActionResult GiftIdeas()
         {
             return View();

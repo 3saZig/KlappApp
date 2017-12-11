@@ -33,7 +33,7 @@
     text-decoration: none; 
 }
 #div_menu_all {
-    /*background-color: #ca1515;*/
+    background-color: #ca1515;
     position: fixed;
     bottom: 0;
     /*position: relative;*/
@@ -43,14 +43,18 @@
     background-color: #ca1515;
     height: auto;
     border-top: 10px solid #ca1515;
+
 }
 #div_logga{
     margin: 0 0 0 0; 
     padding: 0 0 0 0; 
 }
 
-body{
-    margin: 0 0 0 0; 
+body {
+    margin: 0 0 0 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -58,3 +62,9 @@ body{
     height: 70px;
     width: auto;
 }
+
+#div_content {
+    flex: 1;   
+}
+
+

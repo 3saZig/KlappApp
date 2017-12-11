@@ -25,7 +25,6 @@ namespace KlappAppen.Models
             return null; 
         }
 
-
         public string GetAllGifts()
         {
             var ret = klapp.Gifts
@@ -111,18 +110,31 @@ namespace KlappAppen.Models
         }
 
         ////varför skickar vi med vymodellen?
-        internal Budget[] AddNewBudget(HomeSetBudgetVM budgetVM)
+        //internal Budget[] AddNewBudget(HomeSetBudgetVM budgetVM)
+        //{
+        //    klapp.Budgets.Add(new Budget
+        //    {
+        //        Total = budgetVM.Total
+        //    });
+        //    klapp.SaveChanges();
+
+        //    return klapp.Budgets.ToArray();
+        //}
+
+        public string AddNewBudget(HomeSetBudgetVM budgetVM)
         {
             klapp.Budgets.Add(new Budget
             {
                 Total = budgetVM.Total
             });
+
             klapp.SaveChanges();
 
-            return klapp.Budgets.ToArray();
+            var newBudget = JsonConvert.SerializeObject(klapp.Budgets);
+            return newBudget;
         }
 
-        internal Gift[] AddPerson(HomeMainContentVM homeMainVM)
+        public string AddPerson(HomeMainContentVM homeMainVM)
         {
             klapp.Gifts.Add(new Gift
             {
@@ -132,7 +144,8 @@ namespace KlappAppen.Models
             });
             klapp.SaveChanges();
 
-            return klapp.Gifts.ToArray();
+            var updatedList = JsonConvert.SerializeObject(klapp.Gifts);
+            return updatedList;
         }
 
         //public HomeMainContentVM[] GetAllPersons()

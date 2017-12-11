@@ -5,6 +5,7 @@
         success: function (jsonArr) {
             createTable(jsonArr);
             addPerson();
+            addBudget();
         }
     });
 });
@@ -17,7 +18,7 @@ function createTable(jsonArr) {
     $("#table_list").append('<div class="div_tr_th"><div class="div_th">Namn</div><div class="div_th">Present</div><div class="div_th">Pris</div></div>');
     for (let i = 0; i < result.length; i++) {
         var itemId = result[i].Id;
-        let html = '<div class="div_tr_person"><div id="div_td_receiver' + itemId + '">' + result[i].Receiver + '</div><div id="div_td_gift' + itemId + '">' + result[i].Name + '</div><div id="div_td_price' + itemId +'">' + result[i].Price + '</div>'
+        let html = '<div class="div_tr_person"><div style="width:20%;" id="div_td_receiver' + itemId + '">' + result[i].Receiver + '</div><div style="width:20%;" id="div_td_gift' + itemId + '">' + result[i].Name + '</div><div style="width:20%;" id="div_td_price' + itemId +'">' + result[i].Price + '</div>'
             + '<div class="div_td"><button class="edit" value="' + result[i].Id + '">Ändra</button></div><div class="div_td"><button class="delete" value="' + result[i].Id + '">Radera</button></div></div>';
         $("#table_list").append(html);
     }
@@ -29,14 +30,12 @@ function createTable(jsonArr) {
 };
 
 function addPerson() {
-    $(".button_add").click(function () {
-      
+    $(".button_add").click(function () {        
         $(this).hide();
         var html = '<div><input id="input_receiver" type="text"/><input id="input_gift" type="text"/><input id="input_price" type="number"/><button class="button_savePerson">Spara</button></div>';
-		$("#table_list").append(html);
-		savePerson();
-    }
-    )
+        $("#table_list").append(html);
+        savePerson();
+    })
 };
 
 function deletePerson() {
@@ -54,25 +53,6 @@ function deletePerson() {
         });
     });
 };
-
-$("#btn_changeColor").click(function(){
-    let RadeoButtonStatusCheck = $('form input[type=radio]:checked').val();
-    changeColor(RadeoButtonStatusCheck); 
-});
-
-
-
-function changeColor(backgroundcolor) {
-    console.log("backgroundColor");
-    switch (backgroundcolor) {
-        case 'g':
-            $('.backgroundColor').classList.add("green");
-            break; 
-    }
-
-}
-
-
 
 function editPerson() {
     $(".edit").click(function () {
@@ -102,33 +82,49 @@ function saveChanges(id) {
 };
 
 function savePerson() {
-	$(".button_savePerson").click(function () {
-		$.ajax({
-			url: "/home/AddPersonJavaScript/",
-			data: { "receiver": $("#input_receiver").val(), "gift": $("#input_gift").val(), "price": $("#input_price").val() },
+    $(".button_savePerson").click(function () {
+        
+        $.ajax({
+            url: "/home/AddPersonJavaScript/",
+            data: { "receiver": $("#input_receiver").val(), "name": $("#input_gift").val(), "price": $("#input_price").val() },
+            type: "POST",
+            success: function (jsonArr) {
+                //var jsonparse = JSON.parse(jsonArr);
+                $("#table_list").empty();
+                createTable(jsonArr);
+            }
+        })
 
-			type: "POST",
-			success: function (jsonArr) {
-				var jsonparse = JSON.parse(jsonArr);
-				createTable(jsonparse);
-			}
-		})
-
-	})
+    })
 };
 
 function addBudget() {
-	$("#submitknapp").click(function () {
-		$(this).hide();
-		$.ajax({
-			url: "/home/AddBudgetJavaScript/",
-			data: { "total": $("#budgetInputTextbox").val() },
-			type: "POST",
-			success: function (jsonArr) {
-				var jsonparse = JSON.parse(jsonArr);
-				createChart(jsonparse);
-			}
-		})
-	}
-	)
+    $("#submitknapp").click(function () {
+        $.ajax({
+            url: "/home/AddBudgetJavaScript/",
+            data: { "total": $("#budgetInputTextbox").val() },
+            type: "POST",
+            success: function (jsonArr) {
+                alert(jsonArr);
+                var jsonparse = JSON.parse(jsonArr);
+                createChart(jsonparse);
+            }
+        })
+    }
+    )
+};
+
+$("#btn_changeColor").click(function(){
+    let RadeoButtonStatusCheck = $('form input[type=radio]:checked').val();
+    changeColor(RadeoButtonStatusCheck); 
+});
+
+function changeColor(backgroundcolor) {
+    console.log("backgroundColor");
+    switch (backgroundcolor) {
+        case 'g':
+            $('.backgroundColor').classList.add("green");
+            break; 
+    }
+
 };

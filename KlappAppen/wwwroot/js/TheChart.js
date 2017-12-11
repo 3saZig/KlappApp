@@ -1,17 +1,5 @@
 ﻿
 
-
-
-	
-//	document.getElementById("submitknapp").onclick = function () {
-//		var budgetInput = document.getElementById("budgetInputTextbox").value;
-
-
-//		};
-
-
-//});
-
 $(document).ready(function () {
     $.ajax({
         url: "/home/CreateChart",
@@ -21,10 +9,10 @@ $(document).ready(function () {
         }
     });
 
-    function createChart(jsonparse, jsonzzz) {
+    function createChart(jsonzzz) {
 
         let result = JSON.parse(jsonzzz);
-        let budgetResult = JSON.parse(jsonparse);
+       let budgetResult = JSON.parse(jsonzzz);
 
         var colorList = ["#4d0000", "#004d00", "#003300", "#008000", "#6B8E23", "#556B2F", "#808000", "#9ACD32", "#006400", "#32CD32"];
 
@@ -53,7 +41,7 @@ $(document).ready(function () {
                 datasets: [
                     {
                         label: "Chart",
-                        data: [dataArray, moneyLeft],
+                        data: dataArray,
                         backgroundColor: colorArray,
                         borderColor: "#000000"
                     }

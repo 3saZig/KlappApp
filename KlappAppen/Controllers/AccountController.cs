@@ -46,8 +46,9 @@ namespace KlappAppen.Controllers
         public IActionResult Index()
         {
             //identityContext.Database.EnsureCreated();
-            return Content("Identity tabeller skapade!");
+            return View("Register");
         }
+        
 
         [HttpGet]
         public IActionResult Register()
@@ -58,40 +59,50 @@ namespace KlappAppen.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterVM viewModel, string action)
         {
-
-
             if (!ModelState.IsValid)
             {
                 return View(viewModel);
             }
-
 
             if (action == "Skapa konto")
             {
                 var result = await userManager.CreateAsync(new IdentityUser(viewModel.UserName), viewModel.Password);
                 if (!result.Succeeded)
                 {
-                    //modelstate add error
-                    /*result.Errors.First.message()*/;
-                    return View(viewModel);
+                    ModelState.AddModelError(
+                         nameof(RegisterVM.UserName), "invalid");
 
                 }
-                
+                var model = new RegisterVM
+                {
+                    UserName = User.Identity.Name // Read from auth cookie
+                };
+
+                return View(model);
+
+
             }
             else if (action == "Logga in")
             {
+                var result2 = await signInManager.PasswordSignInAsync(
+               viewModel.UserName, viewModel.Password, false, false);
 
+                if (!result2.Succeeded)
+                {
+                    ModelState.AddModelError(
+                        nameof(AccountLoginVM.Username), "invalid");
+                    return View(viewModel);
+                }
+                return RedirectToAction("Index", "Home");
             }
 
-            
-            
-                //result = "Användare skapad";
-           
-                //result = "Användarnamn upptaget";
+            //result = "Användare skapad";
+
+            //result = "Användarnamn upptaget";
 
             return Content(null);
         }
-      
+
 
 
 

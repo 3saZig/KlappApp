@@ -1,8 +1,9 @@
-﻿#table_list{
+﻿#table_list {
     width: 100%;
     height: auto;
-    background-color:aquamarine;
-    font-family:'Futura Std'; 
+    background-color: aquamarine;
+    font-family: 'Futura Std';
+    margin-bottom: 550px;
 }
 
 .div_tr_th{
@@ -14,13 +15,29 @@
     float:left;
 }
 
-.div_tr, .div_tr_person {
+.div_tr, .div_tr_person  {
     width: 100%;
 }
 
-.div_td, .div_td_person {
+.div_td {
     width: 20%;
     float: left;
+    background-color: antiquewhite;
+}
+#div_td_receiver {
+    width: 20%;
+    float: left;
+    background-color: tan;
+}
+#div_td_gift {
+    width: 20%;
+    float: left;
+    background-color: Highlight;
+}
+#div_td_price {
+    width: 20%;
+    float: left;
+    background-color: rebeccapurple;
 }
 
 #edit2 {
@@ -32,4 +49,6 @@
     display: inline-block;
     font-size: 16px;
 }
+
+
 
