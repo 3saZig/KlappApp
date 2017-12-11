@@ -132,6 +132,7 @@ function createChart(jsonArr) {
 
     var colorList = ["#4d0000", "#004d00", "#003300", "#008000", "#6B8E23", "#556B2F", "#808000", "#9ACD32", "#006400", "#32CD32"];
 
+
     var budgetArray = [];
     var colorArray = [];
     var labelArray = [];
@@ -144,8 +145,12 @@ function createChart(jsonArr) {
     }
 
     var firstBudgetPost = budgetArray[0];
+	let totalGiftSum = SumAllGifts(jsonArr);
+	let moneyLeft = firstBudgetPost - totalGiftSum;
 
-    var moneyLeft = firstBudgetPost - dataArray;
+	dataArray.push(moneyLeft);
+	labelArray.push("budget");
+	colorArray.push('#922b21');
 
     var ctxa = document.getElementById("doughnut").getContext('2d');
 
