@@ -65,8 +65,7 @@ namespace KlappAppen.Controllers
 
         public string GetBudget()
         {
-            throw new NotImplementedException();
-            // repository.GetAllBudgetsJSON();
+            return repository.GetBudget();
         }
 
         [AllowAnonymous]     

@@ -6,7 +6,7 @@
             createTable(jsonArr);
             //addPerson();
             addBudget();
-            createChart(jsonArr);
+			createChart(jsonArr);
         }
     });
 });
@@ -39,7 +39,8 @@ function SumAllGifts(jsonArr) {
         total = total + giftPrice[i].Price;
     }    
     let html = '<div class="div_summa">Summa: ' + total + ' kr</div>';
-    $("#table_list").append(html);
+	$("#table_list").append(html);
+	
 };
 
 function addPerson() {
@@ -125,10 +126,23 @@ function addBudget() {
     )
 };
 
+function catchfirstBudgetpost(jsonArr) {
+		$.ajax({
+			url: "/home/GetBudget/",
+			type: "GET",
+			success: function (jsonArr) {
+				var budgetJson = JSON.parse(jsonArr);
+				let firstBudgetPost = budgetJson[0];
+				alert(firstBudgetPost);
+			}
+		})
+};
+
 function createChart(jsonArr) {
 
     let result = JSON.parse(jsonArr);
-    let budgetResult = JSON.parse(jsonArr)
+	let budgetResult = JSON.parse(jsonArr);
+	
 
     var colorList = ["#4d0000", "#004d00", "#003300", "#008000", "#6B8E23", "#556B2F", "#808000", "#9ACD32", "#006400", "#32CD32"];
 
@@ -151,6 +165,9 @@ function createChart(jsonArr) {
 	dataArray.push(moneyLeft);
 	labelArray.push("budget");
 	colorArray.push('#922b21');
+
+	let html2 = '<div class="div_summa">Moneyleft: ' + moneyLeft + ' kr</div>';
+	$("#table_list").append(html2);
 
     var ctxa = document.getElementById("doughnut").getContext('2d');
 

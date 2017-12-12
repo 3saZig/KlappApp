@@ -43,7 +43,7 @@ namespace KlappAppen.Models
             return JSONgiftList;
         }
 
-        public string CreateBudget()
+        public string GetBudget()
         {
             var ret = klapp.Budgets
                 .Select(g => new HomeSetBudgetVM
@@ -55,7 +55,7 @@ namespace KlappAppen.Models
 
             var JSONtotalBudget = JsonConvert.SerializeObject(ret);
 
-            File.WriteAllText(@"C:\Users\Administrator\Desktop\Json2.rtf", JSONtotalBudget);
+            File.WriteAllText(@"C:\Users\Administrator\Desktop\Json3.rtf", JSONtotalBudget);
 
             return JSONtotalBudget;
         }
