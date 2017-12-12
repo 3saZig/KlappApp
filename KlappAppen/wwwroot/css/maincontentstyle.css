@@ -1,9 +1,12 @@
 ﻿#table_list {
-    width: 100%;
+    width: 90%;
     height: auto;
     background-color: white;
     font-family: 'futura std';
+    font-size: 12px;
     padding: 2% 0 2% 0;
+    margin: auto;
+    border-radius: 4px;
 }
 
 .div_tr_th {
@@ -22,7 +25,7 @@ input{
 .div_th {
     width: 20%;
     float: left;
-    font-size: 20px;
+    font-size: 12px;
     font-weight:bold;
     padding-left: 1%;
     background-color: white;
@@ -41,48 +44,65 @@ input{
     padding: 1% 0 1% 1%;
     border-bottom: 1px solid black;
 }
+.div_td_person {
+    width: 19%;
+    float: left;
+    padding: 1% 0 1% 1%;
+    border-bottom: 1px solid black;
+}
 
 .div_td_button {
     width: 20%;
     float: left;
     padding: 1% 0 1% 0;
     border-bottom: 1px solid black;
+    font-family: 'Futura Std';
 }
 
 
 .edit {
-    background-color: #4caf50;
-    color: white;
+    background-color: transparent;
+    color: green;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    
+    font-size: 12px;
+    border: 1px solid green;
     width: 80%;
+    font-family: 'Geektastic';
+    border-radius: 4px;
+    cursor: pointer;
+    /*padding: 2px 0 2px 0;*/
 }
 
 .delete {
-    background-color: red;
-    border: none;
-    color: white;
+    background-color: transparent;
+    border: 1px solid red;
+    color: red;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    
+    font-size: 12px;
+    font-family: 'Geektastic';
     width: 80%;
+    border-radius: 4px;
+    cursor: pointer;
+    /*padding: 2px 0 2px 0;*/
 }
 
 .button_add {
-    background-color: blue;
-    border: none;
-    color: white;
+    background-color: transparent;
+    border: 1px solid black;
+    color: black;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    width:7%;
+    font-size: 12px;
+    width: 16%;
+    font-family: geektastic;
     padding: 1%;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 .button_save, .button_savePerson {
@@ -92,18 +112,30 @@ input{
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    width: 7%;
+    font-size: 12px;
+    width: 1%;
+    font-family: 'Futura Std';
     padding: 1%;
 }
 
-.div_summa{
-    width: 100%;
-    font-family: 'Futura Std';
-    font-size: 20px;
-    font-weight: bold;
-}
+
 /*doughnut*/
 #chartDiv {
-    padding-bottom: 7%;
+    padding-top: 10%;
+    padding-bottom: 2%;
+}
+
+/*Budget chart*/
+#table_budget {
+    background-color: white;
+    width: 100%;
+    margin: 5% 0 5% 0;
+}
+
+.div_summa {
+    padding: 1%;
+    width: 31%;
+    float: left;  
+    font-family: 'Futura Std';
+    font-size: 12px;
 }

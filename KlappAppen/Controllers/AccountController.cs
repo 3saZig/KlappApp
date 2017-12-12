@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using KlappAppen.Models.ViewModels;
 using KlappAppen.Models;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -46,17 +47,19 @@ namespace KlappAppen.Controllers
         public IActionResult Index()
         {
             //identityContext.Database.EnsureCreated();
-            return View("Register");
+            return View();
         }
         
 
         [HttpGet]
+        //[AllowAnonymous]
         public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
+       // [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterVM viewModel, string action)
         {
             if (!ModelState.IsValid)

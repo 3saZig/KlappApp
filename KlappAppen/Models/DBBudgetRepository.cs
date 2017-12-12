@@ -109,17 +109,21 @@ namespace KlappAppen.Models
             return editId;
         }
 
-        ////varför skickar vi med vymodellen?
-        //internal Budget[] AddNewBudget(HomeSetBudgetVM budgetVM)
+        //public string ChangeBudget(int id, int total)
         //{
-        //    klapp.Budgets.Add(new Budget
+        //    var changeBudget = klapp.Budgets
+        //        .FirstOrDefault(b => b.Id == id);
+        //    if (changeBudget != null)
         //    {
-        //        Total = budgetVM.Total
-        //    });
-        //    klapp.SaveChanges();
+        //        changeBudget.Total = total;   
+        //        klapp.SaveChanges();
+        //    }
 
-        //    return klapp.Budgets.ToArray();
+
+        //    var newBudget = JsonConvert.SerializeObject(klapp.Budgets);
+        //    return newBudget;
         //}
+
 
         public string AddNewBudget(HomeSetBudgetVM budgetVM)
         {

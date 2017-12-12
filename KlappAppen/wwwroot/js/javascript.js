@@ -1,12 +1,19 @@
-﻿$(document).ready(function () {
+﻿
+
+$(document).ready(function () {
     $.ajax({
         url: "/home/GetListJavaScript",
         type: "GET",
         success: function (jsonArr) {
+            let myBudget;
             createTable(jsonArr);
             //addPerson();
-            addBudget();
-			createChart(jsonArr);
+            
+            addBudget(jsonArr);
+            //createChart(jsonArr);
+            //catchLastBudgetPost(jsonArr);
+            //moneyLeft2(jsonArr);
+            
         }
     });
 });
@@ -16,35 +23,38 @@ function createTable(jsonArr) {
     let result = JSON.parse(jsonArr);
 
     $("#table_list").html(""); //tömmer listan
-    $("#table_list").append('<div class="div_tr_th"><div class="div_th">Namn</div><div class="div_th">Present</div><div class="div_th">Pris</div></div>');
+    $("#table_list").append('<div class="div_tr_th"><div class="div_th">Namn</div><div class="div_th">Present</div><div class="div_th">Pris</div><div class="div_th"></div><div class="div_th"></div></div>');
     for (let i = 0; i < result.length; i++) {
         var itemId = result[i].Id;
-        let html = '<div class="div_tr"><div class=div_td id="div_td_receiver' + itemId + '">' + result[i].Receiver + '</div><div class=div_td id="div_td_gift' + itemId + '">' + result[i].Name + '</div><div class=div_td id="div_td_price' + itemId +'">' + result[i].Price + '</div>'
-            + '<div class="div_td_button"><button class="edit" value="' + result[i].Id + '">Ändra</button></div><div class="div_td"><button class="delete" value="' + result[i].Id + '">Radera</button></div></div>';
+        let html = '<div class="div_tr"><div class=div_td id="div_td_receiver' + itemId + '">' + result[i].Receiver + '</div><div class=div_td id="div_td_gift' + itemId + '">' + result[i].Name + '</div><div class=div_td id="div_td_price' + itemId + '">' + result[i].Price + '</div>'
+            + '<div class="div_td"><button class="edit" value="' + result[i].Id + '">Ändra</button></div><div class="div_td"><button class="delete" value="' + result[i].Id + '">Radera</button></div></div>';
         $("#table_list").append(html);
     }
     deletePerson();
     editPerson();
-    SumAllGifts(jsonArr)
-    
+    let gifts = SumAllGifts(jsonArr);
+
+    createSum(jsonArr, gifts);
+   // SumAllGifts(jsonArr);
+
     //Addknappen 
     $("#table_list").append('<div class="div_tr"><div id="td_button_add"><button class="button_add">Lägg till</button></div></div>');
     addPerson();
 };
 
 function SumAllGifts(jsonArr) {
+    
     let giftPrice = JSON.parse(jsonArr);
     let total = 0;
     for (var i = 0; i < giftPrice.length; i++) {
         total = total + giftPrice[i].Price;
-    }    
-    let html = '<div class="div_summa">Summa: ' + total + ' kr</div>';
-	$("#table_list").append(html);
-	
+    }
+    
+    return total;
 };
 
 function addPerson() {
-    $(".button_add").click(function () {        
+    $(".button_add").click(function () {
         $(this).hide();
         var html = '<div class="div_input"><input id="input_receiver" type="text"/><input id="input_gift" type="text"/><input id="input_price" type="number"/><button class="button_savePerson">Spara</button></div>';
         $("#table_list").append(html);
@@ -75,9 +85,9 @@ function editPerson() {
         $(this).hide();
         $(".delete").hide();
         var id = $(this).val();
-        var html = '<div class="div_input"><input id="input_receiver" type="text" value="' + $("#div_td_receiver" + id).text() + '"/><input id="input_gift" type="text" value="' + $("#div_td_gift" + id).text() + '"/><input id="input_price" type="number" value="' + $("#div_td_price" + id).text() +'"/><button class="button_save">Spara</button></div>';
+        var html = '<div class="div_input"><input id="input_receiver" type="text" value="' + $("#div_td_receiver" + id).text() + '"/><input id="input_gift" type="text" value="' + $("#div_td_gift" + id).text() + '"/><input id="input_price" type="number" value="' + $("#div_td_price" + id).text() + '"/><button class="button_save">Spara</button></div>';
         $("#table_list").append(html);
-        saveChanges(id);        
+        saveChanges(id);
     });
 };
 
@@ -102,7 +112,7 @@ function savePerson() {
             url: "/home/AddPersonJavaScript/",
             data: { "receiver": $("#input_receiver").val(), "name": $("#input_gift").val(), "price": $("#input_price").val() },
             type: "POST",
-            success: function (jsonArr) {                
+            success: function (jsonArr) {
                 createTable(jsonArr);
                 createChart(jsonArr);
             }
@@ -119,33 +129,59 @@ function addBudget() {
             type: "POST",
             success: function (jsonArr) {
                 var jsonparse = JSON.parse(jsonArr);
+               // $("#table_list").html(""); //tömmer listan
                 createChart(jsonparse);
             }
         })
-    }
-    )
+    })
 };
 
-function catchfirstBudgetpost(jsonArr) {
-		$.ajax({
-			url: "/home/GetBudget/",
-			type: "GET",
-			success: function (jsonArr) {
-				var budgetJson = JSON.parse(jsonArr);
-				let firstBudgetPost = budgetJson[0];
-				alert(firstBudgetPost);
-			}
-		})
+function catchLastBudgetPost(jsonArr) { //funkar
+    $.ajax({
+        url: "/home/GetBudget/",
+        type: "GET",
+        success: function (jsonArr) {
+            let budgetJson = JSON.parse(jsonArr);
+            let myBudget = budgetJson[budgetJson.length - 1].Total;
+            console.log("catchLastBudgetPost: " + myBudget);
+            return myBudget;
+        }          
+    })
 };
+
+//function moneyLeft2(myBudget) {
+//    let gifts = SumAllGifts(myBudget);
+//    let x = catchLastBudgetPost(myBudget);
+//    let moneyLeftToSpend = x - gifts;
+//    alert(moneyLeftToSpend);
+    
+//}
+
+function createSum(jsonArr, gifts) {
+
+    $.ajax({
+        url: "/home/GetBudget/",
+        type: "GET",
+        success: function (jsonArr) {
+            let budgetJson = JSON.parse(jsonArr);
+            let myBudget = budgetJson[budgetJson.length - 1].Total;
+            let budget = myBudget; //catchLastBudgetPost(jsonArr);
+            //let gifts = SumAllGifts(jsonArr);
+            console.log("createSum: " + budget);
+            //let money = moneyLeft2(jsonArr);
+            let html = '<div class="div_summa">Budget: ' + budget + ' kr</div><div class="div_summa">Summa: ' + gifts + ' kr</div><div class="div_summa">Kvar: ' + (budget - gifts) + ' kr</div>';
+            $("#table_budget").html("");
+            $("#table_budget").append(html);
+        }
+    });
+}
 
 function createChart(jsonArr) {
 
     let result = JSON.parse(jsonArr);
-	let budgetResult = JSON.parse(jsonArr);
-	
+    
 
     var colorList = ["#4d0000", "#004d00", "#003300", "#008000", "#6B8E23", "#556B2F", "#808000", "#9ACD32", "#006400", "#32CD32"];
-
 
     var budgetArray = [];
     var colorArray = [];
@@ -157,17 +193,16 @@ function createChart(jsonArr) {
         dataArray.push(result[i].Price);
         budgetArray.push(result[i].Total);
     }
+    
 
-    var firstBudgetPost = budgetArray[0];
-	let totalGiftSum = SumAllGifts(jsonArr);
-	let moneyLeft = firstBudgetPost - totalGiftSum;
+    let firstBudgetPost = budgetArray[0];
+    
+    let totalGiftSum = SumAllGifts(jsonArr);
+    let moneyLeft = firstBudgetPost - totalGiftSum;
 
-	dataArray.push(moneyLeft);
-	labelArray.push("budget");
-	colorArray.push('#922b21');
-
-	let html2 = '<div class="div_summa">Moneyleft: ' + moneyLeft + ' kr</div>';
-	$("#table_list").append(html2);
+    dataArray.push(moneyLeft);
+    labelArray.push("budget");
+    colorArray.push('#922b21');
 
     var ctxa = document.getElementById("doughnut").getContext('2d');
 
@@ -181,7 +216,8 @@ function createChart(jsonArr) {
                     label: "Chart",
                     data: dataArray,
                     backgroundColor: colorArray,
-                    borderColor: "#000000"
+                    borderColor: "#000000",
+                    borderWidth: [1] 
                 }
             ]
         },
@@ -201,9 +237,9 @@ function createChart(jsonArr) {
     });
 };
 
-$("#btn_changeColor").click(function(){
+$("#btn_changeColor").click(function () {
     let RadeoButtonStatusCheck = $('form input[type=radio]:checked').val();
-    changeColor(RadeoButtonStatusCheck); 
+    changeColor(RadeoButtonStatusCheck);
 });
 
 function changeColor(backgroundcolor) {
@@ -211,7 +247,7 @@ function changeColor(backgroundcolor) {
     switch (backgroundcolor) {
         case 'g':
             $('.backgroundColor').classList.add("green");
-            break; 
+            break;
     }
 
 };

@@ -33,7 +33,7 @@ namespace KlappAppen.Controllers
         }
 
         //repository.GetAllPersons()
-        [Authorize]
+        //[Authorize]
         public IActionResult MainContent()
         {
             return View();
@@ -50,13 +50,13 @@ namespace KlappAppen.Controllers
             return repository.AddPerson(homeMainVM);
         }
 
-        
+       
         public string AddBudgetJavaScript(HomeSetBudgetVM budgetVM)
-        {            
-            return repository.AddNewBudget(budgetVM);            
+        {
+            return repository.AddNewBudget(budgetVM);
         }
         
-       [Authorize]        
+       // [Authorize]        
         public IActionResult SetBudget()
         {
             return View();
@@ -74,7 +74,7 @@ namespace KlappAppen.Controllers
             return View();
         }
 
-        [Authorize]
+      //  [Authorize]
         public IActionResult MyPages()
         {
             return View();

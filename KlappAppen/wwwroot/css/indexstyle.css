@@ -8,9 +8,12 @@
 .button_index {
     background-color: transparent;
     color: black;
-    font-family:'Futura Std';
-    font-size: 35px;
-    border: 2px solid #ca1515; /* Green */
+    font-family: 'Futura Std';
+    font-size: 20px;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 1% 2% 1% 2%;
 }
 
     .button_index:hover {
