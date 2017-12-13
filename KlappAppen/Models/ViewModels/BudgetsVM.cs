@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace KlappAppen.Models.ViewModels
 {
-    public class HomeSetBudgetVM
+    public class BudgetsVM
     {
+        public int Id { get; set; }
         public int Total { get; set; }
-       
+        public string BudgetName { get; set; }
     }
 }

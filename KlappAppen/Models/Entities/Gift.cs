@@ -9,7 +9,7 @@ namespace KlappAppen.Models.Entities
         public int Price { get; set; }
         public string Receiver { get; set; }
         public string Name { get; set; }
-        public int? BudgetId { get; set; }
+        public int BudgetId { get; set; }
 
         public Budget Budget { get; set; }
     }
