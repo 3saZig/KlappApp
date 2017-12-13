@@ -15,20 +15,35 @@ using KlappAppen.Models.ViewModels;
 
 namespace KlappAppen.Controllers
 {
-//[Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
         DBBudgetRepository repository;
+        UserManager<IdentityUser> userManager;
 
-        public HomeController(DBBudgetRepository repository)
+        //SignInManager<IdentityUser> signInManager;
+        //RoleManager<IdentityRole> roleManager;
+        //IdentityDbContext identityContext;
+
+        //SignInManager<IdentityUser> signInManager,
+        //RoleManager<IdentityRole> roleManager
+        //DBBudgetRepository repository
+        /*IdentityDbContext identityContext*/
+        //this.signInManager = signInManager;
+        //this.roleManager = roleManager;
+
+        public HomeController(
+            DBBudgetRepository repository,
+            UserManager<IdentityUser> userManager)
         {
+            this.userManager = userManager;
             this.repository = repository;
         }
 
         //GET: /<controller>/
         [AllowAnonymous]
         public IActionResult Index()
-        {            
+        {
             return View();
         }
 
@@ -44,19 +59,20 @@ namespace KlappAppen.Controllers
             return repository.GetAllGifts();
         }
 
-       
+
         public string AddPersonJavaScript(HomeMainContentVM homeMainVM)
         {
             return repository.AddPerson(homeMainVM);
         }
 
-       
-        public string AddBudgetJavaScript(HomeSetBudgetVM budgetVM)
+
+        public string AddBudgetJavaScript(BudgetsVM budgetVM)
         {
-            return repository.AddNewBudget(budgetVM);
+            string userId = userManager.GetUserId(HttpContext.User);  //Här hämtar vi vår användare
+            return repository.AddNewBudget(budgetVM, userId);
         }
-        
-       // [Authorize]        
+
+        // [Authorize]        
         public IActionResult SetBudget()
         {
             return View();
@@ -65,24 +81,25 @@ namespace KlappAppen.Controllers
 
         public string GetBudget()
         {
-            return repository.GetBudget();
+            string userId = userManager.GetUserId(HttpContext.User);
+            return repository.GetBudgets(userId);
         }
 
-        [AllowAnonymous]     
+        [AllowAnonymous]
         public IActionResult GiftIdeas()
         {
             return View();
         }
 
-      //  [Authorize]
+        //  [Authorize]
         public IActionResult MyPages()
         {
             return View();
         }
-                
-        public string GetListJavaScript()
+
+        public string GetListJavaScript(int budgetId)
         {
-            return repository.GetList();
+            return repository.GetGifts(budgetId);
         }
 
         public string DeletePersonJavascript(int id)
@@ -97,6 +114,6 @@ namespace KlappAppen.Controllers
             return model;
         }
 
-        
+
     }
 }

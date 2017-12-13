@@ -15,7 +15,13 @@ namespace KlappAppen.Models.Entities
             {
                 entity.ToTable("Budget", "trh");
 
-                entity.Property(e => e.AspNetUsersId).HasMaxLength(450);
+                entity.Property(e => e.AspNetUsersId)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
+                entity.Property(e => e.BudgetName)
+                    .IsRequired()
+                    .HasMaxLength(100);
             });
 
             modelBuilder.Entity<Gift>(entity =>
@@ -35,6 +41,7 @@ namespace KlappAppen.Models.Entities
                 entity.HasOne(d => d.Budget)
                     .WithMany(p => p.Gift)
                     .HasForeignKey(d => d.BudgetId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Gift__BudgetId__73BA3083");
             });
         }

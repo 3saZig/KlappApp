@@ -216,8 +216,9 @@ function createChart(jsonArr) {
                     label: "Chart",
                     data: dataArray,
                     backgroundColor: colorArray,
+                    borderWidth: [1], 
                     borderColor: "#000000",
-                    borderWidth: [1] 
+                    
                 }
             ]
         },
@@ -228,6 +229,7 @@ function createChart(jsonArr) {
                 cutoutPercentage: 20,
                 responsive: true,
                 maintainAspectRatio: true,
+                
                 animation: {
                     animateScale: true
                 }

@@ -21,8 +21,8 @@ namespace KlappAppen.Models
 
         public string UserExist(string username)
         {
-      
-            return null; 
+
+            return null;
         }
 
         public string GetAllGifts()
@@ -43,26 +43,29 @@ namespace KlappAppen.Models
             return JSONgiftList;
         }
 
-        public string GetBudget()
+        public string GetBudgets(string userId)
         {
-            var ret = klapp.Budgets
-                .Select(g => new HomeSetBudgetVM
+            var list = klapp.Budgets
+                .Where(b => b.AspNetUsersId == userId)
+                .Select(b => new BudgetsVM
                 {
-                    Total = g.Total
+                    BudgetName = b.BudgetName,
+                    Id = b.Id,
+                    Total = b.Total,
+                }
+                ).ToArray();
 
-                }).ToArray();
-
-
-            var JSONtotalBudget = JsonConvert.SerializeObject(ret);
-
-            File.WriteAllText(@"C:\Users\Administrator\Desktop\Json3.rtf", JSONtotalBudget);
+            var JSONtotalBudget = JsonConvert.SerializeObject(list);
 
             return JSONtotalBudget;
         }
 
-        public string GetList()
+
+        public string GetGifts(int budgetId)
         {
+
             var list = klapp.Gifts
+                .Where(g => g.BudgetId == budgetId)
                 .Select(g => new HomeMainContentVM
                 {
                     Receiver = g.Receiver,
@@ -104,7 +107,7 @@ namespace KlappAppen.Models
                 editPerson.Price = price;
                 klapp.SaveChanges();
             }
-             
+
             var editId = JsonConvert.SerializeObject(klapp.Gifts);
             return editId;
         }
@@ -125,12 +128,16 @@ namespace KlappAppen.Models
         //}
 
 
-        public string AddNewBudget(HomeSetBudgetVM budgetVM)
+        public string AddNewBudget(BudgetsVM budgetVM, string userId)
         {
-            klapp.Budgets.Add(new Budget
-            {
-                Total = budgetVM.Total
-            });
+            klapp.Budgets
+                .Add(new Budget   //Lägga till 
+                {
+                    BudgetName = budgetVM.BudgetName,
+                    AspNetUsersId = userId,
+
+                    Total = budgetVM.Total
+                });
 
             klapp.SaveChanges();
 
@@ -157,13 +164,13 @@ namespace KlappAppen.Models
         //    var list = klapp.Gifts
         //       .Select(g => new HomeMainContentVM
         //       {
-                   
+
         //           Price = g.Price,
-                   
+
 
         //       }).ToArray();
         //}
 
-        
+
     }
 }
