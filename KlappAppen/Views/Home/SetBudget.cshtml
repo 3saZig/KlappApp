@@ -1,4 +1,6 @@
-﻿<link href="~/css/setbudgetstyle.css" rel="stylesheet" />
+﻿@model BudgetsVM
+
+<link href="~/css/setbudgetstyle.css" rel="stylesheet" />
 
 
 @*<div id="chartDiv" style="position: relative; height:100vh; width:100vw">
@@ -9,7 +11,19 @@
 
 <div id="text_setBudget">
     
-    <p>Hur givmild känner du dig i år?</p>
+
+	<form asp-controller="home" asp-action="maincontent" >
+		<select>
+			@foreach (var item in Model.BudgetName)
+			{
+				<option value=@Model.Id>@Model.BudgetName</option>
+			}
+			
+		</select>
+		<input type="submit" class="button_index" value="Välj Budget" />
+	</form>
+
+    <p>Vill du skapa en ny budget?</p>
         <input type="text" id="budgetInputTextbox" name="Sätt budget" class="setBudget" placeholder="Skriv in din julklappsbudget här...">
         <br/>
 	<input type="text" id="budgetNameInputTextbox" name="Sätt budgetNamn" class="setBudgetName" placeholder="...och namnet på din budget här!">
