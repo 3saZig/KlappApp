@@ -19,8 +19,13 @@
     height: 50px;
     width: auto;
     display: block; 
-    margin: auto;   
+    margin: auto; 
+	opacity: 1;
 }
+
+	.menu_pic:hover {
+		opacity: 0.7;
+	}
 
 .menu_text {
     text-align: center; 
@@ -97,7 +102,4 @@ html{
     width: 100%;
 }
 
-#santa{
-    height: 50%;
-    width: auto;
-}
+

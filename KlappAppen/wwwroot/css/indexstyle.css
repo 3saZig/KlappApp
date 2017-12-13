@@ -1,5 +1,6 @@
 ﻿#div_index {
-    background-color: #ca1515;
+    margin-top: 20px;
+	background-color: #ca1515;
     text-align: center;
     height: 100%;
 }
@@ -9,20 +10,45 @@
     background-color: transparent;
     color: black;
     font-family: 'Futura Std';
-    font-size: 20px;
+    font-size: 15px;
     border: 1px solid black;
     border-radius: 4px;
     cursor: pointer;
     padding: 1% 2% 1% 2%;
 }
 
-    .button_index:hover {
-        color: white;
-    }
+	.button_index:hover {
+		color: white;
+		border: 1px solid white;
+	}
+
+	
 
 
 #welcome_text {
     color: white;
     font-family: geektastic;
-    font-size: 80px;
+    font-size: 35px;
 }
+
+#santa {
+	height: 50%;
+	width: auto;
+
+}
+
+#santa {
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
+	#santa:hover {
+		-webkit-transform: rotate(-5deg);
+		-moz-transform: rotate(-5deg);
+		-o-transform: rotate(-5deg);
+		-ms-transform: rotate(-5deg);
+		transform: rotate(-5deg);
+	}
