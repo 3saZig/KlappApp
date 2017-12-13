@@ -11,7 +11,7 @@ namespace KlappAppen.Models.ViewModels
         public string Name { get; set; }
         public int Price { get; set; }
         public int Id { get; set; }
-
+        public int BudgetId { get; set; }
         //Doughnut
     }
 

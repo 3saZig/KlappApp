@@ -153,7 +153,8 @@ namespace KlappAppen.Models
             {
                 Receiver = homeMainVM.Receiver,
                 Name = homeMainVM.Name,
-                Price = homeMainVM.Price
+                Price = homeMainVM.Price,
+                BudgetId = homeMainVM.BudgetId
             });
             klapp.SaveChanges();
 

@@ -7,8 +7,8 @@ $(document).ready(function () {
 		success: function (jsonArr) {
 			let myBudget;
 			createTable(jsonArr);
-			//addPerson();
-
+            //addPerson();
+            getBudgetList(jsonArr);
 			addBudget(jsonArr);
 			//createChart(jsonArr);
 			//catchLastBudgetPost(jsonArr);
@@ -161,7 +161,36 @@ function createSum(jsonArr, gifts) {
 			$("#table_budget").html("");
 			$("#table_budget").append(html);
 		}
-	});
+    });
+
+
+}
+
+
+function getBudgetList(jsonArr) {
+
+    $.ajax({
+        url: "/home/GetBudget/",
+        type: "GET",
+        success: function (jsonArr) {
+            let budgetJson = JSON.parse(jsonArr);
+            console.log(budgetJson);
+            let budgetArray = [];
+            for (var i = 0; i < budgetJson.length; i++) {
+                budgetArray = budgetJson[i].Name;
+            }
+
+
+            //let gifts = SumAllGifts(jsonArr);
+            //console.log("createSum: " + budget);
+            ////let money = moneyLeft2(jsonArr);
+            //let html = '<div class="div_summa">Budget: ' + budget + ' kr</div><div class="div_summa">Summa: ' + gifts + ' kr</div><div class="div_summa">Kvar: ' + (budget - gifts) + ' kr</div>';
+            //$("#table_budget").html("");
+            //$("#table_budget").append(html);
+        }
+    });
+
+
 }
 
 function createChart() { //jsonArr, gifts
