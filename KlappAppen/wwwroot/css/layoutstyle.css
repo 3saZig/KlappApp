@@ -1,25 +1,25 @@
 ﻿
 
 .backgroundColor {
-    background-color: #ca1515;
+	background-color: #ca1515;
 }
 .backgroundColor .green{
-    background-color: green; 
+	background-color: green; 
 }
 
 .div_menu {
-    /*background-color: #ca1515;*/ 
-    margin: 0 0 0 0; 
-    padding: 0, 0, 0, 0; 
-    float: left; 
-    width: 20%;
+	/*background-color: #ca1515;*/ 
+	margin: 0 0 0 0; 
+	padding: 0, 0, 0, 0; 
+	float: left; 
+	width: 20%;
 }
 
 .menu_pic {
-    height: 50px;
-    width: auto;
-    display: block; 
-    margin: auto; 
+	height: 50px;
+	width: auto;
+	display: block; 
+	margin: auto; 
 	opacity: 1;
 }
 
@@ -28,78 +28,78 @@
 	}
 
 .menu_text {
-    text-align: center; 
-    font-family: geektastic; 
-    font-size: 120%; 
-    color: black;  
-    text-decoration: none; 
+	text-align: center; 
+	font-family: geektastic; 
+	font-size: 120%; 
+	color: black;  
+	text-decoration: none; 
 }
 #div_menu_all {
-    background-color: #ca1515;
-    bottom: 0;
-    width: 100%;
-    margin: 0 0 0 0;
-    padding: 10px, 0, 0, 0;
-    background-color: #ca1515;
-    height: auto;
-    border-top: 10px solid #ca1515;
-    
+	background-color: #ca1515;
+	bottom: 0;
+	width: 100%;
+	margin: 0 0 0 0;
+	padding: 10px, 0, 0, 0;
+	background-color: #ca1515;
+	height: auto;
+	border-top: 10px solid #ca1515;
+	
 }
 
 #div_logga {
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    float: left;
-    width: 100%;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	float: left;
+	width: 100%;
 }
 
 #button_logout {
-    bottom: 0;
-    right: 0;
-    text-align: center;
-    width: 25%;
-    background-color: transparent;
-    font-family: geektastic;
-    font-size: 12px;
-    color: #ca1515;
-    padding: 2px;
-    margin: 2px 10px 2px 28%;
-    border: 1px solid #282828;
-    border-radius: 4px;
-    cursor: pointer;
+	bottom: 0;
+	right: 0;
+	text-align: center;
+	width: 25%;
+	background-color: transparent;
+	font-family: geektastic;
+	font-size: 12px;
+	color: #ca1515;
+	padding: 2px;
+	margin: 2px 10px 2px 28%;
+	border: 1px solid #282828;
+	border-radius: 4px;
+	cursor: pointer;
 }
 
 body {
-    margin: 0 0 0 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+	margin: 0 0 0 0;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
 }
 
 #logga_red {
-    height: 70px;
-    width: auto;
+	height: 70px;
+	width: auto;
 }
 
 #div_content {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    /*overflow-x: hidden;*/
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+	/*overflow-x: hidden;*/
 }
 
 body {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    box-sizing: border-box;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	display: flex;
+	box-sizing: border-box;
 }
 
 html{
-    height: 100%;
-    width: 100%;
+	height: 100%;
+	width: 100%;
 }
 
 
