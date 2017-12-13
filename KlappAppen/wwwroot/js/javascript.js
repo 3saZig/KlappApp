@@ -4,12 +4,14 @@ $(document).ready(function () {
 	$.ajax({
 		url: "/home/GetListJavaScript",
 		type: "GET",
-		success: function (jsonArr) {
+		success: function (jsonArr) {			
 			let myBudget;
-			createTable(jsonArr);
-            //addPerson();
-            getBudgetList(jsonArr);
+			
+			//addPerson();
+			let budgetListId = getBudgetList(jsonArr);
+			
 			addBudget(jsonArr);
+			GetBudgetIdFromSelect();
 			//createChart(jsonArr);
 			//catchLastBudgetPost(jsonArr);
 			//moneyLeft2(jsonArr);
@@ -19,7 +21,7 @@ $(document).ready(function () {
 });
 
 //listan med edit/delete
-function createTable(jsonArr) {
+function createTable(jsonArr, budgetListId) {
 	let result = JSON.parse(jsonArr);
 
 	$("#table_list").html(""); //tömmer listan
@@ -50,6 +52,27 @@ function SumAllGifts(jsonArr) {
 		total = total + giftPrice[i].Price;
 	}
 	return total;
+};
+
+//function GetBudgetIdFromSelect() {
+
+//	let e = document.getElementById("#chooseBudget");
+//	let budgetIdFromSelect = e.options[e.selectedIndex].value;
+//	console.log(budgetIdFromSelect);
+//	return budgetIdFromSelect;
+//};
+
+
+$("#chooseBudget").change(function () {
+	let getBudgetIdFromSelect = $("#chooseBudget").val();
+	$.ajax({
+		url: "/home/GetListJavaScript/" + getBudgetIdFromSelect,
+			type: "GET",
+			success: function (jsonArr) {
+				createTable(jsonArr);
+			}
+		});
+	});
 };
 
 function addPerson() {
@@ -161,7 +184,7 @@ function createSum(jsonArr, gifts) {
 			$("#table_budget").html("");
 			$("#table_budget").append(html);
 		}
-    });
+	});
 
 
 }
@@ -169,26 +192,29 @@ function createSum(jsonArr, gifts) {
 
 function getBudgetList(jsonArr) {
 
-    $.ajax({
-        url: "/home/GetBudget/",
-        type: "GET",
-        success: function (jsonArr) {
-            let budgetJson = JSON.parse(jsonArr);
-            console.log(budgetJson);
-            let budgetArray = [];
-            for (var i = 0; i < budgetJson.length; i++) {
-                budgetArray = budgetJson[i].Name;
-            }
+	$.ajax({
+		url: "/home/GetBudget/",
+		type: "GET",
+		success: function (jsonArr) {
+			let budgetJson = JSON.parse(jsonArr);
+			console.log(budgetJson);
+			//let budgetArray = [];
+			//for (var i = 0; i < budgetJson.length; i++) {
+			//	budgetArray = budgetJson[i].Name;
+			//}
+			//let budgetArrayId = [];
+			//for (var i = 0; i < budgetJson.length; i++) {
+			//	budgetArrayId = budgetJson[i].Id;
+			//}
+			for (let i = 0; i < budgetJson.length; i++) {
+				var itemId = budgetJson[i].Id;
+				var itemName = budgetJson[i].BudgetName;
+				let html = '<option value=' + itemId + '>' + itemName + '</option >';
+				$("#chooseBudget").append(html);
+			}
 
-
-            //let gifts = SumAllGifts(jsonArr);
-            //console.log("createSum: " + budget);
-            ////let money = moneyLeft2(jsonArr);
-            //let html = '<div class="div_summa">Budget: ' + budget + ' kr</div><div class="div_summa">Summa: ' + gifts + ' kr</div><div class="div_summa">Kvar: ' + (budget - gifts) + ' kr</div>';
-            //$("#table_budget").html("");
-            //$("#table_budget").append(html);
-        }
-    });
+		}
+	});
 
 
 }

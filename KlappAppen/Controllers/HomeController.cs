@@ -102,10 +102,10 @@ namespace KlappAppen.Controllers
             return View();
         }
 
-        public string GetListJavaScript() //int budgetId
+        public string GetListJavaScript(int budgetId) //int budgetId
         {
             
-            return repository.GetGifts(25);
+            return repository.GetGifts(budgetId);
         }
 
         public string DeletePersonJavascript(int id)
@@ -119,6 +119,12 @@ namespace KlappAppen.Controllers
             var model = JsonConvert.SerializeObject(repository.EditPerson(id, receiver, gift, price));
             return model;
         }
+
+        //public string ShowListFromBudgetId(int id)
+        //{
+        //    var model = JsonConvert.SerializeObject(repository.EditPerson(id));
+        //    return model;
+        //}
 
 
     }
