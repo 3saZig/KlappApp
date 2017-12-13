@@ -102,9 +102,10 @@ namespace KlappAppen.Controllers
             return View();
         }
 
-        public string GetListJavaScript(int budgetId)
+        public string GetListJavaScript() //int budgetId
         {
-            return repository.GetGifts(budgetId);
+            
+            return repository.GetGifts(25);
         }
 
         public string DeletePersonJavascript(int id)

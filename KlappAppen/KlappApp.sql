@@ -10,7 +10,7 @@ create table trh.Gift
         BudgetId int references trh.Budget (Id)
 )
 
-create table trh.Budget
+create table trh.BudgetC:\KlappApp\KlappAppen\KlappApp.sql
 (
         Id int identity primary key,
         Total int not null,

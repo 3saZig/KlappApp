@@ -164,14 +164,14 @@ function createSum(jsonArr, gifts) {
 	});
 }
 
-function createChart(jsonArr, gifts) {
+function createChart() { //jsonArr, gifts
 	let myBudget;
 	$.ajax({
 		url: "/home/GetBudget/",
 		type: "GET",
 		success: function (jsonArr) {
-			let budgetJson = JSON.parse(jsonArr);
-			myBudget = budgetJson[budgetJson.length - 1].Total;
+			//!let budgetJson = JSON.parse(jsonArr);
+			//!myBudget = budgetJson[budgetJson.length - 1].Total;
 
 			
 			//let moneyLeft = firstBudgetPost - totalGiftSum;
@@ -186,13 +186,13 @@ function createChart(jsonArr, gifts) {
 
 				type: 'doughnut',
 				data: {
-					labels: ["pengar kvar", "total klappar"],
+					labels: ["total klappar", "pengar kvar"],
 					datasets: [
 						{
 							label: "Chart",
-							data: [(myBudget-gifts), gifts],
-							backgroundColor: ["#ffffff", "#202020"],
-							borderColor: "#ca1515",
+                            data: ["2876", "748"], //(myBudget-gifts), gifts
+							backgroundColor: ["#005B00", "white"],
+							borderColor: "#000000",
 						}
 					]
 				},
