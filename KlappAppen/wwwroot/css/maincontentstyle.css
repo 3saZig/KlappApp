@@ -14,12 +14,13 @@
     background-color: white;
 }
 
-input{
+input {
     width: 20%;
     height: 20px;
     font-family: 'futura std';
     padding: 0.5%;
-    margin: 0 0 0 0.5%;
+    margin: 0 0 0 5%;
+    border-radius: 4px;
 }
 
 .div_th {
@@ -106,16 +107,18 @@ input{
 }
 
 .button_save, .button_savePerson {
-    background-color: blue;
-    border: none;
+    background-color: transparent;
+    border: 1px solid black;
     color: white;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 12px;
-    width: 1%;
-    font-family: 'Futura Std';
+    width: 16%;
+    font-family: geektastic;
     padding: 1%;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 
