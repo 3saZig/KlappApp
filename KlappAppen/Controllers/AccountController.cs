@@ -16,7 +16,7 @@ namespace KlappAppen.Controllers
 
     public class AccountController : Controller
     {
-        DBBudgetRepository repository;
+        //DBBudgetRepository repository;
 
         //public AccountController(DBBudgetRepository repository)
         //{
@@ -32,14 +32,14 @@ namespace KlappAppen.Controllers
         public AccountController(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
-            RoleManager<IdentityRole> roleManager,
-            DBBudgetRepository repository
+            RoleManager<IdentityRole> roleManager
+            //DBBudgetRepository repository
                                                  /*IdentityDbContext identityContext*/)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
-            this.repository = repository;
+            //this.repository = repository;
             //this.identityContext = identityContext;
         }
 

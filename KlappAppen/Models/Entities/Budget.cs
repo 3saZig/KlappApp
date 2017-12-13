@@ -13,6 +13,7 @@ namespace KlappAppen.Models.Entities
         public int Id { get; set; }
         public int Total { get; set; }
         public string AspNetUsersId { get; set; }
+        public string BudgetName { get; set; }
 
         public ICollection<Gift> Gift { get; set; }
     }
