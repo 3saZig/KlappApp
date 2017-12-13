@@ -17,6 +17,7 @@
 	font-family: 'Futura Std';
 	position: center;
 	text-align: center;
+	color: white;
 }
 
 input[type=text], select {
@@ -38,10 +39,15 @@ input[type=text], select {
 	background-color: transparent;
 	font-family: geektastic;
 	font-size: 80%;
-	color: white;
+	color: black;
 	padding: 14px 20px;
 	margin: 8px 0;
 	border: 1px solid #282828;
 	border-radius: 4px;
 	cursor: pointer;
+}
+
+#submitknapp:hover {
+	color: white;
+	border: 1px solid white;
 }
