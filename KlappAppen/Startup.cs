@@ -34,6 +34,7 @@ namespace KlappAppen
             {
                 o.Password.RequireNonAlphanumeric = false;
                 o.Password.RequiredLength = 6;
+                o.Password.RequiredUniqueChars = 0; 
             })
             .AddEntityFrameworkStores<IdentityDbContext>()
             .AddDefaultTokenProviders();

@@ -53,11 +53,11 @@ function SumAllGifts(jsonArr) {
 };
 
 function addPerson() {
-	$(".button_add").click(function () {
-		$(this).hide();
-		var html = '<div class="div_input"><input id="input_receiver" type="text"/><input id="input_gift" type="text"/><input id="input_price" type="number"/><button class="button_savePerson">Spara</button></div>';
-		$("#table_list").append(html);
-		savePerson();
+    $(".button_add").click(function () {
+        $(this).hide();
+        var html = '<div class="div_input"><input id="input_receiver" type="text"/><input id="input_gift" type="text"/><input id="input_price" type="number"/><button class="button_savePerson">Spara</button></div>';
+        $(html).insertAfter("#table_list");
+        savePerson();
 
 	})
 };
@@ -80,14 +80,14 @@ function deletePerson() {
 };
 
 function editPerson() {
-	$(".edit").click(function () {
-		$(this).hide();
-		$(".delete").hide();
-		var id = $(this).val();
-		var html = '<div class="div_input"><input id="input_receiver" type="text" value="' + $("#div_td_receiver" + id).text() + '"/><input id="input_gift" type="text" value="' + $("#div_td_gift" + id).text() + '"/><input id="input_price" type="number" value="' + $("#div_td_price" + id).text() + '"/><button class="button_save">Spara</button></div>';
-		$("#table_list").append(html);
-		saveChanges(id);
-	});
+    $(".edit").click(function () {
+        $(this).hide();
+        $(".delete").hide();
+        var id = $(this).val();
+        var html = '<div class="div_input"><input id="input_receiver" type="text" value="' + $("#div_td_receiver" + id).text() + '"/><input id="input_gift" type="text" value="' + $("#div_td_gift" + id).text() + '"/><input id="input_price" type="number" value="' + $("#div_td_price" + id).text() + '"/><button class="button_save">Spara</button></div>';
+        $(html).insertAfter("#table_list");
+        saveChanges(id);
+    });
 };
 
 function saveChanges(id) {
@@ -252,4 +252,14 @@ function changeColor(backgroundcolor) {
 	}
 
 };
+
+
+$("#button_logout").click(function () {
+    $.ajax({
+        url: "/home/logout/",
+        type: "POST",
+        success: document.location.href = "/account/register"
+    })
+});
+
 
