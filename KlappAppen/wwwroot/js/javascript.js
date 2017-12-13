@@ -164,54 +164,62 @@ function createSum(jsonArr, gifts) {
 	});
 }
 
-function createChart() { //jsonArr, gifts
+function createChart(jsonArr, gifts) {
 	let myBudget;
 	$.ajax({
 		url: "/home/GetBudget/",
 		type: "GET",
 		success: function (jsonArr) {
-			//!let budgetJson = JSON.parse(jsonArr);
-			//!myBudget = budgetJson[budgetJson.length - 1].Total;
+			let budgetJson = JSON.parse(jsonArr);
+			//i den här budgetJson finns nu id, summa och namn.
 
-			
-			//let moneyLeft = firstBudgetPost - totalGiftSum;
+			let myBudget = 0;
+			for (var i = 0; i < budgetJson.length; i++) {
+				myBudget = myBudget + budgetJson[i].Total; //lägger ihop alla budgetposter till en summa
+			}
 
-			//dataArray.push(moneyLeft);
-			//labelArray.push("budget");
-			//colorArray.push('#922b21');
-
-			var ctxa = document.getElementById("doughnut").getContext('2d');
-
-			var doughnutChart = new Chart(ctxa, {
-
-				type: 'doughnut',
-				data: {
-					labels: ["total klappar", "pengar kvar"],
-					datasets: [
-						{
-							label: "Chart",
-							data: ["2876", "748"], //(myBudget-gifts), gifts
-							backgroundColor: ["#005B00", "white"],
-							borderColor: "#000000",
-						}
-					]
-				},
-
-				options: {
-					legend: {
-						display: false,
-						cutoutPercentage: 20,
-						responsive: true,
-						maintainAspectRatio: true,
-						animation: {
-							animateScale: true
-						}
-					}
-				}
-
-			});
+			console.log(myBudget);
 		}
 	});
+}
+	//		let moneyLeft = firstBudgetPost - totalGiftSum;
+
+	//		//dataArray.push(moneyLeft);
+	//		//labelArray.push("budget");
+	//		//colorArray.push('#922b21');
+
+	//		var ctxa = document.getElementById("doughnut").getContext('2d');
+
+	//		var doughnutChart = new Chart(ctxa, {
+
+	//			type: 'doughnut',
+	//			data: {
+	//				labels: ["total klappar", "pengar kvar"],
+	//				datasets: [
+	//					{
+	//						label: "Chart",
+	//						data: ["2876", "748"], //(myBudget-gifts), gifts
+	//						backgroundColor: ["#005B00", "white"],
+	//						borderColor: "#000000",
+	//					}
+	//				]
+	//			},
+
+	//			options: {
+	//				legend: {
+	//					display: false,
+	//					cutoutPercentage: 20,
+	//					responsive: true,
+	//					maintainAspectRatio: true,
+	//					animation: {
+	//						animateScale: true
+	//					}
+	//				}
+	//			}
+
+	//		});
+	//	}
+	//});
 
 
 	//let result = JSON.parse(jsonArr);
@@ -235,7 +243,7 @@ function createChart() { //jsonArr, gifts
 	////let firstBudgetPost = budgetArray[0];
 
 
-}
+//}
 
 
 $("#btn_changeColor").click(function () {
