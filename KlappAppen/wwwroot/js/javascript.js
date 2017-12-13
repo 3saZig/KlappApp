@@ -253,3 +253,13 @@ function changeColor(backgroundcolor) {
 
 };
 
+
+$("#button_logout").click(function () {
+    $.ajax({
+        url: "/home/logout/",
+        type: "POST",
+        success: document.location.href = "/account/register"
+    })
+});
+
+

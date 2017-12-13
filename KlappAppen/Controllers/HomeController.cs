@@ -20,24 +20,23 @@ namespace KlappAppen.Controllers
     {
         DBBudgetRepository repository;
         UserManager<IdentityUser> userManager;
-
-        //SignInManager<IdentityUser> signInManager;
+        SignInManager<IdentityUser> signInManager;
         //RoleManager<IdentityRole> roleManager;
         //IdentityDbContext identityContext;
 
-        //SignInManager<IdentityUser> signInManager,
         //RoleManager<IdentityRole> roleManager
         //DBBudgetRepository repository
         /*IdentityDbContext identityContext*/
-        //this.signInManager = signInManager;
         //this.roleManager = roleManager;
 
         public HomeController(
             DBBudgetRepository repository,
+            SignInManager<IdentityUser> signInManager,
             UserManager<IdentityUser> userManager)
         {
             this.userManager = userManager;
             this.repository = repository;
+            this.signInManager = signInManager;
         }
 
         //GET: /<controller>/
@@ -64,6 +63,12 @@ namespace KlappAppen.Controllers
         {
             return repository.AddPerson(homeMainVM);
         }
+
+        public async Task LogOut()
+        {
+            await signInManager.SignOutAsync();
+        }
+
 
 
         public string AddBudgetJavaScript(BudgetsVM budgetVM)
