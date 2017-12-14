@@ -122,7 +122,7 @@ namespace KlappAppen.Controllers
         {
             string userId = userManager.GetUserId(HttpContext.User);
             //Här hämtar vi vår användare
-            return repository.AddNewBudget(budgetVM, userId);
+            return repository.AddNewBudget(budgetVM);
         }
 
         //hämtar alla budgets en användare har

@@ -4,16 +4,17 @@ var BudgetIdFromSelect;
 $(document).ready(function () {
     let myBudget;
     let jsonArr = {};
-    //addPerson();
     let budgetListId = getBudgetList(jsonArr);
-    //createTable(jsonArr, budgetListId);
-    addBudget(jsonArr);
+
+
 
     $("#button_index").click(function () {
         listOfGifts();
     });
 
-
+    $("#button_setBudget").click(function () {        
+        addBudget();
+    });
 });
 
 
@@ -46,14 +47,14 @@ function createTable(jsonArr) {
             + '<div class="div_td"><button class="edit" value="' + result[i].Id + '">Ändra</button></div><div class="div_td"><button class="delete" value="' + result[i].Id + '">Radera</button></div></div>';
         $("#table_list").append(html);
     }
+    $("#table_list").append('<div class="div_tr"><div id="td_button_add"><button class="button_add">Lägg till</button></div></div>');
+    addPerson();
     deletePerson();
     editPerson();
     gifts = SumAllGifts(jsonArr);
     createChart(jsonArr, gifts);
-    
+
     // Addknappen 
-    $("#table_list").append('<div class="div_tr"><div id="td_button_add"><button class="button_add">Lägg till</button></div></div>');
-    addPerson();
 };
 
 function SumAllGifts(jsonArr) {
@@ -146,11 +147,11 @@ function savePerson() {
     $(".button_savePerson").click(function () {
         $.ajax({
             url: "/home/AddPersonJavaScript/",
-            data: { "receiver": $("#input_receiver").val(), "name": $("#input_gift").val(), "price": $("#input_price").val() },
+            data: { "receiver": $("#input_receiver").val(), "name": $("#input_gift").val(), "price": $("#input_price").val(), "Id": BudgetIdFromSelect },
             type: "POST",
             success: function (jsonArr) {
-                createTable(jsonArr);
-                createChart(jsonArr, gifts);
+                console.log(jsonArr);
+                listOfGifts();
             }
         })
 
@@ -165,21 +166,16 @@ function savePerson() {
 
 //plockar ut budgetvärdet från vår drop-down-meny
 
+function addBudget() {           
 
+    $.ajax({
+        url: "/home/AddBudgetJavaScript/",
+        data: { "Total": $("#budgetInputTextbox").val(), "BudgetName": $("#nameInputTextbox").val() },
+        type: "POST",
+        success: function (jsonArr) {
+            var jsonparse = JSON.parse(jsonArr);
 
-
-function addBudget() {
-    $("#submitknapp").click(function () {
-        $.ajax({
-            url: "/home/AddBudgetJavaScript/",
-            data: { "total": $("#budgetInputTextbox").val() },
-            type: "POST",
-            success: function (jsonArr) {
-                var jsonparse = JSON.parse(jsonArr);
-                // $("#table_list").html(""); //tömmer listan
-                createChart(jsonparse, gifts);
-            }
-        })
+        }
     })
 };
 
@@ -247,7 +243,7 @@ function createChart(jsonArr, gifts) {
             datasets: [
                 {
                     label: "Chart",
-                    data: [gifts, (budgetJson-gifts)], //(myBudget-gifts), gifts
+                    data: [gifts, (budgetJson - gifts)], //(myBudget-gifts), gifts
                     backgroundColor: ["#005B00", "white"],
                     borderColor: "#000000",
                 }

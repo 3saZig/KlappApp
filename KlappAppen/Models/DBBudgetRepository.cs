@@ -121,9 +121,10 @@ namespace KlappAppen.Models
                 Receiver = homeMainVM.Receiver,
                 Name = homeMainVM.Name,
                 Price = homeMainVM.Price,
-                BudgetId = homeMainVM.BudgetId
+                BudgetId = homeMainVM.Id
             });
             klapp.SaveChanges();
+            //.Where(b => b.Id == budgetId)
 
             var updatedList = JsonConvert.SerializeObject(klapp.Gifts);
             return updatedList;
