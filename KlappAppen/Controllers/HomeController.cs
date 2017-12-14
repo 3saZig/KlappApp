@@ -50,36 +50,27 @@ namespace KlappAppen.Controllers
             return View();
         }
 
-
         //repository.GetAllPersons()
        
         public IActionResult MainContent()
         {
             return View();
         }
-
-
              
         public IActionResult SetBudget()
         {
             return View();
         }
-
-
       
         public IActionResult GiftIdeas()
         {
             return View();
         }
-
-
        
         public IActionResult MyPages()
         {
             return View();
         }
-
-
 
         //=================================================================================================
         //KLAPPLISTAN

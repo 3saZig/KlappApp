@@ -13,8 +13,12 @@ $(document).ready(function () {
         listOfGifts();
     });
 
-    $("#button_setBudget").click(function () {        
+    $("#button_setBudget").click(function () {
         addBudget();
+    });
+
+    $('#button_myLists').click(function () {
+        showMyBudgets();
     });
 });
 
@@ -67,29 +71,6 @@ function SumAllGifts(jsonArr) {
     }
     return total;
 };
-
-
-//! Denna metod behöver modifieras så att den är anpassad efter vald budget. 
-//function createSum(jsonArr, gifts) {
-
-//	$.ajax({
-//		url: "/home/GetBudget/",
-//		type: "GET",
-//		success: function (jsonArr) {
-//			let budgetJson = JSON.parse(jsonArr);
-//			let myBudget = budgetJson[budgetJson.length - 1].Total;
-//			let budget = myBudget; //catchLastBudgetPost(jsonArr);
-//			//let gifts = SumAllGifts(jsonArr);
-//			console.log("createSum: " + budget);
-//			//let money = moneyLeft2(jsonArr);
-//			let html = '<div class="div_summa">Budget: ' + budget + ' kr</div><div class="div_summa">Summa: ' + gifts + ' kr</div><div class="div_summa">Kvar: ' + (budget - gifts) + ' kr</div>';
-//			$("#table_budget").html("");
-//			$("#table_budget").append(html);
-//		}
-//	});
-//}
-
-
 
 function addPerson() {
     $(".button_add").click(function () {
@@ -167,7 +148,7 @@ function savePerson() {
 
 //plockar ut budgetvärdet från vår drop-down-meny
 
-function addBudget() {           
+function addBudget() {
 
     $.ajax({
         url: "/home/AddBudgetJavaScript/",
@@ -180,8 +161,6 @@ function addBudget() {
     })
 };
 
-
-
 function getBudgetList(jsonArr) {
 
     $.ajax({
@@ -189,36 +168,23 @@ function getBudgetList(jsonArr) {
         type: "GET",
         success: function (jsonArr) {
             let budgetJson = JSON.parse(jsonArr);
-            //let budgetArray = [];
-            //for (var i = 0; i < budgetJson.length; i++) {
-            //	budgetArray = budgetJson[i].Name;
-            //}
-            //let budgetArrayId = [];
-            //for (var i = 0; i < budgetJson.length; i++) {
-            //	budgetArrayId = budgetJson[i].Id;
-            //}
             for (let i = 0; i < budgetJson.length; i++) {
                 var itemId = budgetJson[i].Id;
                 var itemName = budgetJson[i].BudgetName;
                 let html = '<option value=' + itemId + '>' + itemName + '</option >';
                 $("#chooseBudget").append(html);
             }
-
         }
     });
-
-
 }
 
 //=================================================================================================
 //THE CHART
 //=================================================================================================
 
-
-
 function createChart(jsonArr, gifts) {
     //let myBudget;
-    
+
     console.log("jsonArr : " + jsonArr);
     console.log("budgetIdFromSelect: " + BudgetIdFromSelect);
 
@@ -227,7 +193,7 @@ function createChart(jsonArr, gifts) {
         url: "/home/BudgetForChart/" + BudgetIdFromSelect,
         type: "GET",
         success: function (budgetAmount) {
-            console.log( "budgetAmount: " + budgetAmount);
+            console.log("budgetAmount: " + budgetAmount);
             let budgetJson = JSON.parse(budgetAmount);
 
             var ctxa = document.getElementById('doughnut').getContext('2d');
@@ -267,38 +233,43 @@ function createChart(jsonArr, gifts) {
 
 }
 
+//=================================================================================================
+//MINA SIDOR
+//=================================================================================================
 
-//let result = JSON.parse(jsonArr);
 
-            //let myBudget = 0;
-            //for (var i = 0; i < budgetJson.length; i++) {
-            //    myBudget = myBudget + budgetJson[i].Total; //lägger ihop alla budgetposter till en summa
+//!Visa mina listor i lista
+function showMyBudgets() {
+    $.ajax({
+        url: "/home/GetBudget/",
+        type: "GET",
+        success: function (jsonArr) {
+            alert(jsonArr);
+
+            for (var i = 0; i < jsonArr.length; i++) {
+                var budgetName = jsonArr[i].BudgetName;
+                let html = '<li>' + budgetName + '</li>';
+                $("#ul_myBudgets").append(html);
+            }
+
+
+            //for (let i = 0; i < jsonArr.length; i++) {
+            //    var itemId = jsonArr[i].Id;
+            //    let html = '<div class="div_myPage_list">' + + '</div>';
+
+
+
+            //        < div class="div_tr" > <div class=div_td id="div_td_receiver' + itemId + '">' +
+            //        result[i].Receiver + '</div><div class=div_td id="div_td_gift' + itemId + '">' +
+            //        result[i].Name + '</div><div class=div_td id="div_td_price' + itemId + '">' +
+            //        result[i].Price + '</div>'
+            //        + '<div class="div_td"><button class="edit" value="' + result[i].Id + '">Ändra</button></div><div class="div_td"><button class="delete" value="' + result[i].Id + '">Radera</button></div></div>';
+            //    $("#table_list").append(html);
             //}
-
-//}
-
-
-
-//=================================================================================================
-//ÄNDRA FÄRG
-//=================================================================================================
-
-
-
-$("#btn_changeColor").click(function () {
-    let RadeoButtonStatusCheck = $('form input[type=radio]:checked').val();
-    changeColor(RadeoButtonStatusCheck);
-});
-
-function changeColor(backgroundcolor) {
-    console.log("backgroundColor");
-    switch (backgroundcolor) {
-        case 'g':
-            $('.backgroundColor').classList.add("green");
-            break;
-    }
-
+        }
+    });
 };
+
 
 
 //=================================================================================================
