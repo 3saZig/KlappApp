@@ -53,10 +53,9 @@ namespace KlappAppen.Models
         //=================================================================================================
 
 
-        public string GetGifts(int budgetId)
+        public HomeMainContentVM[] GetGifts(int budgetId)
         {
-
-            var list = klapp.Gifts
+            return klapp.Gifts
                 .Where(g => g.BudgetId == budgetId)
                 .Select(g => new HomeMainContentVM
                 {
@@ -66,10 +65,19 @@ namespace KlappAppen.Models
                     Id = g.Id
 
                 }).ToArray();
+        }
 
-            var giftList = JsonConvert.SerializeObject(list);
+        public string GetBudgetTotalAmountFromId(int budgetId)
+        {
+            var TotalBudget = klapp.Budgets
+                .Where(b => b.Id == budgetId)
+                .Select(b => b.Total);
 
-            return giftList;
+            var TotalBudget2 = "Det funka";
+
+            TotalBudget2 = JsonConvert.SerializeObject(TotalBudget);
+
+            return TotalBudget2;
         }
 
 

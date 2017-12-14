@@ -106,14 +106,11 @@ namespace KlappAppen.Controllers
         {
             return repository.DeletePerson(id);
         }
-
-
-        public string GetListJavaScript(int budgetId) //int budgetId
+        
+        public string GetListOfGifts(int Id)
         {
-            return repository.GetGifts(budgetId);
+            return JsonConvert.SerializeObject(repository.GetGifts(Id));
         }
-
-
 
         //=================================================================================================
         //SET BUDGET
@@ -123,7 +120,7 @@ namespace KlappAppen.Controllers
         //skapa en ny budget
         public string AddBudgetJavaScript(BudgetsVM budgetVM)
         {
-            string userId = userManager.GetUserId(HttpContext.User);  
+            string userId = userManager.GetUserId(HttpContext.User);
             //Här hämtar vi vår användare
             return repository.AddNewBudget(budgetVM, userId);
         }
@@ -135,7 +132,7 @@ namespace KlappAppen.Controllers
             return repository.GetBudgets(userId);
         }
 
-        
+
 
         //=================================================================================================
         //CHART
@@ -146,6 +143,11 @@ namespace KlappAppen.Controllers
         public string CreateChart()
         {
             return repository.GetAllGifts();
+        }
+
+        public string BudgetForChart(int budgetID)
+        {
+            return repository.GetBudgetTotalAmountFromId(budgetID);
         }
 
 
