@@ -87,8 +87,7 @@ namespace KlappAppen.Controllers
         [HttpPost]
         public string SaveChangesJavascript(int id, string receiver, string gift, int price)
         {
-            var model = JsonConvert.SerializeObject(repository.EditPerson(id, receiver, gift, price));
-            return model;
+            return JsonConvert.SerializeObject(repository.EditPerson(id, receiver, gift, price));
         }
 
 
@@ -116,7 +115,7 @@ namespace KlappAppen.Controllers
         }
 
         //hämtar alla budgets en användare har
-        public string GetBudget()
+        public BudgetsVM[] GetBudget()
         {
             string userId = userManager.GetUserId(HttpContext.User);
             return repository.GetBudgets(userId);

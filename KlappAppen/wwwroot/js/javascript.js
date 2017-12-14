@@ -2,26 +2,6 @@
 var BudgetIdFromSelect;
 var budgetAmount;
 
-$(document).ready(function () {
-    let myBudget;
-    let jsonArr = {};
-    let budgetListId = getBudgetList(jsonArr);
-
-
-
-    $("#button_index").click(function () {
-        listOfGifts();
-    });
-
-    $("#button_setBudget").click(function () {
-        addBudget();
-    });
-
-    $('#button_myLists').click(function () {
-        showMyBudgets();
-    });
-});
-
 
 //=================================================================================================
 //KLAPPLISTAN
@@ -123,9 +103,9 @@ function saveChanges(id) {
             data: { "id": id, "receiver": $("#input_receiver").val(), "gift": $("#input_gift").val(), "price": $("#input_price").val() },
             type: "POST",
             success: function (jsonArr) {
-                var jsonparse = JSON.parse(jsonArr);
-                listOfGifts();
-                createChart(jsonparse, gifts);
+                //var jsonparse = JSON.parse(jsonArr);
+                createTable(jsonArr);
+                createChart(jsonArr, gifts);
             }
         })
     })
@@ -176,11 +156,10 @@ function getBudgetList(jsonArr) {
     $.ajax({
         url: "/home/GetBudget/",
         type: "GET",
-        success: function (jsonArr) {
-            let budgetJson = JSON.parse(jsonArr);
+        success: function (budgetJson) {
             for (let i = 0; i < budgetJson.length; i++) {
-                var itemId = budgetJson[i].Id;
-                var itemName = budgetJson[i].BudgetName;
+                var itemId = budgetJson[i].id;
+                var itemName = budgetJson[i].budgetName;
                 let html = '<option value=' + itemId + '>' + itemName + '</option >';
                 $("#chooseBudget").append(html);
             }
@@ -254,28 +233,12 @@ function showMyBudgets() {
         url: "/home/GetBudget/",
         type: "GET",
         success: function (jsonArr) {
-            alert(jsonArr);
+            let html = ""; 
 
             for (var i = 0; i < jsonArr.length; i++) {
-                var budgetName = jsonArr[i].BudgetName;
-                let html = '<li>' + budgetName + '</li>';
-                $("#ul_myBudgets").append(html);
+                html += '<li>' + jsonArr[i].budgetName + '</li>';
             }
-
-
-            //for (let i = 0; i < jsonArr.length; i++) {
-            //    var itemId = jsonArr[i].Id;
-            //    let html = '<div class="div_myPage_list">' + + '</div>';
-
-
-
-            //        < div class="div_tr" > <div class=div_td id="div_td_receiver' + itemId + '">' +
-            //        result[i].Receiver + '</div><div class=div_td id="div_td_gift' + itemId + '">' +
-            //        result[i].Name + '</div><div class=div_td id="div_td_price' + itemId + '">' +
-            //        result[i].Price + '</div>'
-            //        + '<div class="div_td"><button class="edit" value="' + result[i].Id + '">Ändra</button></div><div class="div_td"><button class="delete" value="' + result[i].Id + '">Radera</button></div></div>';
-            //    $("#table_list").append(html);
-            //}
+                $("#ul_myBudgets").append(html);
         }
     });
 };
@@ -331,8 +294,7 @@ function countdown(yr, m, d) {
 		document.forms.count.count2.value = "  ...bara " + dday + " dagar och " + dhour + " timmar" /*+ dmin + " minutes, and " + dsec*/ + " kvar till " + before
 	setTimeout("countdown(theyear,themonth,theday)", 1000)
 }
-//enter the count down date using the format year/month/day
-countdown(2017, 12, 24)
+
 	
 	
 	

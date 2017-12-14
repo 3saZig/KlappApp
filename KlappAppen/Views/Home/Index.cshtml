@@ -36,4 +36,10 @@
 	</div>
 </div>
 
-<script src="~/js/javascript.js"></script>
+@section scripts
+{
+    <script>
+        //enter the count down date using the format year/month/day
+        countdown(@DateTime.Now.Year, 12, 24)
+    </script>
+    }

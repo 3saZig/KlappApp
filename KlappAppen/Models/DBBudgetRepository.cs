@@ -12,11 +12,11 @@ namespace KlappAppen.Models
     public class DBBudgetRepository
     {
 
-        private KlappAppContext klapp;
+        private KlappAppContext context;
 
-        public DBBudgetRepository(KlappAppContext klapp)
+        public DBBudgetRepository(KlappAppContext context)
         {
-            this.klapp = klapp;
+            this.context = context;
         }
 
         public string UserExist(string username)
@@ -34,7 +34,7 @@ namespace KlappAppen.Models
         //anropas i homecontroller/createchart
         public string GetAllGifts()
         {
-            var ret = klapp.Gifts
+            var ret = context.Gifts
                 .Select(g => new HomeGiftVM
                 {
                     Name = g.Name,
@@ -55,7 +55,7 @@ namespace KlappAppen.Models
 
         public HomeMainContentVM[] GetGifts(int budgetId)
         {
-            return klapp.Gifts
+            return context.Gifts
                 .Where(g => g.BudgetId == budgetId)
                 .Select(g => new HomeMainContentVM
                 {
@@ -71,7 +71,7 @@ namespace KlappAppen.Models
         {
             int tmp = 1;
 
-            var totalBudget = klapp.Budgets
+            var totalBudget = context.Budgets
                 .SingleOrDefault(b => b.Id == budgetId);
 
             if (totalBudget != null)
@@ -85,50 +85,51 @@ namespace KlappAppen.Models
 
         public string DeletePerson(int id)
         {
-            var deletePerson = klapp.Gifts
+            var deletePerson = context.Gifts
                 .SingleOrDefault(d => d.Id == id);
             if (deletePerson != null)
             {
-                klapp.Gifts.Remove(deletePerson);
-                klapp.SaveChanges();
+                context.Gifts.Remove(deletePerson);
+                context.SaveChanges();
             }
 
-            var deleteId = JsonConvert.SerializeObject(klapp.Gifts);
+            var deleteId = JsonConvert.SerializeObject(context.Gifts.Where(o => o.BudgetId == deletePerson.BudgetId));
 
             return deleteId;
         }
 
-        public string EditPerson(int id, string receiver, string gift, int price)
+        public Gift[] EditPerson(int id, string receiver, string gift, int price)
         {
-            var editPerson = klapp.Gifts
+            var giftToEdit = context.Gifts
                 .SingleOrDefault(e => e.Id == id);
-            if (editPerson != null)
+            if (giftToEdit != null)
             {
                 //editPerson.Id = id;
-                editPerson.Receiver = receiver;
-                editPerson.Name = gift;
-                editPerson.Price = price;
-                klapp.SaveChanges();
+                giftToEdit.Receiver = receiver;
+                giftToEdit.Name = gift;
+                giftToEdit.Price = price;
+                context.SaveChanges();
             }
 
-            var editId = JsonConvert.SerializeObject(klapp.Gifts);
-            return editId;
+            return context.Gifts
+                .Where(o => o.BudgetId == giftToEdit.BudgetId)
+                .ToArray();
         }
 
 
         public string AddPerson(HomeMainContentVM homeMainVM)
         {
-            klapp.Gifts.Add(new Gift
+            context.Gifts.Add(new Gift
             {
                 Receiver = homeMainVM.Receiver,
                 Name = homeMainVM.Name,
                 Price = homeMainVM.Price,
                 BudgetId = homeMainVM.Id
             });
-            klapp.SaveChanges();
+            context.SaveChanges();
             //.Where(b => b.Id == budgetId)
 
-            var updatedList = JsonConvert.SerializeObject(klapp.Gifts);
+            var updatedList = JsonConvert.SerializeObject(context.Gifts);
             return updatedList;
         }
 
@@ -139,9 +140,9 @@ namespace KlappAppen.Models
 
 
         //anropas i homecontroller/getbudget
-        public string GetBudgets(string userId)
+        public BudgetsVM[] GetBudgets(string userId)
         {
-            var list = klapp.Budgets
+            return context.Budgets
                 .Where(b => b.AspNetUsersId == userId)
                 .Select(b => new BudgetsVM
                 {
@@ -150,9 +151,6 @@ namespace KlappAppen.Models
                     Total = b.Total,
                 }
                 ).ToArray();
-
-            var JSONtotalBudget = JsonConvert.SerializeObject(list);
-            return JSONtotalBudget;
         }
 
         //******KAN DET HÄR VARA NÅGONTING? HÄMTAR KLAPPARNA FRÅN EN SPECIFIK BUDGET? OCH ATT DET BUDGET-ID VI
@@ -177,7 +175,7 @@ namespace KlappAppen.Models
 
         public string AddNewBudget(BudgetsVM budgetVM, string userId)
         {
-            klapp.Budgets
+            context.Budgets
                 .Add(new Budget   //Lägga till 
                 {
                     BudgetName = budgetVM.BudgetName,
@@ -185,9 +183,9 @@ namespace KlappAppen.Models
                     Total = budgetVM.Total
                 });
 
-            klapp.SaveChanges();
+            context.SaveChanges();
 
-            var newBudget = JsonConvert.SerializeObject(klapp.Budgets);
+            var newBudget = JsonConvert.SerializeObject(context.Budgets);
             return newBudget;
         }
 
