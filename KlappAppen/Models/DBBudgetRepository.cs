@@ -69,15 +69,17 @@ namespace KlappAppen.Models
 
         public string GetBudgetTotalAmountFromId(int budgetId)
         {
-            var TotalBudget = klapp.Budgets
-                .Where(b => b.Id == budgetId)
-                .Select(b => b.Total);
+            int tmp = 1;
 
-            var TotalBudget2 = "Det funka";
+            var totalBudget = klapp.Budgets
+                .SingleOrDefault(b => b.Id == budgetId);
 
-            TotalBudget2 = JsonConvert.SerializeObject(TotalBudget);
+            if (totalBudget != null)
+                tmp = totalBudget.Total;
 
-            return TotalBudget2;
+            var totalBudget2 = JsonConvert.SerializeObject(tmp);
+
+            return totalBudget2;
         }
 
 

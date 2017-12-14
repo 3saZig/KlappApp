@@ -106,10 +106,10 @@ namespace KlappAppen.Controllers
         {
             return repository.DeletePerson(id);
         }
-        
-        public string GetListOfGifts(int Id)
+
+        public string GetListOfGifts(int id)
         {
-            return JsonConvert.SerializeObject(repository.GetGifts(Id));
+            return JsonConvert.SerializeObject(repository.GetGifts(id));
         }
 
         //=================================================================================================
@@ -145,9 +145,9 @@ namespace KlappAppen.Controllers
             return repository.GetAllGifts();
         }
 
-        public string BudgetForChart(int budgetID)
+        public string BudgetForChart(int id)
         {
-            return repository.GetBudgetTotalAmountFromId(budgetID);
+                return repository.GetBudgetTotalAmountFromId(id);
         }
 
 
