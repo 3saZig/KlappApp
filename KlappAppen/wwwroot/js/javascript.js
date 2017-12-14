@@ -32,11 +32,8 @@ function createTable(jsonArr, budgetListId) {
 
 	$("#table_list").html(""); //tömmer listan
 	$("#table_list").append('<div class="div_tr_th"><div class="div_th">Namn</div><div class="div_th">Present</div><div class="div_th">Pris</div><div class="div_th"></div><div class="div_th"></div></div>');
-	for (let i = 0; i < result.length; i++) {
-		var itemId = result[i].Id;
-		let html = '<div class="div_tr"><div class=div_td id="div_td_receiver' + itemId + '">' + result[i].Receiver + '</div><div class=div_td id="div_td_gift' + itemId + '">' + result[i].Name + '</div><div class=div_td id="div_td_price' + itemId + '">' + result[i].Price + '</div>'
-			+ '<div class="div_td"><button class="edit" value="' + result[i].Id + '">Ändra</button></div><div class="div_td"><button class="delete" value="' + result[i].Id + '">Radera</button></div></div>';
-		$("#table_list").append(html);
+	else if (x >= 5 && x < 10) {
+		document.getElementById("giftDisplay").innerHTML = "Hörlurar, ";
 	}
 	deletePerson();
 	editPerson();

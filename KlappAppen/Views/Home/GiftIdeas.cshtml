@@ -1,5 +1,16 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿<link href="~/css/giftIdeas.css" rel="stylesheet" />
+
+<div id="div_index">
+	<h2>Idétorka?	</h2> 
+	<br/>
+	<h3>Välj en åldersgrupp nedan, så får du tips!</h3>
+	<div id="slidecontainer">
+		<input type="range" min="0" max="130" value="0" class="slider" id="myRange">
+		<p>Den jag ska ge min julklapp till är <span id="demo"></span> år</p>
+	<p id="giftDisplay"></p>
+	</div>
+</div>
+
+
+
+<script src="~/js/giftIdeasJS.js"></script>
