@@ -45,11 +45,11 @@ function createTable(jsonArr) {
     let result = JSON.parse(jsonArr)
 
     $("#table_list").html(""); //tömmer listan
-    $("#table_list").append('<div class="div_tr_th"><div class="div_th">Namn</div><div class="div_th">Present</div><div class="div_th">Pris</div><div class="div_th"></div><div class="div_th"></div></div>');
+    $("#table_list").append('<div class="div_tr_th"><div class="div_th">Namn</div><div class="div_th">Present</div><div class="div_th">Pris</div><div class="div_th">Ändra</div><div class="div_th">Radera</div></div>');
     for (let i = 0; i < result.length; i++) {
         var itemId = result[i].Id;
         let html = '<div class="div_tr"><div class=div_td id="div_td_receiver' + itemId + '">' + result[i].Receiver + '</div><div class=div_td id="div_td_gift' + itemId + '">' + result[i].Name + '</div><div class=div_td id="div_td_price' + itemId + '">' + result[i].Price + '</div>'
-            + '<div class="div_td"><button class="edit" value="' + result[i].Id + '">Ändra</button></div><div class="div_td"><button class="delete" value="' + result[i].Id + '">Radera</button></div></div>';
+            + '<div class="div_td_person"><button class="edit" value="' + result[i].Id + '"></button></div><div class="div_td_person"><button class="delete" value="' + result[i].Id + '"></button></div></div>';
         $("#table_list").append(html);
     }
     $("#table_list").append('<div class="div_tr"><div id="td_button_add"><button class="button_add">Lägg till</button></div></div>');
@@ -75,6 +75,8 @@ function SumAllGifts(jsonArr) {
 function addPerson() {
     $(".button_add").click(function () {
         $(this).hide();
+        $(".delete").hide();
+        $(".edit").hide();
         var html = '<div class="div_input"><input id="input_receiver" type="text"/><input id="input_gift" type="text"/><input id="input_price" type="number"/><button class="button_savePerson">Spara</button></div>';
         $(html).insertAfter("#table_list");
         savePerson();
@@ -92,7 +94,7 @@ function deletePerson() {
             type: "GET",
             success: function (jsonArr) {
                 $("#table_list").empty();
-                createTable(jsonArr);
+                listOfGifts();
                 createChart(jsonArr, gifts);
             }
         });
@@ -101,8 +103,8 @@ function deletePerson() {
 
 function editPerson() {
     $(".edit").click(function () {
-        $(this).hide();
         $(".delete").hide();
+        $(".edit").hide();
         var id = $(this).val();
         var html = '<div class="div_input"><input id="input_receiver" type="text" value="' + $("#div_td_receiver" + id).text() + '"/><input id="input_gift" type="text" value="' + $("#div_td_gift" + id).text() + '"/><input id="input_price" type="number" value="' + $("#div_td_price" + id).text() + '"/><button class="button_save">Spara</button></div>';
         $(html).insertAfter("#table_list");
@@ -112,21 +114,29 @@ function editPerson() {
 
 function saveChanges(id) {
     $(".button_save").click(function () {
+        $(this).hide();
+        $("#input_receiver").hide();
+        $("#input_gift").hide();
+        $("#input_price").hide();
         $.ajax({
             url: "/home/SaveChangesJavascript/",
             data: { "id": id, "receiver": $("#input_receiver").val(), "gift": $("#input_gift").val(), "price": $("#input_price").val() },
             type: "POST",
             success: function (jsonArr) {
                 var jsonparse = JSON.parse(jsonArr);
-                createTable(jsonparse);
+                listOfGifts();
                 createChart(jsonparse, gifts);
             }
         })
     })
 };
 
-function savePerson() {
+function savePerson() {  
     $(".button_savePerson").click(function () {
+        $(this).hide();
+        $("#input_receiver").hide();
+        $("#input_gift").hide();
+        $("#input_price").hide();
         $.ajax({
             url: "/home/AddPersonJavaScript/",
             data: { "receiver": $("#input_receiver").val(), "name": $("#input_gift").val(), "price": $("#input_price").val(), "Id": BudgetIdFromSelect },
