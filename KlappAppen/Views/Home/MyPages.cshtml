@@ -3,11 +3,14 @@
 
 <div id="div_radioButton">
     <form name="changeColor" method="post" action="">
-        <input type="radio" name="changeColor" class="colorRadioBtn" value="g" onclick="changeColor('g')" /> Grön
-        <input type="radio" name="changeColor" class="colorRadioBtn" value="r" onclick="changeColor('r')" /> Röd
+        <input type="radio" name="changeColor" class="colorRadioBtn" id="radio_green" value="green" onclick="changeColor()" /> Grön
+        <input type="radio" name="changeColor" class="colorRadioBtn" id="radio_red" value="red" onclick="changeColor()" /> Röd
         <input type="radio" name="changeColor" class="colorRadioBtn" value="s" onclick="changeColor('s')" /> Svart/vit
-        <input type="button" value="Byt färg" id="btn_changeColor" />
+        <input type="button" value="change" name="changeColor" id="btn_changeColor" />
     </form>
+
+    
 </div>
+
 
 @*<script src="~/js/javascript.js"></script>*@
