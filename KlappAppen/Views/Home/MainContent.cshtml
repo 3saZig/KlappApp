@@ -1,46 +1,49 @@
-﻿<link href="~/css/maincontentstyle.css" rel="stylesheet" />
+﻿@section styleSheets
+    {
+    <link href="~/css/maincontentstyle.css" rel="stylesheet" />
+}
+
 
 <div id="div_mainContent">
-<div id="chartDiv" style="position: relative; height:auto; width:100%;">
+    <div id="chartDiv" style="position: relative; height:auto; width:100%;">
 
-	<canvas id="doughnut"></canvas>
-
-</div>
-    <div id="div_selector">
-    <form asp-controller="home" asp-action="maincontent">
-        <select id="chooseBudget"></select>
-        <input type="button" id="button_index" value="Välj Budget" />
-    </form>
-        
+        <canvas id="doughnut"></canvas>
 
     </div>
-	<div id="table_budget"></div>
+    <div id="div_selector">
+        <form asp-controller="home" asp-action="maincontent">
+            <select id="chooseBudget"></select>
+            <input type="button" id="button_index" value="Välj Budget" />
+        </form>
 
-	<div id="table_list">   
-		
-	</div>
+
+    </div>
+    <div id="table_budget"></div>
+
+    <div id="table_list">
+
+    </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
 
 @section scripts
     {
     <script>
-$(document).ready(function () {
-    let jsonArr = {};
-    let budgetListId = getBudgetList(jsonArr);
+        $(document).ready(function () {
+            let jsonArr = {};
+            let budgetListId = getBudgetList(jsonArr);
 
-    $("#button_index").click(function () {
-        listOfGifts();
-    });
+            $("#button_index").click(function () {
+                listOfGifts();
+            });
 
-    $("#button_setBudget").click(function () {
-        addBudget();
-    });
+            $("#button_setBudget").click(function () {
+                addBudget();
+            });
 
-});
+        });
 
     </script>
 }
