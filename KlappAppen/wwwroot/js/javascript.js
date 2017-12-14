@@ -11,6 +11,7 @@ $(document).ready(function () {
 
     $("#button_index").click(function () {
         listOfGifts();
+        
     });
 
     $("#button_setBudget").click(function () {
