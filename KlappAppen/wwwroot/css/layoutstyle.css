@@ -3,20 +3,20 @@
 .backgroundColor {
 	background-color: #ca1515;
 }
-.backgroundColor .green{
+.greenBackground{
 	background-color: green; 
 }
 
 .div_menu {
 	/*background-color: #ca1515;*/ 
-	margin: 0 0 0 0; 
-	padding: 0, 0, 0, 0; 
+	margin: 0 0 1% 0; 
+	padding: 0 0 0 0; 
 	float: left; 
 	width: 20%;
 }
 
 .menu_pic {
-	height: 50px;
+	height: 60px;
 	width: auto;
 	display: block; 
 	margin: auto; 

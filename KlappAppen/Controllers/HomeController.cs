@@ -15,7 +15,7 @@ using KlappAppen.Models.ViewModels;
 
 namespace KlappAppen.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class HomeController : Controller
     {
         DBBudgetRepository repository;
@@ -53,14 +53,14 @@ namespace KlappAppen.Controllers
 
 
         //repository.GetAllPersons()
-        //[Authorize]
+        [Authorize]
         public IActionResult MainContent()
         {
             return View();
         }
 
 
-        // [Authorize]        
+        [Authorize]        
         public IActionResult SetBudget()
         {
             return View();
@@ -74,7 +74,7 @@ namespace KlappAppen.Controllers
         }
 
 
-        //  [Authorize]
+        [Authorize]
         public IActionResult MyPages()
         {
             return View();
