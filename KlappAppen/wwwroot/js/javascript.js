@@ -20,6 +20,12 @@ $(document).ready(function () {
 	});
 });
 
+
+//=================================================================================================
+ //KLAPPLISTAN
+ //=================================================================================================
+
+
 //listan med edit/delete
 function createTable(jsonArr, budgetListId) {
 	let result = JSON.parse(jsonArr);
@@ -54,26 +60,25 @@ function SumAllGifts(jsonArr) {
 	return total;
 };
 
-//function GetBudgetIdFromSelect() {
+function createSum(jsonArr, gifts) {
 
-//	let e = document.getElementById("#chooseBudget");
-//	let budgetIdFromSelect = e.options[e.selectedIndex].value;
-//	console.log(budgetIdFromSelect);
-//	return budgetIdFromSelect;
-//};
-
-
-$("#chooseBudget").change(function () {
-	let getBudgetIdFromSelect = $("#chooseBudget").val();
 	$.ajax({
-		url: "/home/GetListJavaScript/" + getBudgetIdFromSelect,
-			type: "GET",
-			success: function (jsonArr) {
-				createTable(jsonArr);
-			}
-		});
+		url: "/home/GetBudget/",
+		type: "GET",
+		success: function (jsonArr) {
+			let budgetJson = JSON.parse(jsonArr);
+			let myBudget = budgetJson[budgetJson.length - 1].Total;
+			let budget = myBudget; //catchLastBudgetPost(jsonArr);
+			//let gifts = SumAllGifts(jsonArr);
+			console.log("createSum: " + budget);
+			//let money = moneyLeft2(jsonArr);
+			let html = '<div class="div_summa">Budget: ' + budget + ' kr</div><div class="div_summa">Summa: ' + gifts + ' kr</div><div class="div_summa">Kvar: ' + (budget - gifts) + ' kr</div>';
+			$("#table_budget").html("");
+			$("#table_budget").append(html);
+		}
 	});
-};
+}
+
 
 function addPerson() {
 	$(".button_add").click(function () {
@@ -143,6 +148,26 @@ function savePerson() {
 	})
 };
 
+
+//=================================================================================================
+//SET BUDGET
+//=================================================================================================
+
+
+//plockar ut budgetvärdet från vår drop-down-meny
+$("#chooseBudget").change(function () {
+	let getBudgetIdFromSelect = $("#chooseBudget").val();
+	$.ajax({
+		url: "/home/GetListJavaScript/" + getBudgetIdFromSelect,
+		type: "GET",
+		success: function (jsonArr) {
+			createTable(jsonArr);
+		}
+	});
+});
+};
+
+
 function addBudget() {
 	$("#submitknapp").click(function () {
 		$.ajax({
@@ -158,36 +183,6 @@ function addBudget() {
 	})
 };
 
-
-
-//function moneyLeft2(myBudget) {
-//    let gifts = SumAllGifts(myBudget);
-//    let x = catchLastBudgetPost(myBudget);
-//    let moneyLeftToSpend = x - gifts;
-//    alert(moneyLeftToSpend);
-
-//}
-
-function createSum(jsonArr, gifts) {
-
-	$.ajax({
-		url: "/home/GetBudget/",
-		type: "GET",
-		success: function (jsonArr) {
-			let budgetJson = JSON.parse(jsonArr);
-			let myBudget = budgetJson[budgetJson.length - 1].Total;
-			let budget = myBudget; //catchLastBudgetPost(jsonArr);
-			//let gifts = SumAllGifts(jsonArr);
-			console.log("createSum: " + budget);
-			//let money = moneyLeft2(jsonArr);
-			let html = '<div class="div_summa">Budget: ' + budget + ' kr</div><div class="div_summa">Summa: ' + gifts + ' kr</div><div class="div_summa">Kvar: ' + (budget - gifts) + ' kr</div>';
-			$("#table_budget").html("");
-			$("#table_budget").append(html);
-		}
-	});
-
-
-}
 
 
 function getBudgetList(jsonArr) {
@@ -218,6 +213,12 @@ function getBudgetList(jsonArr) {
 
 
 }
+
+//=================================================================================================
+ //THE CHART
+ //=================================================================================================
+
+
 
 function createChart(jsonArr, gifts) {
 	let myBudget;
@@ -301,6 +302,12 @@ function createChart(jsonArr, gifts) {
 //}
 
 
+//=================================================================================================
+//ÄNDRA FÄRG
+//=================================================================================================
+
+
+
 $("#btn_changeColor").click(function () {
 	let RadeoButtonStatusCheck = $('form input[type=radio]:checked').val();
 	changeColor(RadeoButtonStatusCheck);
@@ -317,6 +324,12 @@ function changeColor(backgroundcolor) {
 };
 
 
+//=================================================================================================
+//LOGIN
+//=================================================================================================
+
+
+
 $("#button_logout").click(function () {
 	$.ajax({
 		url: "/home/logout/",
@@ -326,3 +339,55 @@ $("#button_logout").click(function () {
 });
 
 
+//=================================================================================================
+//GRAVEYARD
+//=================================================================================================
+
+
+
+//function moneyLeft2(myBudget) {
+//    let gifts = SumAllGifts(myBudget);
+//    let x = catchLastBudgetPost(myBudget);
+//    let moneyLeftToSpend = x - gifts;
+//    alert(moneyLeftToSpend);
+
+//}
+
+
+//=================================================================================================
+//GRAVEYARD
+//=================================================================================================
+
+//1. HITTA DEN VALDA BUDGETEN UR DROP-DOWN-LISTAN
+
+//function GetBudgetIdFromSelect() {
+
+//	let e = document.getElementById("#chooseBudget");
+//	let budgetIdFromSelect = e.options[e.selectedIndex].value;
+//	console.log(budgetIdFromSelect);
+//	return ***BUDGETIDFROMSELECT***;
+//};
+
+//2. SKICKA IN DEN BUDGETEN TILL LISTAN
+//function createTable(jsonArr, ***BUDGETIDFROMSELECT***) {
+//	let result = JSON.parse(jsonArr);
+
+//	$("#table_list").html(""); //tömmer listan
+//	$("#table_list").append('<div class="div_tr_th"><div class="div_th">Namn</div><div class="div_th">Present</div><div class="div_th">Pris</div><div class="div_th"></div><div class="div_th"></div></div>');
+//	for (let i = 0; i < result.length; i++) {
+//		var itemId = result[i].Id;
+//		let html = '<div class="div_tr"><div class=div_td id="div_td_receiver' + itemId + '">' + result[i].Receiver + '</div><div class=div_td id="div_td_gift' + itemId + '">' + result[i].Name + '</div><div class=div_td id="div_td_price' + itemId + '">' + result[i].Price + '</div>'
+//			+ '<div class="div_td"><button class="edit" value="' + result[i].Id + '">Ändra</button></div><div class="div_td"><button class="delete" value="' + result[i].Id + '">Radera</button></div></div>';
+//		$("#table_list").append(html);
+//	}
+//	deletePerson();
+//	editPerson();
+//	let gifts = SumAllGifts(jsonArr);
+//	createChart(jsonArr, gifts);
+//	createSum(jsonArr, gifts);
+//	// SumAllGifts(jsonArr);
+
+//	//Addknappen 
+//	$("#table_list").append('<div class="div_tr"><div id="td_button_add"><button class="button_add">Lägg till</button></div></div>');
+//	addPerson();
+//};
