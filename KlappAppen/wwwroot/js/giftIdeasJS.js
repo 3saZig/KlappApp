@@ -11,7 +11,7 @@ let nfl = nollTillFem.length;
 let text = "<ul>";
 
 
-
+document.getElementById("giftDisplay").innerHTML = "Det kan vara svårt att tänka ut julklappar!" + "<br/>" + "<br/>"+ "Välj ålder med hjälp av gröna cirkeln" + "<br/>" + "nedan så kommer det att visas" + "<br/>" + "klapptips här sen!" + "<br/>" + "<br/>" + "<br/>";
 
 
 // Update the current slider value (each time you drag the slider handle)
@@ -59,6 +59,8 @@ slider.oninput = function () {
 	else if (x >= 120 && x <= 130) {
 		document.getElementById("giftDisplay").innerHTML = "Vad tror du om..." + "<br/>" + "Globalkniv" + "<br/>" + "Riktigt gott kaffe" + "<br/>" + "Ullunderställ" + "<br/>" + "Ut och äta med barnbarnsbarnen" + "<br/>" + "En katt";
 	}
+	
+		
 };
 
 

@@ -7,14 +7,26 @@
 
 
 .button_index {
-    background-color: transparent;
-    color: white;
-    font-family: 'Futura Std';
-    font-size: 15px;
-    border: 1px solid white;
-    border-radius: 4px;
-    cursor: pointer;
-    padding: 1% 2% 1% 2%;
+	/*background-color: transparent;
+	color: white;
+	font-family: Arial;
+	font-size: 15px;
+	border: 1px solid white;
+	border-radius: 4px;
+	cursor: pointer;
+	padding: 1% 2% 1% 2%;*/
+
+	text-align: center;
+	width: 100%;
+	background-color: transparent;
+	font-family: Arial;
+	font-size: 100%;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: 1px solid white;
+	border-radius: 4px;
+	cursor: pointer;
 }
 
 	.button_index:hover {
@@ -27,7 +39,7 @@
 
 #welcome_text {
     color: white;
-    font-family: geektastic;
+    font-family: Arial;
     font-size: 35px;
 }
 
@@ -59,10 +71,20 @@
 	border: 2px solid black;
 	height: 30px;
 	width: 80%;
-	font-size: 19px;
+	font-size: 12px;
 	background-color: #ca1515;
-	font-family: geektastic;
+	font-family: Arial;
 	color: white;
 	border: 0;
 	border: 2px dotted;
+}
+
+#div_mainContent_index {
+	width: 80%;
+	margin: auto;
+}
+
+#div_budget_index {
+	width: 80%;
+	margin: auto;
 }

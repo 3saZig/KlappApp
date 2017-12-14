@@ -7,7 +7,7 @@
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	box-sizing: border-box;
-	font-family: geektastic;
+	font-family: Arial;
 	font-size: 120%;
 }
 
@@ -15,7 +15,7 @@ input[type=submit] {
 	text-align: center;
 	width: 100%;
 	background-color: transparent;
-	font-family: geektastic;
+	font-family: Arial;
 	font-size: 120%;
 	color: white;
 	padding: 14px 20px;
@@ -28,4 +28,46 @@ input[type=submit] {
 #registerContainer{
 	
     margin:auto;
+    width: 70%;
 }
+
+/*#welcome_text {
+    font-family: 'Futura Std';
+    font-size: 30px;
+    padding: 0 0 0 0;
+    text-align: center;
+}*/
+
+#undertext {
+    font-family: Arial;
+    font-size: 18px;
+    padding: 0 0 0 0;
+    text-align: center;
+    float: left;
+    width: 70%;
+	color: white;
+}
+
+#div_santa {
+    float: left;
+    width: 30%;
+}
+
+#santa {
+    height: 80px;
+    width: auto;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    /*-ms-transition: all 0.5s ease;*/
+    transition: all 0.5s ease;
+}
+
+    #santa:hover {
+        -webkit-transform: rotate(-5deg);
+        -moz-transform: rotate(-5deg);
+        -o-transform: rotate(-5deg);
+        -ms-transform: rotate(-5deg);
+        transform: rotate(-5deg);
+    }
+
