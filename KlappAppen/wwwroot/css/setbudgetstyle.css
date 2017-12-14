@@ -14,7 +14,7 @@
 #text_setBudget {
 	font-size: 24px;
 	height: 500px;
-	font-family: 'Futura Std';
+	font-family: Arial;
 	position: center;
 	text-align: center;
 	color: white;
@@ -22,32 +22,73 @@
 
 input[type=text], select {
 	text-align: center;
-	width: 50%;
+	width: 100%;
 	padding: 12px 20px;
 	margin: 8px 0;
 	display: inline-block;
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	box-sizing: border-box;
-	font-family: geektastic;
-	font-size: 60%;
+	font-family: Arial;
+	font-size: 45%;
 }
 
-#button_setBudget {
-    background-color: transparent;
-    color: white;
-    font-family: 'Futura Std';
-    font-size: 15px;
-    border: 1px solid white;
-    border-radius: 4px;
-    cursor: pointer;
-    padding: 1% 2% 1% 2%;
+#text_setBudget {
+	width: 80%;
+	margin: auto;
 }
 
-    .button_index:hover {
-        color: white;
-        border: 1px solid white;
-    }
+
+/*#button_setBudget {
+	background-color: transparent;
+	width: 100%;
+	color: white;
+	font-family: Arial;
+	font-size: 15px;
+	border: 1px solid white;
+	border-radius: 4px;
+	cursor: pointer;
+	padding: 1% 2% 1% 2%;
+
+	text-align: center;
+	width: 100%;
+	background-color: transparent;
+	font-family: Arial;
+	font-size: 120%;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: 1px solid white;
+	border-radius: 4px;
+	cursor: pointer;
+}*/
+
+#div_setBudgetButton {
+	width: 80%;
+	margin: auto;
+}
+
+.button_setBudget {
+	text-align: center;
+	width: 100%;
+	background-color: transparent;
+	font-family: Arial;
+	font-size: 70%;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: 1px solid white;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+
+
+
+.button_index:hover {
+	color: white;
+	border: 1px solid white;
+}
 
 
 /*#submitknapp {

@@ -328,7 +328,7 @@ function countdown(yr, m, d) {
 		return
 	}
 	else
-		document.forms.count.count2.value = "     Bara " + dday + " dagar och " + dhour + " timmar" /*+ dmin + " minutes, and " + dsec*/ + " kvar till " + before
+		document.forms.count.count2.value = "  ...bara " + dday + " dagar och " + dhour + " timmar" /*+ dmin + " minutes, and " + dsec*/ + " kvar till " + before
 	setTimeout("countdown(theyear,themonth,theday)", 1000)
 }
 //enter the count down date using the format year/month/day
