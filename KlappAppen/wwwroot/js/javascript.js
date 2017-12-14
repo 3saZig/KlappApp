@@ -1,5 +1,6 @@
 ﻿var gifts;
 var BudgetIdFromSelect;
+var budgetAmount;
 
 $(document).ready(function () {
     let myBudget;
@@ -217,56 +218,62 @@ function getBudgetList(jsonArr) {
 
 function createChart(jsonArr, gifts) {
     //let myBudget;
-    console.log(jsonArr);
+    
+    console.log("jsonArr : " + jsonArr);
+    console.log("budgetIdFromSelect: " + BudgetIdFromSelect);
+
+
     $.ajax({
-        url: "/home/BudgetForChart/",
+        url: "/home/BudgetForChart/" + BudgetIdFromSelect,
         type: "GET",
         success: function (budgetAmount) {
-            console.log(budgetAmount);
+            console.log( "budgetAmount: " + budgetAmount);
             let budgetJson = JSON.parse(budgetAmount);
-            //i den här budgetJson finns nu id, summa och namn.
+
+            var ctxa = document.getElementById('doughnut').getContext('2d');
+
+            var doughnutChart = new Chart(ctxa, {
+                type: 'doughnut',
+                data: {
+                    labels: ["total klappar", "pengar kvar"],
+                    datasets: [
+                        {
+                            label: "Chart",
+                            data: [gifts, (budgetAmount - gifts)], //(myBudget-gifts), gifts
+                            backgroundColor: ["#005B00", "white"],
+                            borderColor: "#000000",
+                        }
+                    ]
+                },
+
+                options: {
+                    legend: {
+                        display: false,
+                        cutoutPercentage: 20,
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        animation: {
+                            animateScale: true
+                        }
+                    }
+                }
+
+            })
+
+        }
+    });
+
+
+
+}
+
+
+//let result = JSON.parse(jsonArr);
 
             //let myBudget = 0;
             //for (var i = 0; i < budgetJson.length; i++) {
             //    myBudget = myBudget + budgetJson[i].Total; //lägger ihop alla budgetposter till en summa
             //}
-        }
-    });
-
-    var ctxa = document.getElementById("doughnut").getContext('2d');
-
-    var doughnutChart = new Chart(ctxa, {
-
-        type: 'doughnut',
-        data: {
-            labels: ["total klappar", "pengar kvar"],
-            datasets: [
-                {
-                    label: "Chart",
-                    data: [gifts, (budgetJson - gifts)], //(myBudget-gifts), gifts
-                    backgroundColor: ["#005B00", "white"],
-                    borderColor: "#000000",
-                }
-            ]
-        },
-
-        options: {
-            legend: {
-                display: false,
-                cutoutPercentage: 20,
-                responsive: true,
-                maintainAspectRatio: true,
-                animation: {
-                    animateScale: true
-                }
-            }
-        }
-
-    });
-}
-
-
-//let result = JSON.parse(jsonArr);
 
 //}
 
