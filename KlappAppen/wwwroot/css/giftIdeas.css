@@ -11,6 +11,12 @@
 	width: 80%; /* Width of the outside container */
 }
 
+#giftideasHeadline {
+	color: white;
+	font-family: Arial;
+	font-size: 35px;
+}
+
 /* The slider itself */
 .slider {
 	-webkit-appearance: none;
@@ -18,7 +24,7 @@
 	height: 15px;
 	border-radius: 5px;
 	background: white;
-    border: 2px solid black; 
+	border: 2px solid black;
 	outline: none;
 	opacity: 1;
 	-webkit-transition: .2s;
