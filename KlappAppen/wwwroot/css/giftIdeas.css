@@ -1,20 +1,20 @@
-﻿#div_index {
+﻿#div_indexy {
 	margin-top: 20px;
 	background-color: #ca1515;
 	text-align: center;
-    font-family: Arial; 
 	height: 100%;
 }
 
 #slidecontainer {
-    margin: auto; 
+	margin: auto;
 	width: 80%; /* Width of the outside container */
 }
 
 #giftideasHeadline {
 	color: white;
-	font-family: Arial;
+	font-family: Arial;	
 	font-size: 35px;
+	
 }
 
 
