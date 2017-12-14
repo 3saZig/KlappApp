@@ -52,14 +52,14 @@ namespace KlappAppen.Controllers
         
 
         [HttpGet]
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
-       // [AllowAnonymous]
+       [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterVM viewModel, string action)
         {
             if (!ModelState.IsValid)
@@ -84,7 +84,6 @@ namespace KlappAppen.Controllers
 
                 return View(model);
 
-
             }
             else if (action == "Logga in")
             {
@@ -99,11 +98,7 @@ namespace KlappAppen.Controllers
                     return View(viewModel);
                 }
                 return RedirectToAction("Index", "Home");
-            }
-
-            //result = "Användare skapad";
-
-            //result = "Användarnamn upptaget";
+            }                       
 
             return Content(null);
         }

@@ -15,7 +15,7 @@ using KlappAppen.Models.ViewModels;
 
 namespace KlappAppen.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class HomeController : Controller
     {
         DBBudgetRepository repository;
@@ -53,14 +53,14 @@ namespace KlappAppen.Controllers
 
 
         //repository.GetAllPersons()
-        //[Authorize]
+        [Authorize]
         public IActionResult MainContent()
         {
             return View();
         }
 
 
-        // [Authorize]        
+        [Authorize]        
         public IActionResult SetBudget()
         {
             return View();
@@ -74,7 +74,7 @@ namespace KlappAppen.Controllers
         }
 
 
-        //  [Authorize]
+        [Authorize]
         public IActionResult MyPages()
         {
             return View();
@@ -107,13 +107,10 @@ namespace KlappAppen.Controllers
             return repository.DeletePerson(id);
         }
 
-
-        public string GetListJavaScript(int budgetId) //int budgetId
+        public string GetListOfGifts(int id)
         {
-            return repository.GetGifts(budgetId);
+            return JsonConvert.SerializeObject(repository.GetGifts(id));
         }
-
-
 
         //=================================================================================================
         //SET BUDGET
@@ -123,9 +120,9 @@ namespace KlappAppen.Controllers
         //skapa en ny budget
         public string AddBudgetJavaScript(BudgetsVM budgetVM)
         {
-            string userId = userManager.GetUserId(HttpContext.User);  
+            string userId = userManager.GetUserId(HttpContext.User);
             //Här hämtar vi vår användare
-            return repository.AddNewBudget(budgetVM, userId);
+            return repository.AddNewBudget(budgetVM);
         }
 
         //hämtar alla budgets en användare har
@@ -135,7 +132,7 @@ namespace KlappAppen.Controllers
             return repository.GetBudgets(userId);
         }
 
-        
+
 
         //=================================================================================================
         //CHART
@@ -146,6 +143,11 @@ namespace KlappAppen.Controllers
         public string CreateChart()
         {
             return repository.GetAllGifts();
+        }
+
+        public string BudgetForChart(int id)
+        {
+                return repository.GetBudgetTotalAmountFromId(id);
         }
 
 

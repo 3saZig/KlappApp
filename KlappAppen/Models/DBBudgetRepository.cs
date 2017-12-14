@@ -53,10 +53,9 @@ namespace KlappAppen.Models
         //=================================================================================================
 
 
-        public string GetGifts(int budgetId)
+        public HomeMainContentVM[] GetGifts(int budgetId)
         {
-
-            var list = klapp.Gifts
+            return klapp.Gifts
                 .Where(g => g.BudgetId == budgetId)
                 .Select(g => new HomeMainContentVM
                 {
@@ -66,10 +65,21 @@ namespace KlappAppen.Models
                     Id = g.Id
 
                 }).ToArray();
+        }
 
-            var giftList = JsonConvert.SerializeObject(list);
+        public string GetBudgetTotalAmountFromId(int budgetId)
+        {
+            int tmp = 1;
 
-            return giftList;
+            var totalBudget = klapp.Budgets
+                .SingleOrDefault(b => b.Id == budgetId);
+
+            if (totalBudget != null)
+                tmp = totalBudget.Total;
+
+            var totalBudget2 = JsonConvert.SerializeObject(tmp);
+
+            return totalBudget2;
         }
 
 
@@ -113,9 +123,10 @@ namespace KlappAppen.Models
                 Receiver = homeMainVM.Receiver,
                 Name = homeMainVM.Name,
                 Price = homeMainVM.Price,
-                BudgetId = homeMainVM.BudgetId
+                BudgetId = homeMainVM.Id
             });
             klapp.SaveChanges();
+            //.Where(b => b.Id == budgetId)
 
             var updatedList = JsonConvert.SerializeObject(klapp.Gifts);
             return updatedList;
