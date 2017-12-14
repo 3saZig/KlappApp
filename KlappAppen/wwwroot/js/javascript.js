@@ -218,6 +218,8 @@ function createChart(jsonArr, gifts) {
         }
     });
 
+    <input type="button" class="button_index" value="Skapa ny budget"
+        onclick="javascript: window.location.href='/home/SetBudget'" />
 
 
 }
