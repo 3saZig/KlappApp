@@ -33,7 +33,24 @@ input[type=text], select {
 	font-size: 60%;
 }
 
-#submitknapp {
+#button_setBudget {
+    background-color: transparent;
+    color: white;
+    font-family: 'Futura Std';
+    font-size: 15px;
+    border: 1px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 1% 2% 1% 2%;
+}
+
+    .button_index:hover {
+        color: white;
+        border: 1px solid white;
+    }
+
+
+/*#submitknapp {
 	text-align: center;
 	width: 20%;
 	background-color: transparent;
@@ -50,4 +67,4 @@ input[type=text], select {
 #submitknapp:hover {
 	color: white;
 	border: 1px solid white;
-}
+}*/

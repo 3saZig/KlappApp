@@ -1,13 +1,16 @@
 ﻿<link href="~/css/settingStyle.css" rel="stylesheet" />
 
 
-<div id="div_radioButton">
-    <form name="changeColor" method="post" action="">
-        <input type="radio" name="changeColor" class="colorRadioBtn" id="radio_green" value="green" onclick="changeColor()" /> Grön
-        <input type="radio" name="changeColor" class="colorRadioBtn" id="radio_red" value="red" onclick="changeColor()" /> Röd
-        <input type="radio" name="changeColor" class="colorRadioBtn" value="s" onclick="changeColor('s')" /> Svart/vit
-        <input type="button" value="change" name="changeColor" id="btn_changeColor" />
-    </form>
+<div id="div_myPages">
+    <div id="div_newBudget">
+        <input type="button" class="button_myPage" value="Skapa ny budget" onclick="javascript: window.location.href='/home/SetBudget'" />
+    </div>
+    <br />
+    <div id="div_myLists">
+        <input type="button" id="button_myLists" value="Mina listor"/>
+        <ul id="ul_myBudgets"></ul>
+    
+    </div>
 
     
 </div>

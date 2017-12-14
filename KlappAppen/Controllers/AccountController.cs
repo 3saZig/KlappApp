@@ -14,33 +14,21 @@ using Microsoft.AspNetCore.Authorization;
 namespace KlappAppen.Controllers
 {
 
+    [Authorize]
     public class AccountController : Controller
     {
-        //DBBudgetRepository repository;
-
-        //public AccountController(DBBudgetRepository repository)
-        //{
-        //    
-        //}
-
-
         UserManager<IdentityUser> userManager;
         SignInManager<IdentityUser> signInManager;
         RoleManager<IdentityRole> roleManager;
-        //IdentityDbContext identityContext;
 
         public AccountController(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
-            RoleManager<IdentityRole> roleManager
-            //DBBudgetRepository repository
-                                                 /*IdentityDbContext identityContext*/)
+            RoleManager<IdentityRole> roleManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
-            //this.repository = repository;
-            //this.identityContext = identityContext;
         }
 
         // GET: /<controller>/
