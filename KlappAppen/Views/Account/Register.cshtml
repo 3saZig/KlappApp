@@ -3,6 +3,8 @@
 <link href="~/css/RegisterLogInStyle.css" rel="stylesheet" />
 
 <div id="registerContainer">
+    <div id="undertext">Välkommen! Här kan du planera din julklappsshopping!</div>
+    <div id="div_santa"><img id="santa" src="~/pictures/santa.png" /></div>
 	<form asp-action="Register" asp-controller="Account">
 		<input asp-for="UserName" class="UserNameTextInput" placeholder="Ange användarnamn..." />
 		<span asp-validation-for="UserName"></span>
