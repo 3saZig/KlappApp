@@ -17,6 +17,37 @@
 	font-size: 35px;
 }
 
+
+#giftDisplay {
+	color: white;
+	font-family: Arial;
+	font-size: 15px;
+}
+
+
+#div_giftsDisplay {
+	border-radius: 5px;
+	background: white;
+	border: 2px solid black;
+	height: 130px;
+	width: 85%;
+	font-size: 12px;
+	background-color: #ca1515;
+	font-family: Arial;
+	color: white;
+	border: 0;
+	border: 2px dotted;
+	margin: auto;
+}
+
+
+
+#slideintroText {
+	color: white;
+	font-family: Arial;
+	font-size: 15px;
+}
+
 /* The slider itself */
 .slider {
 	-webkit-appearance: none;

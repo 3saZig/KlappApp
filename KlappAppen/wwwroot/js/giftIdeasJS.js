@@ -11,7 +11,7 @@ let nfl = nollTillFem.length;
 let text = "<ul>";
 
 
-document.getElementById("giftDisplay").innerHTML = "Det kan vara svårt att tänka ut julklappar!" + "<br/>" + "Välj ålder med hjälp av slidern nedan" + "<br/>" + "så kommer det att visas" + "<br/>" + " klapptips här sen!";
+document.getElementById("giftDisplay").innerHTML = "Det kan vara svårt att tänka ut julklappar!" + "<br/>" + "<br/>"+ "Välj ålder med hjälp av gröna cirkeln" + "<br/>" + "nedan så kommer det att visas" + "<br/>" + "klapptips här sen!" + "<br/>" + "<br/>" + "<br/>";
 
 
 // Update the current slider value (each time you drag the slider handle)
