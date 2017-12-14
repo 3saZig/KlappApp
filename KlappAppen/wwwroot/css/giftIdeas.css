@@ -6,7 +6,8 @@
 }
 
 #slidecontainer {
-	width: 100%; /* Width of the outside container */
+    margin: auto; 
+	width: 80%; /* Width of the outside container */
 }
 
 /* The slider itself */
