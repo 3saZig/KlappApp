@@ -43,7 +43,8 @@ namespace KlappAppen
 
             services.AddAuthentication
                 (CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(o => o.LoginPath = "/Account/Login");
+                .AddCookie(o => o.LoginPath = "/Account/Register");
+            services.ConfigureApplicationCookie(o => o.LoginPath = "/Account/Register");
 
 
             services.AddMvc();

@@ -44,8 +44,7 @@ namespace KlappAppen.Controllers
         //IACTIONRESULTS
         //=================================================================================================
 
-        //GET: /<controller>/
-        [AllowAnonymous]
+      
         public IActionResult Index()
         {
             return View();
@@ -53,28 +52,28 @@ namespace KlappAppen.Controllers
 
 
         //repository.GetAllPersons()
-        [Authorize]
+       
         public IActionResult MainContent()
         {
             return View();
         }
 
 
-        [Authorize]        
+             
         public IActionResult SetBudget()
         {
             return View();
         }
 
 
-        [AllowAnonymous]
+      
         public IActionResult GiftIdeas()
         {
             return View();
         }
 
 
-        [Authorize]
+       
         public IActionResult MyPages()
         {
             return View();
