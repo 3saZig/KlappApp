@@ -21,10 +21,17 @@ namespace KlappAppen.Models
 
         public string UserExist(string username)
         {
-
             return null;
         }
 
+
+
+        //=================================================================================================
+        //THE CHART
+        //=================================================================================================
+
+
+        //anropas i homecontroller/createchart
         public string GetAllGifts()
         {
             var ret = klapp.Gifts
@@ -37,28 +44,13 @@ namespace KlappAppen.Models
 
 
             var JSONgiftList = JsonConvert.SerializeObject(ret);
-
-            File.WriteAllText(@"C:\Users\Administrator\Desktop\Json2.rtf", JSONgiftList);
-
             return JSONgiftList;
         }
 
-        public string GetBudgets(string userId)
-        {
-            var list = klapp.Budgets
-                .Where(b => b.AspNetUsersId == userId)
-                .Select(b => new BudgetsVM
-                {
-                    BudgetName = b.BudgetName,
-                    Id = b.Id,
-                    Total = b.Total,
-                }
-                ).ToArray();
 
-            var JSONtotalBudget = JsonConvert.SerializeObject(list);
-
-            return JSONtotalBudget;
-        }
+        //=================================================================================================
+        //KLAPPLISTAN
+        //=================================================================================================
 
 
         public string GetGifts(int budgetId)
@@ -79,6 +71,7 @@ namespace KlappAppen.Models
 
             return giftList;
         }
+
 
         public string DeletePerson(int id)
         {
@@ -113,40 +106,6 @@ namespace KlappAppen.Models
         }
 
 
-
-        //public string ChangeBudget(int id, int total)
-        //{
-        //    var changeBudget = klapp.Budgets
-        //        .FirstOrDefault(b => b.Id == id);
-        //    if (changeBudget != null)
-        //    {
-        //        changeBudget.Total = total;   
-        //        klapp.SaveChanges();
-        //    }
-
-
-        //    var newBudget = JsonConvert.SerializeObject(klapp.Budgets);
-        //    return newBudget;
-        //}
-
-
-        public string AddNewBudget(BudgetsVM budgetVM, string userId)
-        {
-            klapp.Budgets
-                .Add(new Budget   //Lägga till 
-                {
-                    BudgetName = budgetVM.BudgetName,
-                    AspNetUsersId = userId,
-
-                    Total = budgetVM.Total
-                });
-
-            klapp.SaveChanges();
-
-            var newBudget = JsonConvert.SerializeObject(klapp.Budgets);
-            return newBudget;
-        }
-
         public string AddPerson(HomeMainContentVM homeMainVM)
         {
             klapp.Gifts.Add(new Gift
@@ -162,6 +121,71 @@ namespace KlappAppen.Models
             return updatedList;
         }
 
+
+        //=================================================================================================
+        //BUDGET
+        //=================================================================================================
+
+
+        //anropas i homecontroller/getbudget
+        public string GetBudgets(string userId)
+        {
+            var list = klapp.Budgets
+                .Where(b => b.AspNetUsersId == userId)
+                .Select(b => new BudgetsVM
+                {
+                    BudgetName = b.BudgetName,
+                    Id = b.Id,
+                    Total = b.Total,
+                }
+                ).ToArray();
+
+            var JSONtotalBudget = JsonConvert.SerializeObject(list);
+            return JSONtotalBudget;
+        }
+
+        //******KAN DET HÄR VARA NÅGONTING? HÄMTAR KLAPPARNA FRÅN EN SPECIFIK BUDGET? OCH ATT DET BUDGET-ID VI
+        //SKICKAR IN HAR VI PLOCKAT UT FRÅN VÅR DROP-DOWN? getBudgetIdFromSelect PÅ JAVASIDAN?
+        //public string GetGiftsFromSelectedBudget(HomeMainContentVM homeMainVM, int budgetID)
+        //{
+        //    var klapplistaFranBudget = klapp.Gifts
+        //        .Where(b => b.Id == budgetID)
+        //        .Select(b => new Gift
+        //        {
+        //            Receiver = homeMainVM.Receiver,
+        //            Name = homeMainVM.Name,
+        //            Price = homeMainVM.Price,
+        //            BudgetId = homeMainVM.BudgetId
+        //        }
+        //        ).ToArray();
+
+        //    var JSONklapplistaFranValdBudget = JsonConvert.SerializeObject(klapplistaFranBudget);
+        //    return JSONklapplistaFranValdBudget;
+        //}
+
+
+        public string AddNewBudget(BudgetsVM budgetVM, string userId)
+        {
+            klapp.Budgets
+                .Add(new Budget   //Lägga till 
+                {
+                    BudgetName = budgetVM.BudgetName,
+                    AspNetUsersId = userId,
+                    Total = budgetVM.Total
+                });
+
+            klapp.SaveChanges();
+
+            var newBudget = JsonConvert.SerializeObject(klapp.Budgets);
+            return newBudget;
+        }
+
+
+        //=================================================================================================
+        //GRAVEYARD
+        //=================================================================================================
+
+
         //public string SumGifts()
         //{
         //    var list = klapp.Gifts
@@ -174,6 +198,22 @@ namespace KlappAppen.Models
         //       }).ToArray();
         //}
 
+        //File.WriteAllText(@"C:\Users\Administrator\Desktop\Json2.rtf", JSONgiftList);
 
+
+        //public string ChangeBudget(int id, int total)
+        //{
+        //    var changeBudget = klapp.Budgets
+        //        .FirstOrDefault(b => b.Id == id);
+        //    if (changeBudget != null)
+        //    {
+        //        changeBudget.Total = total;   
+        //        klapp.SaveChanges();
+        //    }
+
+
+        //    var newBudget = JsonConvert.SerializeObject(klapp.Budgets);
+        //    return newBudget;
+        //}
     }
 }

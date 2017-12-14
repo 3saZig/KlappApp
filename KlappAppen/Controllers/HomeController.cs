@@ -39,12 +39,18 @@ namespace KlappAppen.Controllers
             this.signInManager = signInManager;
         }
 
+
+        //=================================================================================================
+        //IACTIONRESULTS
+        //=================================================================================================
+
         //GET: /<controller>/
         [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
         }
+
 
         //repository.GetAllPersons()
         //[Authorize]
@@ -53,16 +59,101 @@ namespace KlappAppen.Controllers
             return View();
         }
 
+
+        // [Authorize]        
+        public IActionResult SetBudget()
+        {
+            return View();
+        }
+
+
+        [AllowAnonymous]
+        public IActionResult GiftIdeas()
+        {
+            return View();
+        }
+
+
+        //  [Authorize]
+        public IActionResult MyPages()
+        {
+            return View();
+        }
+
+
+
+        //=================================================================================================
+        //KLAPPLISTAN
+        //=================================================================================================
+
+
+        //för att lägga till en post i klapplistan. Här ryms Receiver, Name, Price och BudgetId
+        public string AddPersonJavaScript(HomeMainContentVM homeMainVM)
+        {
+            return repository.AddPerson(homeMainVM);
+        }
+
+
+        [HttpPost]
+        public string SaveChangesJavascript(int id, string receiver, string gift, int price)
+        {
+            var model = JsonConvert.SerializeObject(repository.EditPerson(id, receiver, gift, price));
+            return model;
+        }
+
+
+        public string DeletePersonJavascript(int id)
+        {
+            return repository.DeletePerson(id);
+        }
+
+
+        public string GetListJavaScript(int budgetId) //int budgetId
+        {
+            return repository.GetGifts(budgetId);
+        }
+
+
+
+        //=================================================================================================
+        //SET BUDGET
+        //=================================================================================================
+
+
+        //skapa en ny budget
+        public string AddBudgetJavaScript(BudgetsVM budgetVM)
+        {
+            string userId = userManager.GetUserId(HttpContext.User);  
+            //Här hämtar vi vår användare
+            return repository.AddNewBudget(budgetVM, userId);
+        }
+
+        //hämtar alla budgets en användare har
+        public string GetBudget()
+        {
+            string userId = userManager.GetUserId(HttpContext.User);
+            return repository.GetBudgets(userId);
+        }
+
+        
+
+        //=================================================================================================
+        //CHART
+        //=================================================================================================
+
+
+        //returnerar Name och Price från Gifts-tabellen
         public string CreateChart()
         {
             return repository.GetAllGifts();
         }
 
 
-        public string AddPersonJavaScript(HomeMainContentVM homeMainVM)
-        {
-            return repository.AddPerson(homeMainVM);
-        }
+
+        //=================================================================================================
+        //LOGIN
+        //=================================================================================================
+
 
         public async Task LogOut()
         {
@@ -71,54 +162,10 @@ namespace KlappAppen.Controllers
 
 
 
-        public string AddBudgetJavaScript(BudgetsVM budgetVM)
-        {
-            string userId = userManager.GetUserId(HttpContext.User);  //Här hämtar vi vår användare
-            return repository.AddNewBudget(budgetVM, userId);
-        }
+        //=================================================================================================
+        //GRAVEYARD
+        //=================================================================================================
 
-        // [Authorize]        
-        public IActionResult SetBudget()
-        {
-            return View();
-
-        }
-
-        public string GetBudget()
-        {
-            string userId = userManager.GetUserId(HttpContext.User);
-            return repository.GetBudgets(userId);
-        }
-
-        [AllowAnonymous]
-        public IActionResult GiftIdeas()
-        {
-            return View();
-        }
-
-        //  [Authorize]
-        public IActionResult MyPages()
-        {
-            return View();
-        }
-
-        public string GetListJavaScript(int budgetId) //int budgetId
-        {
-            
-            return repository.GetGifts(budgetId);
-        }
-
-        public string DeletePersonJavascript(int id)
-        {
-            return repository.DeletePerson(id);
-        }
-
-        [HttpPost]
-        public string SaveChangesJavascript(int id, string receiver, string gift, int price)
-        {
-            var model = JsonConvert.SerializeObject(repository.EditPerson(id, receiver, gift, price));
-            return model;
-        }
 
         //public string ShowListFromBudgetId(int id)
         //{
