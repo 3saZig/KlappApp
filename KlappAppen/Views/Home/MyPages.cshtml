@@ -1,13 +1,17 @@
 ﻿@section styleSheets
     {
-<link href="~/css/myPagesStyle.css" rel="stylesheet" />
+    <link href="~/css/myPagesStyle.css" rel="stylesheet" />
 }
 
 <div id="div_myPages">
-   
+
     <div id="div_myLists">
         <input type="button" id="button_myLists" value="Mina listor" />
-        <ol id="ul_myBudgets"></ol>
+        <form actio >
+            <ol id="ul_myBudgets"></ol>
+
+        </form>
+
 
     </div>
 
@@ -22,6 +26,6 @@
             $('#button_myLists').click(function () {
                 showMyBudgets();
             });
-        }); 
+        });
     </script>
 }

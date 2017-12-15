@@ -1,18 +1,20 @@
 ﻿@model RegisterVM
-
-<link href="~/css/RegisterLogInStyle.css" rel="stylesheet" />
+@section styleSheets
+    {
+    <link href="~/css/RegisterLogInStyle.css" rel="stylesheet" />
+}
 
 <div id="registerContainer">
     <div id="undertext">Kom in och börja planera dina klappar!</div>
     <div id="div_santa"><img id="santa" src="~/pictures/santa.png" /></div>
-	<form asp-action="Register" asp-controller="Account">
-		<input asp-for="UserName" class="UserNameTextInput" placeholder="Ange användarnamn..." />
-		<span asp-validation-for="UserName"></span>
-		<br />
-		<input asp-for="Password" class="UserNameTextInput" placeholder="..och lösenord" />
-		<span asp-validation-for="Password"></span>
-		<br/>
-		<input name="action" id="RegisterKnapp" type="submit" value="Skapa konto" />
-		<input name="action" id="LoggaInKnapp" type="submit" value="Logga in" />
-	</form>
+    <form asp-action="Register" asp-controller="Account">
+        <input asp-for="UserName" class="UserNameTextInput" placeholder="Ange användarnamn..." />
+        <span asp-validation-for="UserName"></span>
+        <br />
+        <input asp-for="Password" class="UserNameTextInput" placeholder="..och lösenord" />
+        <span asp-validation-for="Password"></span>
+        <br />
+        <input name="action" id="RegisterKnapp" type="submit" value="Skapa konto" />
+        <input name="action" id="LoggaInKnapp" type="submit" value="Logga in" />
+    </form>
 </div>
